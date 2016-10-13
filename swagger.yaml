@@ -1,0 +1,82 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: QuanLySanBay
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+
+  /sanbaydi:
+    x-swagger-router-controller: airports
+    get:
+      operationId: getToFromAiportAll
+      description: Lấy danh sách các sấn bay có thể bay đến sân bay đi
+      parameters:
+        - name: masanbaydi
+          type: string
+          in: query
+          description: Mã sân bay đi để tìm kiếm san bay đến tương ứng
+          required: false
+        - name: truong
+          type: string
+          in: query
+          description: Trường dữ liệu cần trả về mặc định là id trường dữ liệu có thể là "id,name,city"
+          required: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetAirportResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  
+  # Lấy danh sách các sân bay đi
+  GetAirportResponse:
+    required:
+      - sanbay
+    properties:
+      sanbay:
+        type: object
+        properties:
+          vung:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                city:
+                  type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
