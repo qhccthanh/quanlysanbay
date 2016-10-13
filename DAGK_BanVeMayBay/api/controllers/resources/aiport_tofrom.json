@@ -1,0 +1,4016 @@
+{
+  "Trung Quốc" : [
+    {
+      "to" : "CAN",
+      "from" : "PXU"
+    },
+    {
+      "to" : "PEK",
+      "from" : "PXU"
+    },
+    {
+      "to" : "PGV",
+      "from" : "HPH"
+    },
+    {
+      "to" : "PEK",
+      "from" : "VCL"
+    },
+    {
+      "to" : "PGV",
+      "from" : "PXU"
+    },
+    {
+      "to" : "PGV",
+      "from" : "CNX"
+    },
+    {
+      "to" : "CAN",
+      "from" : "FRA"
+    },
+    {
+      "to" : "CAN",
+      "from" : "BOS"
+    },
+    {
+      "to" : "PGV",
+      "from" : "SYD"
+    },
+    {
+      "to" : "PGV",
+      "from" : "BMV"
+    },
+    {
+      "to" : "PGV",
+      "from" : "PNH"
+    },
+    {
+      "to" : "PEK",
+      "from" : "VII"
+    },
+    {
+      "to" : "PEK",
+      "from" : "BKK"
+    },
+    {
+      "to" : "PGV",
+      "from" : "DIN"
+    },
+    {
+      "to" : "PGV",
+      "from" : "CDG"
+    },
+    {
+      "to" : "PGV",
+      "from" : "VCS"
+    },
+    {
+      "to" : "PGV",
+      "from" : "KIX"
+    },
+    {
+      "to" : "PGV",
+      "from" : "LAX"
+    },
+    {
+      "to" : "PGV",
+      "from" : "SFO"
+    },
+    {
+      "to" : "CAN",
+      "from" : "HKT"
+    },
+    {
+      "to" : "PGV",
+      "from" : "BOS"
+    },
+    {
+      "to" : "PEK",
+      "from" : "CDG"
+    },
+    {
+      "to" : "CAN",
+      "from" : "LAX"
+    },
+    {
+      "to" : "CAN",
+      "from" : "CXR"
+    },
+    {
+      "to" : "PGV",
+      "from" : "BOS"
+    },
+    {
+      "to" : "PEK",
+      "from" : "FRA"
+    },
+    {
+      "to" : "CAN",
+      "from" : "CDG"
+    },
+    {
+      "to" : "CAN",
+      "from" : "PUS"
+    },
+    {
+      "to" : "PGV",
+      "from" : "MEL"
+    },
+    {
+      "to" : "PEK",
+      "from" : "VCS"
+    },
+    {
+      "to" : "CAN",
+      "from" : "HAN"
+    },
+    {
+      "to" : "CAN",
+      "from" : "VCL"
+    },
+    {
+      "to" : "PGV",
+      "from" : "TBB"
+    },
+    {
+      "to" : "PEK",
+      "from" : "DPS"
+    },
+    {
+      "to" : "CAN",
+      "from" : "VTE"
+    },
+    {
+      "to" : "PEK",
+      "from" : "LCY"
+    },
+    {
+      "to" : "CAN",
+      "from" : "DLI"
+    },
+    {
+      "to" : "PGV",
+      "from" : "VKG"
+    },
+    {
+      "to" : "PGV",
+      "from" : "VTE"
+    },
+    {
+      "to" : "CAN",
+      "from" : "BKK"
+    },
+    {
+      "to" : "PEK",
+      "from" : "PGV"
+    },
+    {
+      "to" : "CAN",
+      "from" : "ICN"
+    },
+    {
+      "to" : "CAN",
+      "from" : "NRT"
+    },
+    {
+      "to" : "CAN",
+      "from" : "CGK"
+    },
+    {
+      "to" : "PGV",
+      "from" : "MEL"
+    },
+    {
+      "to" : "PEK",
+      "from" : "NRT"
+    },
+    {
+      "to" : "CAN",
+      "from" : "LAX"
+    },
+    {
+      "to" : "PGV",
+      "from" : "VII"
+    },
+    {
+      "to" : "CAN",
+      "from" : "BMV"
+    },
+    {
+      "to" : "CAN",
+      "from" : "KUL"
+    },
+    {
+      "to" : "PEK",
+      "from" : "FUK"
+    },
+    {
+      "to" : "PEK",
+      "from" : "PNH"
+    },
+    {
+      "to" : "PEK",
+      "from" : "KUL"
+    },
+    {
+      "to" : "PGV",
+      "from" : "DAD"
+    },
+    {
+      "to" : "PGV",
+      "from" : "PNH"
+    },
+    {
+      "to" : "PEK",
+      "from" : "SYD"
+    },
+    {
+      "to" : "CAN",
+      "from" : "HAN"
+    },
+    {
+      "to" : "PEK",
+      "from" : "HAN"
+    },
+    {
+      "to" : "CAN",
+      "from" : "LCY"
+    },
+    {
+      "to" : "PEK",
+      "from" : "NGO"
+    }
+  ],
+  "Châu Âu" : [
+    {
+      "to" : "MEL",
+      "from" : "VKG"
+    },
+    {
+      "to" : "MEL",
+      "from" : "HUI"
+    },
+    {
+      "to" : "LCY",
+      "from" : "CGK"
+    },
+    {
+      "to" : "LCY",
+      "from" : "VCL"
+    },
+    {
+      "to" : "FRA",
+      "from" : "VCL"
+    },
+    {
+      "to" : "SYD",
+      "from" : "HUI"
+    },
+    {
+      "to" : "SYD",
+      "from" : "PNH"
+    },
+    {
+      "to" : "FRA",
+      "from" : "REP"
+    },
+    {
+      "to" : "FRA",
+      "from" : "VCS"
+    },
+    {
+      "to" : "FRA",
+      "from" : "KIX"
+    },
+    {
+      "to" : "LCY",
+      "from" : "CXR"
+    },
+    {
+      "to" : "SYD",
+      "from" : "KIX"
+    },
+    {
+      "to" : "CDG",
+      "from" : "DLI"
+    },
+    {
+      "to" : "CDG",
+      "from" : "TBB"
+    },
+    {
+      "to" : "LCY",
+      "from" : "HKT"
+    },
+    {
+      "to" : "CDG",
+      "from" : "TPE"
+    },
+    {
+      "to" : "SYD",
+      "from" : "PNH"
+    },
+    {
+      "to" : "SYD",
+      "from" : "MEL"
+    },
+    {
+      "to" : "SYD",
+      "from" : "TBB"
+    },
+    {
+      "to" : "LCY",
+      "from" : "VII"
+    },
+    {
+      "to" : "FRA",
+      "from" : "NRT"
+    },
+    {
+      "to" : "LCY",
+      "from" : "KIX"
+    },
+    {
+      "to" : "SYD",
+      "from" : "NGO"
+    },
+    {
+      "to" : "LCY",
+      "from" : "TPE"
+    },
+    {
+      "to" : "SYD",
+      "from" : "DPS"
+    },
+    {
+      "to" : "MEL",
+      "from" : "VII"
+    },
+    {
+      "to" : "LCY",
+      "from" : "CGK"
+    },
+    {
+      "to" : "CDG",
+      "from" : "FUK"
+    },
+    {
+      "to" : "CDG",
+      "from" : "REP"
+    },
+    {
+      "to" : "LCY",
+      "from" : "FRA"
+    },
+    {
+      "to" : "CDG",
+      "from" : "VTE"
+    },
+    {
+      "to" : "LCY",
+      "from" : "VTE"
+    },
+    {
+      "to" : "FRA",
+      "from" : "JFK"
+    },
+    {
+      "to" : "MEL",
+      "from" : "PQC"
+    },
+    {
+      "to" : "CDG",
+      "from" : "PUS"
+    },
+    {
+      "to" : "CDG",
+      "from" : "TPE"
+    },
+    {
+      "to" : "LCY",
+      "from" : "BOS"
+    },
+    {
+      "to" : "LCY",
+      "from" : "REP"
+    },
+    {
+      "to" : "FRA",
+      "from" : "MEL"
+    },
+    {
+      "to" : "SYD",
+      "from" : "DPS"
+    },
+    {
+      "to" : "FRA",
+      "from" : "KUL"
+    },
+    {
+      "to" : "FRA",
+      "from" : "VKG"
+    },
+    {
+      "to" : "MEL",
+      "from" : "VII"
+    },
+    {
+      "to" : "LCY",
+      "from" : "MEL"
+    },
+    {
+      "to" : "MEL",
+      "from" : "SYD"
+    },
+    {
+      "to" : "SYD",
+      "from" : "FRA"
+    },
+    {
+      "to" : "FRA",
+      "from" : "CDG"
+    },
+    {
+      "to" : "LCY",
+      "from" : "DAD"
+    },
+    {
+      "to" : "FRA",
+      "from" : "VCL"
+    },
+    {
+      "to" : "SYD",
+      "from" : "ICN"
+    },
+    {
+      "to" : "MEL",
+      "from" : "BKK"
+    },
+    {
+      "to" : "SYD",
+      "from" : "HKT"
+    },
+    {
+      "to" : "LCY",
+      "from" : "CDG"
+    },
+    {
+      "to" : "SYD",
+      "from" : "PXU"
+    },
+    {
+      "to" : "SYD",
+      "from" : "REP"
+    },
+    {
+      "to" : "CDG",
+      "from" : "PQC"
+    },
+    {
+      "to" : "FRA",
+      "from" : "VII"
+    },
+    {
+      "to" : "LCY",
+      "from" : "SYD"
+    },
+    {
+      "to" : "CDG",
+      "from" : "VKG"
+    },
+    {
+      "to" : "FRA",
+      "from" : "HKT"
+    },
+    {
+      "to" : "CDG",
+      "from" : "PNH"
+    },
+    {
+      "to" : "FRA",
+      "from" : "UIH"
+    },
+    {
+      "to" : "SYD",
+      "from" : "NGO"
+    },
+    {
+      "to" : "LCY",
+      "from" : "NRT"
+    },
+    {
+      "to" : "FRA",
+      "from" : "SIN"
+    },
+    {
+      "to" : "FRA",
+      "from" : "TPE"
+    },
+    {
+      "to" : "LCY",
+      "from" : "CGK"
+    },
+    {
+      "to" : "LCY",
+      "from" : "TPE"
+    },
+    {
+      "to" : "SYD",
+      "from" : "CGK"
+    },
+    {
+      "to" : "MEL",
+      "from" : "CDG"
+    },
+    {
+      "to" : "CDG",
+      "from" : "BMV"
+    },
+    {
+      "to" : "LCY",
+      "from" : "SYD"
+    },
+    {
+      "to" : "FRA",
+      "from" : "JFK"
+    },
+    {
+      "to" : "FRA",
+      "from" : "DIN"
+    },
+    {
+      "to" : "CDG",
+      "from" : "TBB"
+    },
+    {
+      "to" : "MEL",
+      "from" : "PXU"
+    },
+    {
+      "to" : "SYD",
+      "from" : "TBB"
+    },
+    {
+      "to" : "FRA",
+      "from" : "HPH"
+    },
+    {
+      "to" : "FRA",
+      "from" : "HPH"
+    },
+    {
+      "to" : "CDG",
+      "from" : "UIH"
+    },
+    {
+      "to" : "FRA",
+      "from" : "VCL"
+    },
+    {
+      "to" : "MEL",
+      "from" : "FRA"
+    },
+    {
+      "to" : "SYD",
+      "from" : "CGK"
+    },
+    {
+      "to" : "MEL",
+      "from" : "CNX"
+    },
+    {
+      "to" : "FRA",
+      "from" : "NRT"
+    },
+    {
+      "to" : "FRA",
+      "from" : "JFK"
+    },
+    {
+      "to" : "MEL",
+      "from" : "PXU"
+    },
+    {
+      "to" : "CDG",
+      "from" : "DPS"
+    },
+    {
+      "to" : "CDG",
+      "from" : "DAD"
+    },
+    {
+      "to" : "MEL",
+      "from" : "SIN"
+    },
+    {
+      "to" : "SYD",
+      "from" : "MEL"
+    },
+    {
+      "to" : "FRA",
+      "from" : "LAX"
+    },
+    {
+      "to" : "FRA",
+      "from" : "SYD"
+    },
+    {
+      "to" : "SYD",
+      "from" : "PXU"
+    },
+    {
+      "to" : "LCY",
+      "from" : "TPE"
+    },
+    {
+      "to" : "LCY",
+      "from" : "HPH"
+    },
+    {
+      "to" : "SYD",
+      "from" : "VKG"
+    },
+    {
+      "to" : "SYD",
+      "from" : "SIN"
+    },
+    {
+      "to" : "CDG",
+      "from" : "HAN"
+    },
+    {
+      "to" : "MEL",
+      "from" : "PQC"
+    }
+  ],
+  "Nhật Hàn" : [
+    {
+      "to" : "FUK",
+      "from" : "TPE"
+    },
+    {
+      "to" : "FUK",
+      "from" : "VTE"
+    },
+    {
+      "to" : "NGO",
+      "from" : "DIN"
+    },
+    {
+      "to" : "ICN",
+      "from" : "LCY"
+    },
+    {
+      "to" : "NRT",
+      "from" : "VCS"
+    },
+    {
+      "to" : "NRT",
+      "from" : "JFK"
+    },
+    {
+      "to" : "NGO",
+      "from" : "MEL"
+    },
+    {
+      "to" : "FUK",
+      "from" : "CGK"
+    },
+    {
+      "to" : "KIX",
+      "from" : "VCS"
+    },
+    {
+      "to" : "NGO",
+      "from" : "BOS"
+    },
+    {
+      "to" : "PUS",
+      "from" : "CGK"
+    },
+    {
+      "to" : "NRT",
+      "from" : "BKK"
+    },
+    {
+      "to" : "ICN",
+      "from" : "HPH"
+    },
+    {
+      "to" : "KIX",
+      "from" : "PGV"
+    },
+    {
+      "to" : "ICN",
+      "from" : "LCY"
+    },
+    {
+      "to" : "FUK",
+      "from" : "NGO"
+    },
+    {
+      "to" : "ICN",
+      "from" : "TBB"
+    },
+    {
+      "to" : "ICN",
+      "from" : "BKK"
+    },
+    {
+      "to" : "NRT",
+      "from" : "CXR"
+    },
+    {
+      "to" : "NGO",
+      "from" : "DAD"
+    },
+    {
+      "to" : "NRT",
+      "from" : "PEK"
+    },
+    {
+      "to" : "NRT",
+      "from" : "BOS"
+    },
+    {
+      "to" : "KIX",
+      "from" : "PNH"
+    },
+    {
+      "to" : "ICN",
+      "from" : "NRT"
+    },
+    {
+      "to" : "NGO",
+      "from" : "VCL"
+    },
+    {
+      "to" : "PUS",
+      "from" : "SFO"
+    },
+    {
+      "to" : "PUS",
+      "from" : "BMV"
+    },
+    {
+      "to" : "PUS",
+      "from" : "DIN"
+    },
+    {
+      "to" : "KIX",
+      "from" : "SFO"
+    },
+    {
+      "to" : "FUK",
+      "from" : "PXU"
+    },
+    {
+      "to" : "KIX",
+      "from" : "VCS"
+    },
+    {
+      "to" : "NGO",
+      "from" : "HKT"
+    },
+    {
+      "to" : "FUK",
+      "from" : "PEK"
+    },
+    {
+      "to" : "FUK",
+      "from" : "MEL"
+    },
+    {
+      "to" : "ICN",
+      "from" : "NGO"
+    },
+    {
+      "to" : "NGO",
+      "from" : "MEL"
+    },
+    {
+      "to" : "FUK",
+      "from" : "PQC"
+    },
+    {
+      "to" : "NRT",
+      "from" : "PUS"
+    },
+    {
+      "to" : "NRT",
+      "from" : "ICN"
+    },
+    {
+      "to" : "NRT",
+      "from" : "PUS"
+    },
+    {
+      "to" : "FUK",
+      "from" : "KUL"
+    },
+    {
+      "to" : "NRT",
+      "from" : "SFO"
+    },
+    {
+      "to" : "PUS",
+      "from" : "KIX"
+    },
+    {
+      "to" : "PUS",
+      "from" : "JFK"
+    },
+    {
+      "to" : "PUS",
+      "from" : "PQC"
+    },
+    {
+      "to" : "KIX",
+      "from" : "CAN"
+    },
+    {
+      "to" : "NRT",
+      "from" : "ICN"
+    },
+    {
+      "to" : "FUK",
+      "from" : "MEL"
+    },
+    {
+      "to" : "KIX",
+      "from" : "CDG"
+    },
+    {
+      "to" : "ICN",
+      "from" : "SIN"
+    },
+    {
+      "to" : "NRT",
+      "from" : "SFO"
+    },
+    {
+      "to" : "FUK",
+      "from" : "NGO"
+    },
+    {
+      "to" : "KIX",
+      "from" : "HPH"
+    },
+    {
+      "to" : "FUK",
+      "from" : "PEK"
+    },
+    {
+      "to" : "NRT",
+      "from" : "VKG"
+    },
+    {
+      "to" : "NRT",
+      "from" : "NGO"
+    },
+    {
+      "to" : "FUK",
+      "from" : "VCL"
+    },
+    {
+      "to" : "NGO",
+      "from" : "VKG"
+    },
+    {
+      "to" : "KIX",
+      "from" : "CGK"
+    },
+    {
+      "to" : "FUK",
+      "from" : "PQC"
+    },
+    {
+      "to" : "ICN",
+      "from" : "VII"
+    },
+    {
+      "to" : "FUK",
+      "from" : "BKK"
+    },
+    {
+      "to" : "FUK",
+      "from" : "BKK"
+    },
+    {
+      "to" : "FUK",
+      "from" : "HPH"
+    },
+    {
+      "to" : "PUS",
+      "from" : "FUK"
+    },
+    {
+      "to" : "NRT",
+      "from" : "VKG"
+    },
+    {
+      "to" : "FUK",
+      "from" : "KIX"
+    },
+    {
+      "to" : "ICN",
+      "from" : "LCY"
+    },
+    {
+      "to" : "PUS",
+      "from" : "PGV"
+    },
+    {
+      "to" : "ICN",
+      "from" : "HPH"
+    },
+    {
+      "to" : "KIX",
+      "from" : "SFO"
+    },
+    {
+      "to" : "PUS",
+      "from" : "TBB"
+    },
+    {
+      "to" : "PUS",
+      "from" : "DIN"
+    },
+    {
+      "to" : "PUS",
+      "from" : "CXR"
+    },
+    {
+      "to" : "FUK",
+      "from" : "VTE"
+    },
+    {
+      "to" : "ICN",
+      "from" : "PEK"
+    },
+    {
+      "to" : "NGO",
+      "from" : "UIH"
+    },
+    {
+      "to" : "ICN",
+      "from" : "PGV"
+    },
+    {
+      "to" : "FUK",
+      "from" : "SIN"
+    },
+    {
+      "to" : "NGO",
+      "from" : "FRA"
+    },
+    {
+      "to" : "NRT",
+      "from" : "PGV"
+    },
+    {
+      "to" : "FUK",
+      "from" : "SYD"
+    },
+    {
+      "to" : "NRT",
+      "from" : "VCL"
+    },
+    {
+      "to" : "KIX",
+      "from" : "BMV"
+    },
+    {
+      "to" : "ICN",
+      "from" : "SFO"
+    },
+    {
+      "to" : "NRT",
+      "from" : "UIH"
+    },
+    {
+      "to" : "PUS",
+      "from" : "ICN"
+    },
+    {
+      "to" : "KIX",
+      "from" : "HAN"
+    },
+    {
+      "to" : "FUK",
+      "from" : "FRA"
+    },
+    {
+      "to" : "NRT",
+      "from" : "ICN"
+    },
+    {
+      "to" : "ICN",
+      "from" : "HAN"
+    },
+    {
+      "to" : "PUS",
+      "from" : "BKK"
+    },
+    {
+      "to" : "PUS",
+      "from" : "DLI"
+    },
+    {
+      "to" : "PUS",
+      "from" : "PEK"
+    },
+    {
+      "to" : "FUK",
+      "from" : "DPS"
+    },
+    {
+      "to" : "NGO",
+      "from" : "SIN"
+    },
+    {
+      "to" : "FUK",
+      "from" : "HAN"
+    },
+    {
+      "to" : "ICN",
+      "from" : "PNH"
+    },
+    {
+      "to" : "KIX",
+      "from" : "VCL"
+    },
+    {
+      "to" : "ICN",
+      "from" : "TBB"
+    },
+    {
+      "to" : "FUK",
+      "from" : "NGO"
+    },
+    {
+      "to" : "ICN",
+      "from" : "NRT"
+    },
+    {
+      "to" : "KIX",
+      "from" : "HAN"
+    },
+    {
+      "to" : "FUK",
+      "from" : "CDG"
+    },
+    {
+      "to" : "PUS",
+      "from" : "PGV"
+    },
+    {
+      "to" : "ICN",
+      "from" : "SYD"
+    },
+    {
+      "to" : "KIX",
+      "from" : "CDG"
+    },
+    {
+      "to" : "FUK",
+      "from" : "VCL"
+    },
+    {
+      "to" : "PUS",
+      "from" : "NGO"
+    },
+    {
+      "to" : "NRT",
+      "from" : "DIN"
+    },
+    {
+      "to" : "ICN",
+      "from" : "DPS"
+    },
+    {
+      "to" : "KIX",
+      "from" : "NRT"
+    },
+    {
+      "to" : "ICN",
+      "from" : "DIN"
+    },
+    {
+      "to" : "FUK",
+      "from" : "PEK"
+    },
+    {
+      "to" : "NRT",
+      "from" : "HKT"
+    },
+    {
+      "to" : "NRT",
+      "from" : "LCY"
+    },
+    {
+      "to" : "KIX",
+      "from" : "CDG"
+    },
+    {
+      "to" : "NRT",
+      "from" : "MEL"
+    },
+    {
+      "to" : "NGO",
+      "from" : "HKT"
+    },
+    {
+      "to" : "FUK",
+      "from" : "VCS"
+    },
+    {
+      "to" : "KIX",
+      "from" : "TPE"
+    },
+    {
+      "to" : "NRT",
+      "from" : "KIX"
+    },
+    {
+      "to" : "NGO",
+      "from" : "VII"
+    },
+    {
+      "to" : "KIX",
+      "from" : "CGK"
+    },
+    {
+      "to" : "KIX",
+      "from" : "HKT"
+    },
+    {
+      "to" : "ICN",
+      "from" : "UIH"
+    },
+    {
+      "to" : "PUS",
+      "from" : "SGN"
+    },
+    {
+      "to" : "FUK",
+      "from" : "LAX"
+    },
+    {
+      "to" : "FUK",
+      "from" : "TBB"
+    },
+    {
+      "to" : "FUK",
+      "from" : "VII"
+    },
+    {
+      "to" : "NGO",
+      "from" : "DIN"
+    },
+    {
+      "to" : "NRT",
+      "from" : "HUI"
+    },
+    {
+      "to" : "NGO",
+      "from" : "CAN"
+    },
+    {
+      "to" : "PUS",
+      "from" : "DLI"
+    },
+    {
+      "to" : "FUK",
+      "from" : "MEL"
+    },
+    {
+      "to" : "NGO",
+      "from" : "BKK"
+    },
+    {
+      "to" : "PUS",
+      "from" : "TPE"
+    },
+    {
+      "to" : "NRT",
+      "from" : "CDG"
+    },
+    {
+      "to" : "NGO",
+      "from" : "VII"
+    },
+    {
+      "to" : "PUS",
+      "from" : "PEK"
+    },
+    {
+      "to" : "NGO",
+      "from" : "VII"
+    },
+    {
+      "to" : "NRT",
+      "from" : "TPE"
+    },
+    {
+      "to" : "ICN",
+      "from" : "DAD"
+    },
+    {
+      "to" : "PUS",
+      "from" : "TBB"
+    },
+    {
+      "to" : "FUK",
+      "from" : "VCS"
+    },
+    {
+      "to" : "NRT",
+      "from" : "BOS"
+    },
+    {
+      "to" : "NGO",
+      "from" : "REP"
+    }
+  ],
+  "Đông Nam Á" : [
+    {
+      "to" : "DPS",
+      "from" : "LAX"
+    },
+    {
+      "to" : "KUL",
+      "from" : "ICN"
+    },
+    {
+      "to" : "CNX",
+      "from" : "HPH"
+    },
+    {
+      "to" : "CNX",
+      "from" : "DIN"
+    },
+    {
+      "to" : "DPS",
+      "from" : "KIX"
+    },
+    {
+      "to" : "PNH",
+      "from" : "FRA"
+    },
+    {
+      "to" : "PNH",
+      "from" : "REP"
+    },
+    {
+      "to" : "VTE",
+      "from" : "ICN"
+    },
+    {
+      "to" : "HKT",
+      "from" : "CGK"
+    },
+    {
+      "to" : "SIN",
+      "from" : "BMV"
+    },
+    {
+      "to" : "CGK",
+      "from" : "JFK"
+    },
+    {
+      "to" : "PNH",
+      "from" : "VTE"
+    },
+    {
+      "to" : "PNH",
+      "from" : "PUS"
+    },
+    {
+      "to" : "HKT",
+      "from" : "PEK"
+    },
+    {
+      "to" : "PNH",
+      "from" : "TBB"
+    },
+    {
+      "to" : "KUL",
+      "from" : "JFK"
+    },
+    {
+      "to" : "HKT",
+      "from" : "SYD"
+    },
+    {
+      "to" : "KUL",
+      "from" : "MEL"
+    },
+    {
+      "to" : "CNX",
+      "from" : "ICN"
+    },
+    {
+      "to" : "KUL",
+      "from" : "VKG"
+    },
+    {
+      "to" : "VTE",
+      "from" : "KIX"
+    },
+    {
+      "to" : "CGK",
+      "from" : "NGO"
+    },
+    {
+      "to" : "SIN",
+      "from" : "VTE"
+    },
+    {
+      "to" : "DPS",
+      "from" : "VII"
+    },
+    {
+      "to" : "VTE",
+      "from" : "VCS"
+    },
+    {
+      "to" : "CNX",
+      "from" : "ICN"
+    },
+    {
+      "to" : "CNX",
+      "from" : "VCL"
+    },
+    {
+      "to" : "SIN",
+      "from" : "VCL"
+    },
+    {
+      "to" : "BKK",
+      "from" : "SFO"
+    },
+    {
+      "to" : "SIN",
+      "from" : "ICN"
+    },
+    {
+      "to" : "KUL",
+      "from" : "CXR"
+    },
+    {
+      "to" : "KUL",
+      "from" : "BMV"
+    },
+    {
+      "to" : "HKT",
+      "from" : "MEL"
+    },
+    {
+      "to" : "CNX",
+      "from" : "KIX"
+    },
+    {
+      "to" : "DPS",
+      "from" : "NRT"
+    },
+    {
+      "to" : "CNX",
+      "from" : "PGV"
+    },
+    {
+      "to" : "CGK",
+      "from" : "DIN"
+    },
+    {
+      "to" : "PNH",
+      "from" : "VCL"
+    },
+    {
+      "to" : "DPS",
+      "from" : "PQC"
+    },
+    {
+      "to" : "SIN",
+      "from" : "ICN"
+    },
+    {
+      "to" : "BKK",
+      "from" : "VCL"
+    },
+    {
+      "to" : "SIN",
+      "from" : "DAD"
+    },
+    {
+      "to" : "BKK",
+      "from" : "PQC"
+    },
+    {
+      "to" : "HKT",
+      "from" : "HUI"
+    },
+    {
+      "to" : "HKT",
+      "from" : "SGN"
+    },
+    {
+      "to" : "REP",
+      "from" : "HUI"
+    },
+    {
+      "to" : "DPS",
+      "from" : "CDG"
+    },
+    {
+      "to" : "REP",
+      "from" : "SIN"
+    },
+    {
+      "to" : "DPS",
+      "from" : "CNX"
+    },
+    {
+      "to" : "BKK",
+      "from" : "VCS"
+    },
+    {
+      "to" : "PNH",
+      "from" : "FRA"
+    },
+    {
+      "to" : "DPS",
+      "from" : "PNH"
+    },
+    {
+      "to" : "VTE",
+      "from" : "PQC"
+    },
+    {
+      "to" : "SIN",
+      "from" : "FRA"
+    },
+    {
+      "to" : "KUL",
+      "from" : "CXR"
+    },
+    {
+      "to" : "DPS",
+      "from" : "PGV"
+    },
+    {
+      "to" : "REP",
+      "from" : "PUS"
+    },
+    {
+      "to" : "CNX",
+      "from" : "FUK"
+    },
+    {
+      "to" : "CGK",
+      "from" : "HAN"
+    },
+    {
+      "to" : "BKK",
+      "from" : "VKG"
+    },
+    {
+      "to" : "BKK",
+      "from" : "DIN"
+    },
+    {
+      "to" : "VTE",
+      "from" : "HAN"
+    },
+    {
+      "to" : "CGK",
+      "from" : "CDG"
+    },
+    {
+      "to" : "PNH",
+      "from" : "SYD"
+    },
+    {
+      "to" : "REP",
+      "from" : "BOS"
+    },
+    {
+      "to" : "HKT",
+      "from" : "CAN"
+    },
+    {
+      "to" : "HKT",
+      "from" : "ICN"
+    },
+    {
+      "to" : "HKT",
+      "from" : "JFK"
+    },
+    {
+      "to" : "REP",
+      "from" : "TBB"
+    },
+    {
+      "to" : "REP",
+      "from" : "HPH"
+    },
+    {
+      "to" : "BKK",
+      "from" : "LAX"
+    },
+    {
+      "to" : "HKT",
+      "from" : "KUL"
+    },
+    {
+      "to" : "CNX",
+      "from" : "JFK"
+    },
+    {
+      "to" : "BKK",
+      "from" : "REP"
+    },
+    {
+      "to" : "PNH",
+      "from" : "TBB"
+    },
+    {
+      "to" : "SIN",
+      "from" : "DPS"
+    },
+    {
+      "to" : "KUL",
+      "from" : "PUS"
+    },
+    {
+      "to" : "SIN",
+      "from" : "JFK"
+    },
+    {
+      "to" : "KUL",
+      "from" : "HPH"
+    },
+    {
+      "to" : "DPS",
+      "from" : "BOS"
+    },
+    {
+      "to" : "PNH",
+      "from" : "PEK"
+    },
+    {
+      "to" : "VTE",
+      "from" : "PUS"
+    },
+    {
+      "to" : "BKK",
+      "from" : "VCS"
+    },
+    {
+      "to" : "KUL",
+      "from" : "SIN"
+    },
+    {
+      "to" : "HKT",
+      "from" : "TBB"
+    },
+    {
+      "to" : "BKK",
+      "from" : "UIH"
+    },
+    {
+      "to" : "KUL",
+      "from" : "VCS"
+    },
+    {
+      "to" : "BKK",
+      "from" : "VCL"
+    },
+    {
+      "to" : "PNH",
+      "from" : "LCY"
+    },
+    {
+      "to" : "HKT",
+      "from" : "DLI"
+    },
+    {
+      "to" : "REP",
+      "from" : "BMV"
+    },
+    {
+      "to" : "SIN",
+      "from" : "JFK"
+    },
+    {
+      "to" : "CNX",
+      "from" : "KIX"
+    },
+    {
+      "to" : "CNX",
+      "from" : "DLI"
+    },
+    {
+      "to" : "BKK",
+      "from" : "CGK"
+    },
+    {
+      "to" : "PNH",
+      "from" : "BMV"
+    },
+    {
+      "to" : "VTE",
+      "from" : "BKK"
+    },
+    {
+      "to" : "BKK",
+      "from" : "UIH"
+    },
+    {
+      "to" : "HKT",
+      "from" : "PNH"
+    },
+    {
+      "to" : "CGK",
+      "from" : "SIN"
+    },
+    {
+      "to" : "CNX",
+      "from" : "PXU"
+    },
+    {
+      "to" : "VTE",
+      "from" : "PEK"
+    },
+    {
+      "to" : "PNH",
+      "from" : "HUI"
+    },
+    {
+      "to" : "VTE",
+      "from" : "PNH"
+    },
+    {
+      "to" : "DPS",
+      "from" : "HUI"
+    },
+    {
+      "to" : "CNX",
+      "from" : "KUL"
+    },
+    {
+      "to" : "SIN",
+      "from" : "CXR"
+    },
+    {
+      "to" : "SIN",
+      "from" : "HPH"
+    },
+    {
+      "to" : "HKT",
+      "from" : "FRA"
+    },
+    {
+      "to" : "HKT",
+      "from" : "VCL"
+    },
+    {
+      "to" : "VTE",
+      "from" : "CNX"
+    },
+    {
+      "to" : "VTE",
+      "from" : "CXR"
+    },
+    {
+      "to" : "VTE",
+      "from" : "CDG"
+    },
+    {
+      "to" : "KUL",
+      "from" : "VII"
+    },
+    {
+      "to" : "CNX",
+      "from" : "FRA"
+    },
+    {
+      "to" : "DPS",
+      "from" : "CAN"
+    },
+    {
+      "to" : "BKK",
+      "from" : "HPH"
+    },
+    {
+      "to" : "DPS",
+      "from" : "DIN"
+    },
+    {
+      "to" : "PNH",
+      "from" : "PXU"
+    },
+    {
+      "to" : "VTE",
+      "from" : "VII"
+    },
+    {
+      "to" : "CGK",
+      "from" : "TPE"
+    },
+    {
+      "to" : "PNH",
+      "from" : "HUI"
+    },
+    {
+      "to" : "DPS",
+      "from" : "CDG"
+    },
+    {
+      "to" : "CGK",
+      "from" : "JFK"
+    },
+    {
+      "to" : "DPS",
+      "from" : "VCL"
+    },
+    {
+      "to" : "BKK",
+      "from" : "LCY"
+    },
+    {
+      "to" : "SIN",
+      "from" : "DIN"
+    },
+    {
+      "to" : "KUL",
+      "from" : "UIH"
+    },
+    {
+      "to" : "DPS",
+      "from" : "VCS"
+    },
+    {
+      "to" : "SIN",
+      "from" : "REP"
+    },
+    {
+      "to" : "CNX",
+      "from" : "KIX"
+    },
+    {
+      "to" : "SIN",
+      "from" : "SGN"
+    },
+    {
+      "to" : "SIN",
+      "from" : "FUK"
+    },
+    {
+      "to" : "CNX",
+      "from" : "HKT"
+    },
+    {
+      "to" : "BKK",
+      "from" : "SYD"
+    },
+    {
+      "to" : "PNH",
+      "from" : "HKT"
+    },
+    {
+      "to" : "SIN",
+      "from" : "CAN"
+    },
+    {
+      "to" : "DPS",
+      "from" : "SFO"
+    },
+    {
+      "to" : "DPS",
+      "from" : "BMV"
+    },
+    {
+      "to" : "KUL",
+      "from" : "SIN"
+    },
+    {
+      "to" : "REP",
+      "from" : "CXR"
+    },
+    {
+      "to" : "PNH",
+      "from" : "VCL"
+    },
+    {
+      "to" : "CNX",
+      "from" : "DIN"
+    },
+    {
+      "to" : "KUL",
+      "from" : "LAX"
+    },
+    {
+      "to" : "CGK",
+      "from" : "HPH"
+    },
+    {
+      "to" : "REP",
+      "from" : "FRA"
+    },
+    {
+      "to" : "KUL",
+      "from" : "TBB"
+    },
+    {
+      "to" : "REP",
+      "from" : "HAN"
+    },
+    {
+      "to" : "CGK",
+      "from" : "VCL"
+    },
+    {
+      "to" : "SIN",
+      "from" : "LCY"
+    },
+    {
+      "to" : "REP",
+      "from" : "CDG"
+    },
+    {
+      "to" : "BKK",
+      "from" : "KIX"
+    },
+    {
+      "to" : "PNH",
+      "from" : "SGN"
+    },
+    {
+      "to" : "CGK",
+      "from" : "SYD"
+    },
+    {
+      "to" : "PNH",
+      "from" : "VTE"
+    },
+    {
+      "to" : "PNH",
+      "from" : "FRA"
+    },
+    {
+      "to" : "CNX",
+      "from" : "BOS"
+    },
+    {
+      "to" : "VTE",
+      "from" : "BKK"
+    },
+    {
+      "to" : "CNX",
+      "from" : "SGN"
+    },
+    {
+      "to" : "BKK",
+      "from" : "HUI"
+    },
+    {
+      "to" : "VTE",
+      "from" : "MEL"
+    },
+    {
+      "to" : "VTE",
+      "from" : "JFK"
+    },
+    {
+      "to" : "HKT",
+      "from" : "TBB"
+    },
+    {
+      "to" : "VTE",
+      "from" : "MEL"
+    },
+    {
+      "to" : "SIN",
+      "from" : "PNH"
+    },
+    {
+      "to" : "VTE",
+      "from" : "TPE"
+    },
+    {
+      "to" : "SIN",
+      "from" : "HUI"
+    },
+    {
+      "to" : "CNX",
+      "from" : "REP"
+    },
+    {
+      "to" : "CGK",
+      "from" : "CNX"
+    },
+    {
+      "to" : "BKK",
+      "from" : "NGO"
+    },
+    {
+      "to" : "DPS",
+      "from" : "PQC"
+    },
+    {
+      "to" : "KUL",
+      "from" : "DPS"
+    },
+    {
+      "to" : "REP",
+      "from" : "ICN"
+    },
+    {
+      "to" : "BKK",
+      "from" : "VII"
+    },
+    {
+      "to" : "PNH",
+      "from" : "NRT"
+    },
+    {
+      "to" : "REP",
+      "from" : "HUI"
+    },
+    {
+      "to" : "HKT",
+      "from" : "BOS"
+    },
+    {
+      "to" : "REP",
+      "from" : "NRT"
+    },
+    {
+      "to" : "SIN",
+      "from" : "SFO"
+    },
+    {
+      "to" : "BKK",
+      "from" : "SGN"
+    },
+    {
+      "to" : "CGK",
+      "from" : "VKG"
+    },
+    {
+      "to" : "HKT",
+      "from" : "KIX"
+    },
+    {
+      "to" : "BKK",
+      "from" : "ICN"
+    },
+    {
+      "to" : "HKT",
+      "from" : "CAN"
+    },
+    {
+      "to" : "PNH",
+      "from" : "REP"
+    },
+    {
+      "to" : "VTE",
+      "from" : "HUI"
+    },
+    {
+      "to" : "DPS",
+      "from" : "FRA"
+    },
+    {
+      "to" : "HKT",
+      "from" : "CNX"
+    },
+    {
+      "to" : "BKK",
+      "from" : "ICN"
+    },
+    {
+      "to" : "BKK",
+      "from" : "VCS"
+    },
+    {
+      "to" : "HKT",
+      "from" : "BKK"
+    },
+    {
+      "to" : "SIN",
+      "from" : "NRT"
+    },
+    {
+      "to" : "VTE",
+      "from" : "VCS"
+    },
+    {
+      "to" : "CNX",
+      "from" : "VTE"
+    },
+    {
+      "to" : "REP",
+      "from" : "HUI"
+    },
+    {
+      "to" : "PNH",
+      "from" : "CGK"
+    },
+    {
+      "to" : "BKK",
+      "from" : "SFO"
+    },
+    {
+      "to" : "PNH",
+      "from" : "LCY"
+    },
+    {
+      "to" : "PNH",
+      "from" : "DPS"
+    },
+    {
+      "to" : "KUL",
+      "from" : "PXU"
+    },
+    {
+      "to" : "PNH",
+      "from" : "VTE"
+    },
+    {
+      "to" : "KUL",
+      "from" : "ICN"
+    },
+    {
+      "to" : "DPS",
+      "from" : "UIH"
+    },
+    {
+      "to" : "HKT",
+      "from" : "PEK"
+    },
+    {
+      "to" : "BKK",
+      "from" : "VTE"
+    },
+    {
+      "to" : "DPS",
+      "from" : "SFO"
+    },
+    {
+      "to" : "HKT",
+      "from" : "PGV"
+    },
+    {
+      "to" : "BKK",
+      "from" : "BOS"
+    },
+    {
+      "to" : "HKT",
+      "from" : "PQC"
+    },
+    {
+      "to" : "VTE",
+      "from" : "DPS"
+    },
+    {
+      "to" : "BKK",
+      "from" : "SYD"
+    },
+    {
+      "to" : "SIN",
+      "from" : "LCY"
+    },
+    {
+      "to" : "PNH",
+      "from" : "FUK"
+    },
+    {
+      "to" : "SIN",
+      "from" : "PUS"
+    },
+    {
+      "to" : "DPS",
+      "from" : "VII"
+    },
+    {
+      "to" : "KUL",
+      "from" : "HAN"
+    },
+    {
+      "to" : "HKT",
+      "from" : "DLI"
+    }
+  ],
+  "Mỹ" : [
+    {
+      "to" : "LAX",
+      "from" : "CNX"
+    },
+    {
+      "to" : "SFO",
+      "from" : "BOS"
+    },
+    {
+      "to" : "SFO",
+      "from" : "HUI"
+    },
+    {
+      "to" : "LAX",
+      "from" : "CGK"
+    },
+    {
+      "to" : "LAX",
+      "from" : "PNH"
+    },
+    {
+      "to" : "LAX",
+      "from" : "NGO"
+    },
+    {
+      "to" : "JFK",
+      "from" : "FRA"
+    },
+    {
+      "to" : "BOS",
+      "from" : "BKK"
+    },
+    {
+      "to" : "BOS",
+      "from" : "DLI"
+    },
+    {
+      "to" : "SFO",
+      "from" : "SGN"
+    },
+    {
+      "to" : "JFK",
+      "from" : "NGO"
+    },
+    {
+      "to" : "BOS",
+      "from" : "SYD"
+    },
+    {
+      "to" : "SFO",
+      "from" : "NGO"
+    },
+    {
+      "to" : "LAX",
+      "from" : "BOS"
+    },
+    {
+      "to" : "BOS",
+      "from" : "SGN"
+    },
+    {
+      "to" : "JFK",
+      "from" : "HPH"
+    },
+    {
+      "to" : "BOS",
+      "from" : "PXU"
+    },
+    {
+      "to" : "LAX",
+      "from" : "KIX"
+    },
+    {
+      "to" : "LAX",
+      "from" : "NGO"
+    },
+    {
+      "to" : "LAX",
+      "from" : "HKT"
+    },
+    {
+      "to" : "BOS",
+      "from" : "DPS"
+    },
+    {
+      "to" : "JFK",
+      "from" : "VKG"
+    },
+    {
+      "to" : "JFK",
+      "from" : "ICN"
+    },
+    {
+      "to" : "JFK",
+      "from" : "UIH"
+    },
+    {
+      "to" : "LAX",
+      "from" : "DPS"
+    },
+    {
+      "to" : "BOS",
+      "from" : "REP"
+    },
+    {
+      "to" : "LAX",
+      "from" : "FRA"
+    },
+    {
+      "to" : "JFK",
+      "from" : "SGN"
+    },
+    {
+      "to" : "LAX",
+      "from" : "DPS"
+    },
+    {
+      "to" : "SFO",
+      "from" : "KIX"
+    },
+    {
+      "to" : "LAX",
+      "from" : "TPE"
+    },
+    {
+      "to" : "BOS",
+      "from" : "NRT"
+    },
+    {
+      "to" : "BOS",
+      "from" : "REP"
+    },
+    {
+      "to" : "BOS",
+      "from" : "PGV"
+    },
+    {
+      "to" : "LAX",
+      "from" : "SFO"
+    },
+    {
+      "to" : "LAX",
+      "from" : "TBB"
+    },
+    {
+      "to" : "LAX",
+      "from" : "REP"
+    },
+    {
+      "to" : "JFK",
+      "from" : "VTE"
+    },
+    {
+      "to" : "JFK",
+      "from" : "LAX"
+    },
+    {
+      "to" : "JFK",
+      "from" : "BOS"
+    },
+    {
+      "to" : "LAX",
+      "from" : "SIN"
+    },
+    {
+      "to" : "LAX",
+      "from" : "REP"
+    },
+    {
+      "to" : "LAX",
+      "from" : "DLI"
+    },
+    {
+      "to" : "BOS",
+      "from" : "PEK"
+    },
+    {
+      "to" : "JFK",
+      "from" : "DAD"
+    },
+    {
+      "to" : "JFK",
+      "from" : "CAN"
+    },
+    {
+      "to" : "LAX",
+      "from" : "BMV"
+    },
+    {
+      "to" : "LAX",
+      "from" : "TBB"
+    },
+    {
+      "to" : "LAX",
+      "from" : "LCY"
+    },
+    {
+      "to" : "SFO",
+      "from" : "LAX"
+    },
+    {
+      "to" : "LAX",
+      "from" : "PQC"
+    },
+    {
+      "to" : "BOS",
+      "from" : "SIN"
+    },
+    {
+      "to" : "BOS",
+      "from" : "DLI"
+    },
+    {
+      "to" : "JFK",
+      "from" : "DIN"
+    },
+    {
+      "to" : "BOS",
+      "from" : "HKT"
+    },
+    {
+      "to" : "LAX",
+      "from" : "NRT"
+    },
+    {
+      "to" : "LAX",
+      "from" : "BOS"
+    },
+    {
+      "to" : "BOS",
+      "from" : "VCL"
+    },
+    {
+      "to" : "JFK",
+      "from" : "KIX"
+    },
+    {
+      "to" : "JFK",
+      "from" : "PQC"
+    },
+    {
+      "to" : "LAX",
+      "from" : "PQC"
+    },
+    {
+      "to" : "BOS",
+      "from" : "PUS"
+    },
+    {
+      "to" : "JFK",
+      "from" : "PXU"
+    },
+    {
+      "to" : "LAX",
+      "from" : "NRT"
+    },
+    {
+      "to" : "BOS",
+      "from" : "DAD"
+    },
+    {
+      "to" : "BOS",
+      "from" : "HKT"
+    },
+    {
+      "to" : "JFK",
+      "from" : "HKT"
+    },
+    {
+      "to" : "SFO",
+      "from" : "PUS"
+    },
+    {
+      "to" : "BOS",
+      "from" : "VII"
+    },
+    {
+      "to" : "LAX",
+      "from" : "BKK"
+    },
+    {
+      "to" : "JFK",
+      "from" : "SGN"
+    },
+    {
+      "to" : "SFO",
+      "from" : "UIH"
+    },
+    {
+      "to" : "BOS",
+      "from" : "KUL"
+    },
+    {
+      "to" : "BOS",
+      "from" : "FRA"
+    },
+    {
+      "to" : "BOS",
+      "from" : "HPH"
+    },
+    {
+      "to" : "LAX",
+      "from" : "VII"
+    },
+    {
+      "to" : "BOS",
+      "from" : "DPS"
+    },
+    {
+      "to" : "LAX",
+      "from" : "HPH"
+    },
+    {
+      "to" : "JFK",
+      "from" : "DLI"
+    },
+    {
+      "to" : "LAX",
+      "from" : "ICN"
+    }
+  ],
+  "Đài Loan" : [
+    {
+      "to" : "TPE",
+      "from" : "MEL"
+    },
+    {
+      "to" : "TPE",
+      "from" : "KUL"
+    },
+    {
+      "to" : "TPE",
+      "from" : "HUI"
+    },
+    {
+      "to" : "TPE",
+      "from" : "VCL"
+    },
+    {
+      "to" : "TPE",
+      "from" : "BMV"
+    },
+    {
+      "to" : "TPE",
+      "from" : "JFK"
+    },
+    {
+      "to" : "TPE",
+      "from" : "PQC"
+    },
+    {
+      "to" : "TPE",
+      "from" : "BMV"
+    },
+    {
+      "to" : "TPE",
+      "from" : "SGN"
+    },
+    {
+      "to" : "TPE",
+      "from" : "SIN"
+    },
+    {
+      "to" : "TPE",
+      "from" : "FRA"
+    },
+    {
+      "to" : "TPE",
+      "from" : "HAN"
+    },
+    {
+      "to" : "TPE",
+      "from" : "SIN"
+    },
+    {
+      "to" : "TPE",
+      "from" : "VCS"
+    },
+    {
+      "to" : "TPE",
+      "from" : "HUI"
+    },
+    {
+      "to" : "TPE",
+      "from" : "CNX"
+    },
+    {
+      "to" : "TPE",
+      "from" : "HKT"
+    },
+    {
+      "to" : "TPE",
+      "from" : "PUS"
+    },
+    {
+      "to" : "TPE",
+      "from" : "CDG"
+    },
+    {
+      "to" : "TPE",
+      "from" : "CGK"
+    },
+    {
+      "to" : "TPE",
+      "from" : "LCY"
+    },
+    {
+      "to" : "TPE",
+      "from" : "VII"
+    },
+    {
+      "to" : "TPE",
+      "from" : "HPH"
+    },
+    {
+      "to" : "TPE",
+      "from" : "VII"
+    },
+    {
+      "to" : "TPE",
+      "from" : "HPH"
+    }
+  ],
+  "Nội địa" : [
+    {
+      "to" : "VII",
+      "from" : "BKK"
+    },
+    {
+      "to" : "VII",
+      "from" : "LCY"
+    },
+    {
+      "to" : "TBB",
+      "from" : "CNX"
+    },
+    {
+      "to" : "PXU",
+      "from" : "KIX"
+    },
+    {
+      "to" : "VKG",
+      "from" : "VCS"
+    },
+    {
+      "to" : "VCS",
+      "from" : "LCY"
+    },
+    {
+      "to" : "DLI",
+      "from" : "PEK"
+    },
+    {
+      "to" : "PQC",
+      "from" : "UIH"
+    },
+    {
+      "to" : "CXR",
+      "from" : "SGN"
+    },
+    {
+      "to" : "HUI",
+      "from" : "PEK"
+    },
+    {
+      "to" : "BMV",
+      "from" : "PEK"
+    },
+    {
+      "to" : "SGN",
+      "from" : "HUI"
+    },
+    {
+      "to" : "CXR",
+      "from" : "PXU"
+    },
+    {
+      "to" : "TBB",
+      "from" : "KUL"
+    },
+    {
+      "to" : "VII",
+      "from" : "SYD"
+    },
+    {
+      "to" : "VII",
+      "from" : "DAD"
+    },
+    {
+      "to" : "PQC",
+      "from" : "SFO"
+    },
+    {
+      "to" : "SGN",
+      "from" : "VII"
+    },
+    {
+      "to" : "CXR",
+      "from" : "VII"
+    },
+    {
+      "to" : "HUI",
+      "from" : "KIX"
+    },
+    {
+      "to" : "TBB",
+      "from" : "HKT"
+    },
+    {
+      "to" : "TBB",
+      "from" : "VTE"
+    },
+    {
+      "to" : "UIH",
+      "from" : "LAX"
+    },
+    {
+      "to" : "PQC",
+      "from" : "LCY"
+    },
+    {
+      "to" : "PQC",
+      "from" : "HAN"
+    },
+    {
+      "to" : "DAD",
+      "from" : "KUL"
+    },
+    {
+      "to" : "HAN",
+      "from" : "DLI"
+    },
+    {
+      "to" : "VKG",
+      "from" : "PXU"
+    },
+    {
+      "to" : "HPH",
+      "from" : "VII"
+    },
+    {
+      "to" : "HUI",
+      "from" : "UIH"
+    },
+    {
+      "to" : "DLI",
+      "from" : "PXU"
+    },
+    {
+      "to" : "VII",
+      "from" : "CXR"
+    },
+    {
+      "to" : "BMV",
+      "from" : "FUK"
+    },
+    {
+      "to" : "VCL",
+      "from" : "SIN"
+    },
+    {
+      "to" : "PXU",
+      "from" : "DAD"
+    },
+    {
+      "to" : "UIH",
+      "from" : "KIX"
+    },
+    {
+      "to" : "VCL",
+      "from" : "DPS"
+    },
+    {
+      "to" : "HAN",
+      "from" : "VCS"
+    },
+    {
+      "to" : "BMV",
+      "from" : "LCY"
+    },
+    {
+      "to" : "VKG",
+      "from" : "DPS"
+    },
+    {
+      "to" : "SGN",
+      "from" : "PEK"
+    },
+    {
+      "to" : "VII",
+      "from" : "BKK"
+    },
+    {
+      "to" : "VII",
+      "from" : "DIN"
+    },
+    {
+      "to" : "CXR",
+      "from" : "DAD"
+    },
+    {
+      "to" : "CXR",
+      "from" : "TBB"
+    },
+    {
+      "to" : "VCL",
+      "from" : "VTE"
+    },
+    {
+      "to" : "DIN",
+      "from" : "FUK"
+    },
+    {
+      "to" : "HPH",
+      "from" : "FRA"
+    },
+    {
+      "to" : "PQC",
+      "from" : "CGK"
+    },
+    {
+      "to" : "DIN",
+      "from" : "HAN"
+    },
+    {
+      "to" : "PQC",
+      "from" : "SYD"
+    },
+    {
+      "to" : "BMV",
+      "from" : "JFK"
+    },
+    {
+      "to" : "UIH",
+      "from" : "VCS"
+    },
+    {
+      "to" : "PXU",
+      "from" : "HPH"
+    },
+    {
+      "to" : "VCS",
+      "from" : "HAN"
+    },
+    {
+      "to" : "VKG",
+      "from" : "VII"
+    },
+    {
+      "to" : "TBB",
+      "from" : "CGK"
+    },
+    {
+      "to" : "DLI",
+      "from" : "SFO"
+    },
+    {
+      "to" : "VII",
+      "from" : "DAD"
+    },
+    {
+      "to" : "HAN",
+      "from" : "SYD"
+    },
+    {
+      "to" : "HAN",
+      "from" : "BMV"
+    },
+    {
+      "to" : "PQC",
+      "from" : "LCY"
+    },
+    {
+      "to" : "TBB",
+      "from" : "PQC"
+    },
+    {
+      "to" : "CXR",
+      "from" : "KIX"
+    },
+    {
+      "to" : "DLI",
+      "from" : "HAN"
+    },
+    {
+      "to" : "HAN",
+      "from" : "SYD"
+    },
+    {
+      "to" : "VCL",
+      "from" : "PUS"
+    },
+    {
+      "to" : "VCS",
+      "from" : "SIN"
+    },
+    {
+      "to" : "SGN",
+      "from" : "BMV"
+    },
+    {
+      "to" : "HPH",
+      "from" : "REP"
+    },
+    {
+      "to" : "UIH",
+      "from" : "VCL"
+    },
+    {
+      "to" : "PQC",
+      "from" : "NGO"
+    },
+    {
+      "to" : "HPH",
+      "from" : "DLI"
+    },
+    {
+      "to" : "UIH",
+      "from" : "CNX"
+    },
+    {
+      "to" : "HAN",
+      "from" : "JFK"
+    },
+    {
+      "to" : "CXR",
+      "from" : "PGV"
+    },
+    {
+      "to" : "HUI",
+      "from" : "PNH"
+    },
+    {
+      "to" : "HUI",
+      "from" : "SYD"
+    },
+    {
+      "to" : "SGN",
+      "from" : "DLI"
+    },
+    {
+      "to" : "VKG",
+      "from" : "NGO"
+    },
+    {
+      "to" : "SGN",
+      "from" : "FUK"
+    },
+    {
+      "to" : "DIN",
+      "from" : "CXR"
+    },
+    {
+      "to" : "SGN",
+      "from" : "FRA"
+    },
+    {
+      "to" : "TBB",
+      "from" : "DPS"
+    },
+    {
+      "to" : "VII",
+      "from" : "TBB"
+    },
+    {
+      "to" : "HAN",
+      "from" : "JFK"
+    },
+    {
+      "to" : "SGN",
+      "from" : "PGV"
+    },
+    {
+      "to" : "VII",
+      "from" : "KUL"
+    },
+    {
+      "to" : "HAN",
+      "from" : "BMV"
+    },
+    {
+      "to" : "HAN",
+      "from" : "PQC"
+    },
+    {
+      "to" : "HUI",
+      "from" : "CNX"
+    },
+    {
+      "to" : "HPH",
+      "from" : "CGK"
+    },
+    {
+      "to" : "TBB",
+      "from" : "UIH"
+    },
+    {
+      "to" : "CXR",
+      "from" : "PXU"
+    },
+    {
+      "to" : "HAN",
+      "from" : "SGN"
+    },
+    {
+      "to" : "BMV",
+      "from" : "SGN"
+    },
+    {
+      "to" : "VCS",
+      "from" : "DAD"
+    },
+    {
+      "to" : "HPH",
+      "from" : "PXU"
+    },
+    {
+      "to" : "VCL",
+      "from" : "DAD"
+    },
+    {
+      "to" : "VKG",
+      "from" : "VII"
+    },
+    {
+      "to" : "VII",
+      "from" : "VTE"
+    },
+    {
+      "to" : "VCL",
+      "from" : "KIX"
+    },
+    {
+      "to" : "DIN",
+      "from" : "PUS"
+    },
+    {
+      "to" : "PXU",
+      "from" : "VCS"
+    },
+    {
+      "to" : "VII",
+      "from" : "VCL"
+    },
+    {
+      "to" : "DAD",
+      "from" : "HUI"
+    },
+    {
+      "to" : "VII",
+      "from" : "NRT"
+    },
+    {
+      "to" : "PQC",
+      "from" : "HAN"
+    },
+    {
+      "to" : "HAN",
+      "from" : "VKG"
+    },
+    {
+      "to" : "TBB",
+      "from" : "VCS"
+    },
+    {
+      "to" : "HAN",
+      "from" : "MEL"
+    },
+    {
+      "to" : "SGN",
+      "from" : "CXR"
+    },
+    {
+      "to" : "HUI",
+      "from" : "LCY"
+    },
+    {
+      "to" : "PXU",
+      "from" : "DLI"
+    },
+    {
+      "to" : "VCS",
+      "from" : "CNX"
+    },
+    {
+      "to" : "VCL",
+      "from" : "BKK"
+    },
+    {
+      "to" : "VCS",
+      "from" : "DIN"
+    },
+    {
+      "to" : "VII",
+      "from" : "UIH"
+    },
+    {
+      "to" : "SGN",
+      "from" : "SYD"
+    },
+    {
+      "to" : "VCS",
+      "from" : "BOS"
+    },
+    {
+      "to" : "DAD",
+      "from" : "SYD"
+    },
+    {
+      "to" : "PXU",
+      "from" : "JFK"
+    },
+    {
+      "to" : "VII",
+      "from" : "CNX"
+    },
+    {
+      "to" : "DLI",
+      "from" : "HKT"
+    },
+    {
+      "to" : "CXR",
+      "from" : "PQC"
+    },
+    {
+      "to" : "SGN",
+      "from" : "REP"
+    },
+    {
+      "to" : "DLI",
+      "from" : "NRT"
+    },
+    {
+      "to" : "HUI",
+      "from" : "DAD"
+    },
+    {
+      "to" : "DLI",
+      "from" : "CDG"
+    },
+    {
+      "to" : "UIH",
+      "from" : "MEL"
+    },
+    {
+      "to" : "DLI",
+      "from" : "LCY"
+    },
+    {
+      "to" : "DLI",
+      "from" : "TBB"
+    },
+    {
+      "to" : "DAD",
+      "from" : "TBB"
+    },
+    {
+      "to" : "TBB",
+      "from" : "VTE"
+    },
+    {
+      "to" : "PXU",
+      "from" : "FRA"
+    },
+    {
+      "to" : "VCL",
+      "from" : "KUL"
+    },
+    {
+      "to" : "CXR",
+      "from" : "DPS"
+    },
+    {
+      "to" : "TBB",
+      "from" : "CGK"
+    },
+    {
+      "to" : "HPH",
+      "from" : "CGK"
+    },
+    {
+      "to" : "PXU",
+      "from" : "LCY"
+    },
+    {
+      "to" : "VKG",
+      "from" : "PXU"
+    },
+    {
+      "to" : "DLI",
+      "from" : "TBB"
+    },
+    {
+      "to" : "HAN",
+      "from" : "HKT"
+    },
+    {
+      "to" : "HAN",
+      "from" : "DPS"
+    },
+    {
+      "to" : "DAD",
+      "from" : "SYD"
+    },
+    {
+      "to" : "SGN",
+      "from" : "KIX"
+    },
+    {
+      "to" : "PQC",
+      "from" : "SYD"
+    },
+    {
+      "to" : "PQC",
+      "from" : "CAN"
+    },
+    {
+      "to" : "VCS",
+      "from" : "KUL"
+    },
+    {
+      "to" : "DIN",
+      "from" : "SGN"
+    },
+    {
+      "to" : "HUI",
+      "from" : "FUK"
+    },
+    {
+      "to" : "HAN",
+      "from" : "DIN"
+    },
+    {
+      "to" : "VII",
+      "from" : "VKG"
+    },
+    {
+      "to" : "DIN",
+      "from" : "VCL"
+    },
+    {
+      "to" : "DLI",
+      "from" : "PUS"
+    },
+    {
+      "to" : "VCL",
+      "from" : "JFK"
+    },
+    {
+      "to" : "VCS",
+      "from" : "MEL"
+    },
+    {
+      "to" : "DIN",
+      "from" : "HAN"
+    },
+    {
+      "to" : "BMV",
+      "from" : "VCL"
+    },
+    {
+      "to" : "CXR",
+      "from" : "DAD"
+    },
+    {
+      "to" : "VCL",
+      "from" : "LCY"
+    },
+    {
+      "to" : "DAD",
+      "from" : "SFO"
+    },
+    {
+      "to" : "VCS",
+      "from" : "FUK"
+    },
+    {
+      "to" : "PXU",
+      "from" : "SGN"
+    },
+    {
+      "to" : "BMV",
+      "from" : "CXR"
+    },
+    {
+      "to" : "VKG",
+      "from" : "ICN"
+    },
+    {
+      "to" : "PQC",
+      "from" : "VCS"
+    },
+    {
+      "to" : "TBB",
+      "from" : "REP"
+    },
+    {
+      "to" : "BMV",
+      "from" : "LCY"
+    },
+    {
+      "to" : "VCL",
+      "from" : "REP"
+    },
+    {
+      "to" : "DLI",
+      "from" : "PQC"
+    },
+    {
+      "to" : "VCS",
+      "from" : "CAN"
+    },
+    {
+      "to" : "HPH",
+      "from" : "SGN"
+    },
+    {
+      "to" : "VII",
+      "from" : "DAD"
+    },
+    {
+      "to" : "VII",
+      "from" : "CDG"
+    },
+    {
+      "to" : "VII",
+      "from" : "VCL"
+    },
+    {
+      "to" : "HAN",
+      "from" : "KIX"
+    },
+    {
+      "to" : "HAN",
+      "from" : "CAN"
+    },
+    {
+      "to" : "VCL",
+      "from" : "BMV"
+    },
+    {
+      "to" : "VII",
+      "from" : "FRA"
+    },
+    {
+      "to" : "CXR",
+      "from" : "FUK"
+    },
+    {
+      "to" : "SGN",
+      "from" : "JFK"
+    },
+    {
+      "to" : "DLI",
+      "from" : "PXU"
+    },
+    {
+      "to" : "VII",
+      "from" : "VCL"
+    },
+    {
+      "to" : "VKG",
+      "from" : "PQC"
+    },
+    {
+      "to" : "VCL",
+      "from" : "PNH"
+    },
+    {
+      "to" : "BMV",
+      "from" : "HUI"
+    },
+    {
+      "to" : "HAN",
+      "from" : "SFO"
+    },
+    {
+      "to" : "UIH",
+      "from" : "VKG"
+    },
+    {
+      "to" : "VII",
+      "from" : "DPS"
+    },
+    {
+      "to" : "UIH",
+      "from" : "HKT"
+    },
+    {
+      "to" : "UIH",
+      "from" : "ICN"
+    },
+    {
+      "to" : "HUI",
+      "from" : "LAX"
+    },
+    {
+      "to" : "PQC",
+      "from" : "KUL"
+    },
+    {
+      "to" : "VCS",
+      "from" : "DIN"
+    },
+    {
+      "to" : "HAN",
+      "from" : "UIH"
+    },
+    {
+      "to" : "DIN",
+      "from" : "PQC"
+    },
+    {
+      "to" : "DIN",
+      "from" : "PNH"
+    },
+    {
+      "to" : "VCS",
+      "from" : "VCL"
+    },
+    {
+      "to" : "VCL",
+      "from" : "VCS"
+    },
+    {
+      "to" : "DIN",
+      "from" : "VCL"
+    },
+    {
+      "to" : "VCS",
+      "from" : "PEK"
+    },
+    {
+      "to" : "UIH",
+      "from" : "DAD"
+    },
+    {
+      "to" : "PXU",
+      "from" : "CNX"
+    },
+    {
+      "to" : "BMV",
+      "from" : "DAD"
+    },
+    {
+      "to" : "UIH",
+      "from" : "VII"
+    },
+    {
+      "to" : "SGN",
+      "from" : "BMV"
+    },
+    {
+      "to" : "VCL",
+      "from" : "HUI"
+    },
+    {
+      "to" : "VII",
+      "from" : "CXR"
+    },
+    {
+      "to" : "DIN",
+      "from" : "FRA"
+    },
+    {
+      "to" : "VII",
+      "from" : "CNX"
+    },
+    {
+      "to" : "TBB",
+      "from" : "DAD"
+    },
+    {
+      "to" : "SGN",
+      "from" : "CDG"
+    },
+    {
+      "to" : "VKG",
+      "from" : "ICN"
+    },
+    {
+      "to" : "VCL",
+      "from" : "ICN"
+    },
+    {
+      "to" : "HAN",
+      "from" : "FUK"
+    },
+    {
+      "to" : "HPH",
+      "from" : "CDG"
+    },
+    {
+      "to" : "PQC",
+      "from" : "VTE"
+    },
+    {
+      "to" : "BMV",
+      "from" : "TPE"
+    },
+    {
+      "to" : "VCS",
+      "from" : "VTE"
+    },
+    {
+      "to" : "TBB",
+      "from" : "PGV"
+    },
+    {
+      "to" : "HAN",
+      "from" : "HPH"
+    },
+    {
+      "to" : "DIN",
+      "from" : "VII"
+    },
+    {
+      "to" : "VII",
+      "from" : "FUK"
+    },
+    {
+      "to" : "VKG",
+      "from" : "REP"
+    },
+    {
+      "to" : "BMV",
+      "from" : "PGV"
+    },
+    {
+      "to" : "VII",
+      "from" : "BMV"
+    },
+    {
+      "to" : "DLI",
+      "from" : "VII"
+    },
+    {
+      "to" : "VCL",
+      "from" : "HKT"
+    },
+    {
+      "to" : "VCS",
+      "from" : "DAD"
+    },
+    {
+      "to" : "BMV",
+      "from" : "PEK"
+    },
+    {
+      "to" : "DAD",
+      "from" : "DIN"
+    },
+    {
+      "to" : "DAD",
+      "from" : "NGO"
+    },
+    {
+      "to" : "HUI",
+      "from" : "TBB"
+    },
+    {
+      "to" : "VCL",
+      "from" : "FUK"
+    },
+    {
+      "to" : "TBB",
+      "from" : "DIN"
+    },
+    {
+      "to" : "HAN",
+      "from" : "KUL"
+    },
+    {
+      "to" : "SGN",
+      "from" : "SIN"
+    },
+    {
+      "to" : "SGN",
+      "from" : "PEK"
+    },
+    {
+      "to" : "VII",
+      "from" : "TPE"
+    },
+    {
+      "to" : "PQC",
+      "from" : "PUS"
+    },
+    {
+      "to" : "TBB",
+      "from" : "PEK"
+    },
+    {
+      "to" : "DIN",
+      "from" : "DPS"
+    },
+    {
+      "to" : "BMV",
+      "from" : "VCL"
+    },
+    {
+      "to" : "PQC",
+      "from" : "HKT"
+    },
+    {
+      "to" : "HPH",
+      "from" : "CGK"
+    },
+    {
+      "to" : "HAN",
+      "from" : "HKT"
+    },
+    {
+      "to" : "VCS",
+      "from" : "KIX"
+    },
+    {
+      "to" : "PQC",
+      "from" : "BKK"
+    },
+    {
+      "to" : "DLI",
+      "from" : "FRA"
+    },
+    {
+      "to" : "PQC",
+      "from" : "BOS"
+    },
+    {
+      "to" : "DLI",
+      "from" : "CXR"
+    },
+    {
+      "to" : "PQC",
+      "from" : "DPS"
+    },
+    {
+      "to" : "DIN",
+      "from" : "HUI"
+    },
+    {
+      "to" : "PQC",
+      "from" : "PNH"
+    },
+    {
+      "to" : "DLI",
+      "from" : "ICN"
+    },
+    {
+      "to" : "HAN",
+      "from" : "BMV"
+    },
+    {
+      "to" : "BMV",
+      "from" : "DLI"
+    },
+    {
+      "to" : "BMV",
+      "from" : "TBB"
+    },
+    {
+      "to" : "HAN",
+      "from" : "DLI"
+    },
+    {
+      "to" : "TBB",
+      "from" : "HKT"
+    },
+    {
+      "to" : "SGN",
+      "from" : "HKT"
+    },
+    {
+      "to" : "UIH",
+      "from" : "PUS"
+    },
+    {
+      "to" : "UIH",
+      "from" : "DPS"
+    },
+    {
+      "to" : "BMV",
+      "from" : "REP"
+    },
+    {
+      "to" : "HPH",
+      "from" : "DIN"
+    },
+    {
+      "to" : "BMV",
+      "from" : "UIH"
+    },
+    {
+      "to" : "PXU",
+      "from" : "HUI"
+    },
+    {
+      "to" : "CXR",
+      "from" : "KUL"
+    },
+    {
+      "to" : "DAD",
+      "from" : "TBB"
+    },
+    {
+      "to" : "HAN",
+      "from" : "VII"
+    },
+    {
+      "to" : "VKG",
+      "from" : "DIN"
+    },
+    {
+      "to" : "VII",
+      "from" : "CDG"
+    },
+    {
+      "to" : "CXR",
+      "from" : "TPE"
+    },
+    {
+      "to" : "BMV",
+      "from" : "SIN"
+    },
+    {
+      "to" : "DLI",
+      "from" : "BMV"
+    },
+    {
+      "to" : "HUI",
+      "from" : "VKG"
+    },
+    {
+      "to" : "PXU",
+      "from" : "KUL"
+    },
+    {
+      "to" : "DIN",
+      "from" : "DAD"
+    },
+    {
+      "to" : "HUI",
+      "from" : "CGK"
+    },
+    {
+      "to" : "HAN",
+      "from" : "NGO"
+    },
+    {
+      "to" : "VCS",
+      "from" : "PXU"
+    },
+    {
+      "to" : "VKG",
+      "from" : "BKK"
+    },
+    {
+      "to" : "DLI",
+      "from" : "KIX"
+    },
+    {
+      "to" : "DAD",
+      "from" : "SIN"
+    },
+    {
+      "to" : "DAD",
+      "from" : "PUS"
+    },
+    {
+      "to" : "UIH",
+      "from" : "SIN"
+    },
+    {
+      "to" : "PQC",
+      "from" : "UIH"
+    },
+    {
+      "to" : "HPH",
+      "from" : "CNX"
+    },
+    {
+      "to" : "BMV",
+      "from" : "VCL"
+    },
+    {
+      "to" : "HAN",
+      "from" : "DLI"
+    },
+    {
+      "to" : "SGN",
+      "from" : "FUK"
+    },
+    {
+      "to" : "PXU",
+      "from" : "SYD"
+    },
+    {
+      "to" : "TBB",
+      "from" : "PGV"
+    },
+    {
+      "to" : "DLI",
+      "from" : "ICN"
+    },
+    {
+      "to" : "HAN",
+      "from" : "LCY"
+    },
+    {
+      "to" : "HAN",
+      "from" : "DIN"
+    },
+    {
+      "to" : "SGN",
+      "from" : "NRT"
+    },
+    {
+      "to" : "SGN",
+      "from" : "REP"
+    },
+    {
+      "to" : "SGN",
+      "from" : "TPE"
+    },
+    {
+      "to" : "SGN",
+      "from" : "FUK"
+    },
+    {
+      "to" : "DLI",
+      "from" : "VCL"
+    },
+    {
+      "to" : "PXU",
+      "from" : "LCY"
+    },
+    {
+      "to" : "HPH",
+      "from" : "PGV"
+    },
+    {
+      "to" : "VCS",
+      "from" : "CGK"
+    },
+    {
+      "to" : "HPH",
+      "from" : "PEK"
+    },
+    {
+      "to" : "VCS",
+      "from" : "HPH"
+    },
+    {
+      "to" : "VKG",
+      "from" : "PEK"
+    },
+    {
+      "to" : "DAD",
+      "from" : "LAX"
+    },
+    {
+      "to" : "TBB",
+      "from" : "REP"
+    },
+    {
+      "to" : "DAD",
+      "from" : "KIX"
+    },
+    {
+      "to" : "TBB",
+      "from" : "ICN"
+    },
+    {
+      "to" : "VKG",
+      "from" : "SGN"
+    },
+    {
+      "to" : "HPH",
+      "from" : "MEL"
+    },
+    {
+      "to" : "SGN",
+      "from" : "PNH"
+    },
+    {
+      "to" : "TBB",
+      "from" : "JFK"
+    },
+    {
+      "to" : "VII",
+      "from" : "FRA"
+    },
+    {
+      "to" : "CXR",
+      "from" : "CGK"
+    },
+    {
+      "to" : "VCS",
+      "from" : "PQC"
+    },
+    {
+      "to" : "PQC",
+      "from" : "SGN"
+    },
+    {
+      "to" : "VCL",
+      "from" : "SFO"
+    },
+    {
+      "to" : "PXU",
+      "from" : "BOS"
+    },
+    {
+      "to" : "VCL",
+      "from" : "PNH"
+    },
+    {
+      "to" : "PQC",
+      "from" : "TPE"
+    },
+    {
+      "to" : "VII",
+      "from" : "HPH"
+    },
+    {
+      "to" : "VKG",
+      "from" : "SYD"
+    },
+    {
+      "to" : "CXR",
+      "from" : "VTE"
+    },
+    {
+      "to" : "CXR",
+      "from" : "PEK"
+    },
+    {
+      "to" : "VII",
+      "from" : "CGK"
+    },
+    {
+      "to" : "PXU",
+      "from" : "PUS"
+    },
+    {
+      "to" : "HPH",
+      "from" : "BOS"
+    },
+    {
+      "to" : "VII",
+      "from" : "UIH"
+    },
+    {
+      "to" : "HAN",
+      "from" : "NGO"
+    },
+    {
+      "to" : "HAN",
+      "from" : "DPS"
+    },
+    {
+      "to" : "PQC",
+      "from" : "PEK"
+    },
+    {
+      "to" : "VCS",
+      "from" : "NGO"
+    },
+    {
+      "to" : "VCL",
+      "from" : "CAN"
+    },
+    {
+      "to" : "DAD",
+      "from" : "VTE"
+    },
+    {
+      "to" : "HPH",
+      "from" : "PNH"
+    },
+    {
+      "to" : "HAN",
+      "from" : "HPH"
+    },
+    {
+      "to" : "DLI",
+      "from" : "CAN"
+    },
+    {
+      "to" : "VCS",
+      "from" : "TPE"
+    },
+    {
+      "to" : "HAN",
+      "from" : "BOS"
+    },
+    {
+      "to" : "DIN",
+      "from" : "KUL"
+    },
+    {
+      "to" : "DLI",
+      "from" : "PGV"
+    },
+    {
+      "to" : "DAD",
+      "from" : "HKT"
+    },
+    {
+      "to" : "SGN",
+      "from" : "HAN"
+    },
+    {
+      "to" : "TBB",
+      "from" : "PXU"
+    },
+    {
+      "to" : "VCL",
+      "from" : "VII"
+    },
+    {
+      "to" : "BMV",
+      "from" : "UIH"
+    },
+    {
+      "to" : "DAD",
+      "from" : "JFK"
+    },
+    {
+      "to" : "HAN",
+      "from" : "VCL"
+    },
+    {
+      "to" : "DLI",
+      "from" : "PUS"
+    },
+    {
+      "to" : "VCL",
+      "from" : "HKT"
+    },
+    {
+      "to" : "UIH",
+      "from" : "PUS"
+    },
+    {
+      "to" : "PXU",
+      "from" : "SIN"
+    },
+    {
+      "to" : "UIH",
+      "from" : "DIN"
+    },
+    {
+      "to" : "PXU",
+      "from" : "LAX"
+    },
+    {
+      "to" : "SGN",
+      "from" : "HKT"
+    },
+    {
+      "to" : "BMV",
+      "from" : "HPH"
+    },
+    {
+      "to" : "DLI",
+      "from" : "LCY"
+    },
+    {
+      "to" : "UIH",
+      "from" : "HPH"
+    },
+    {
+      "to" : "PQC",
+      "from" : "SYD"
+    },
+    {
+      "to" : "HUI",
+      "from" : "PGV"
+    },
+    {
+      "to" : "DLI",
+      "from" : "DIN"
+    },
+    {
+      "to" : "DIN",
+      "from" : "PNH"
+    },
+    {
+      "to" : "CXR",
+      "from" : "BMV"
+    },
+    {
+      "to" : "VII",
+      "from" : "REP"
+    },
+    {
+      "to" : "HUI",
+      "from" : "TBB"
+    },
+    {
+      "to" : "HAN",
+      "from" : "TPE"
+    },
+    {
+      "to" : "SGN",
+      "from" : "ICN"
+    }
+  ]
+}
