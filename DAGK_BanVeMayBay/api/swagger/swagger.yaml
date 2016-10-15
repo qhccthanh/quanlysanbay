@@ -48,8 +48,194 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-
-
+  /timchuyenbay:
+    x-swagger-router-controller: airports
+    get:
+      operationId: getFlight
+      description: Lấy danh sách các chuyên bay
+      parameters:
+        - name: masanbaydi
+          type: string
+          in: query
+          description: Mã sân bay đi
+          required: true
+        - name: masanbayden
+          type: string
+          in: query
+          description: Mã sân bay đến
+          required: true
+        - name: ngaydi
+          type: number
+          in: query
+          description: TimeStamp ngày đi
+          required: true
+        - name: ngayve
+          type: number
+          in: query
+          description: TimeStamp ngày về nếu là tìm kiếm khứ hổi
+          required: false
+        - name: hang
+          type: string
+          in: query
+          description: Hạng vé "C" là phổ thông "Y" là thương gia
+          required: false
+        - name: mucgia
+          type: string
+          in: query
+          description: Mức giá của vé mặc định là tất cả "E,F,G"
+          required: false
+        - name: soluongghe
+          type: number
+          in: query
+          description: Số lượng ghế tìm kiếm mặc định là 1
+          required: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/FindFlightResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /chuyenbay/:
+    x-swagger-router-controller: airports
+    get:
+      operationId: getFlightX
+      description: Lấy danh sách các chuyên bay với mã chuyến bay và ngày đi
+      parameters:
+      - name: machuyenbay
+        type: string
+        in: query
+        description: Mã chuến bay
+        required: true
+      - name: ngaydi
+        type: string
+        in: query
+        description: Ngày đi
+        required: true
+      - name: truong
+        type: string
+        in: query
+        description: Trường dữ liệu cần trả về mặc định là id trường dữ liệu có thể là "machuyenbay,masanbaydi,masanbayden,ngaydi,giodi,hang,mucgia,soluongghe, khachhang"
+        required: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/FlightResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"  
+  /datcho:
+    x-swagger-router-controller: airports
+    put: 
+      operationId: updateInfoTicket
+      description: Cập nhật thông tin mã đặt chỗ
+      parameters:
+        - name: madatcho
+          type: string
+          in: query
+          description: Mã đặt chỗ đã được cấp ở POST c
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/BookResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      operationId: bookTicket
+      description: Tạo mã đặt chỗ với thông tin chuyến bay. Mã đặt chỗ được phát sinh tự động với trạng thái là đang chờ
+      parameters:
+        - name: machuyenbay
+          type: string
+          in: query
+          description: Mã chuyến bay đặt chỗ
+          required: true
+        - name: masanbaydi
+          type: string
+          in: query
+          description: Mã sân bay đi
+          required: true
+        - name: masanbayden
+          type: string
+          in: query
+          description: Mã sân bay đến
+          required: true
+        - name: ngaydi
+          type: number
+          in: query
+          description: TimeStamp ngày đi
+          required: true
+        - name: hang
+          type: string
+          in: query
+          description: Hạng vé "C" là phổ thông "Y" là thương gia
+          required: true
+        - name: mucgia
+          type: string
+          in: query
+          description: Mức giá của vé 
+          required: true
+        - name: soluongghe
+          type: number
+          in: query
+          description: Số lượng ghế đặt
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/BookResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /datcho/{madatcho}/:
+    x-swagger-router-controller: airports
+    get: 
+      operationId: getBookInfo
+      description: Lây thông tin mã đặt chỗ với mã đặt chỗ truyền vào
+      parameters:
+        - name: madatcho
+          type: string
+          in: path
+          description: Mã đặt chỗ được cấp ở Đặt chỗ 
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/BookInfoResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -61,19 +247,130 @@ definitions:
       - sanbay
     properties:
       sanbay:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            city:
+              type: string
+  FindFlightResponse:
+    required:
+      - chuyenbay
+    properties:
+      chuyenbay:
+        type: array
+        items:
+          type: object
+          properties:
+            machuyenbay:
+              type: string
+            masanbaydi:
+              type: string
+            masanbayden:
+              type: string
+            ngaykhoihanh:
+              type: string
+              description: YYYY-DD-MM
+            giokhoihanh:
+              type: string
+              description: HH:mm
+            hang:
+              type: string
+            mucgia:
+              type: string
+  FlightResponse:
+    properties:
+      chuyenbay:
         type: object
         properties:
-          vung:
+          machuyenbay:
+            type: string
+          masanbaydi:
+            type: string
+          masanbayden:
+            type: string
+          ngaykhoihanh:
+            type: string
+            description: YYYY-DD-MM
+          giokhoihanh:
+            type: string
+            description: HH:mm
+          hanhkhach:
             type: array
             items:
               type: object
               properties:
-                id:
+                madatcho:
                   type: string
-                name:
+                danhxung:
                   type: string
-                city:
+                ho:
                   type: string
+                ten:
+                  type: string
+                hang:
+                  type: string
+                mucgia:
+                  type: string
+  BookResponse:
+    required:
+      - datcho
+    properties:
+      datcho:
+        type: object
+        properties:
+          madatcho:
+            type: string
+          machuyenbay:
+            type: string
+          ngaydi:
+            type: string
+            description: YYYY-DD-MM
+          thoigiancapphat:
+            type: number
+            description: thời gian timestamp cap phat
+          thoihansudung:
+            type: number
+            description: thoi han timestamp su dung
+  BookInfoResponse:
+    required:
+      - thongtindatcho
+    properties:
+      thongtindatcho:
+        type: array
+        items:
+          type: object
+          properties:
+            machuyenbay:
+              type: string
+            ngaydi:
+              type: string
+            hang:
+              type: string
+            mucgia:
+              type: string
+            gia:
+              type: string
+            trangthai:
+              type: number
+            hanhkhach:
+              type: array
+              items:
+                type: object
+                properties:
+                  madatcho:
+                    type: string
+                  danhxung:
+                    type: string
+                  ho:
+                    type: string
+                  ten:
+                    type: string
+          
   ErrorResponse:
     required:
       - message
