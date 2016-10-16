@@ -143,10 +143,11 @@ paths:
       description: Cập nhật thông tin mã đặt chỗ
       parameters:
         - name: madatcho
-          type: string
-          in: query
+          in: body 
           description: Mã đặt chỗ đã được cấp ở POST c
           required: true
+          schema:
+            $ref: "#/definitions/BookUpdateParameter"
       responses:
         "200":
           description: Success
@@ -366,7 +367,10 @@ definitions:
                     type: string
                   ten:
                     type: string
-          
+  BookUpdateParameter:
+    properties:
+      thongtin:
+        type: string
   ErrorResponse:
     required:
       - message
