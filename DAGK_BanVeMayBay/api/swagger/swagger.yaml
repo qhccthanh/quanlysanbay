@@ -169,16 +169,6 @@ paths:
           in: query
           description: Mã chuyến bay đặt chỗ
           required: true
-        - name: masanbaydi
-          type: string
-          in: query
-          description: Mã sân bay đi
-          required: true
-        - name: masanbayden
-          type: string
-          in: query
-          description: Mã sân bay đến
-          required: true
         - name: ngaydi
           type: number
           in: query
@@ -189,7 +179,7 @@ paths:
           in: query
           description: Hạng vé "C" là phổ thông "Y" là thương gia
           required: true
-        - name: mucgia
+        - name: muc
           type: string
           in: query
           description: Mức giá của vé 
