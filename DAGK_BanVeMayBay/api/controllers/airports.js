@@ -5,6 +5,7 @@ var mysql = require("mysql");
 var dateformat = require("dateformat");
 
 var generateUUID = require(__dirname + "/helper/" + "generateUUID");
+var helper = require(__dirname + "/helper/" + "helper");
 
 var airportFile = __dirname + "/resources/" + "airports.json";
 var aiport_tofromFile =  __dirname + "/resources/" + "aiport_tofrom.json";
@@ -12,9 +13,6 @@ var aiport_tofromFile =  __dirname + "/resources/" + "aiport_tofrom.json";
 module.exports = {
 	getAirportAll,
 	getToFromAiportAll,
-	getAirportWithID,
-	getFlight,
-	bookTicket,
 };
 
 var connection = mysql.createConnection({
@@ -26,7 +24,7 @@ var connection = mysql.createConnection({
 
 // var airportsAll = {};
 
-//connection.connect();
+connection.connect();
 
 // connection.query('SELECT * from sanbay where idsanbay = "SGN" ', function(err, results, fields) {
 //  //  if (!err) {
@@ -90,7 +88,7 @@ function loadData() {
 	});
 }
 
-
+// Lấy tất cả sân bay
 function getAirportAll(req,res,next) {
 
 	var query = "SELECT * FROM sanbay ";
@@ -130,53 +128,8 @@ function getAirportAll(req,res,next) {
 	});
 }
 
-function getAirportWithID(req,res,next) {
-
-	var id = req.swagger.params.id.value;
-
-	var uuid = generateUUID.generate(6)
-	console.log(uuid);
-
-	findAiportWithID(id,function(results){
-		// No content
-		if (arrayFilter.length == 0) {
-			res.status(404).json({
-				"message": "Không có dữ liệu"
-			});
-		}  // Have content
-		else {
-			res.json(arrayFilter);	
-		}
-	});
-}
-
-function findAiportWithID(id, callback) {
-	
-	var arrayFilter = [];
-	var query = "SELECT * FROM sanbay where idsanbay = " + "\'" + id + "\'" ;
-	console.log(query);
-	connection.query(query, function(error,results,fields){
-		
-		if(!error ) {
-			if (results.length != 0 ) {
-
-				arrayFilter.push({
-					"id" : results[0].idsanbay,
-					"name": results[0].name,
-					"city": results[0].city,
-					"region": results[0].region,
-				});
-			}
-		} else {
-			console.log("Query: " + query + " Error: " + error);
-		}
-		
-		callback(arrayFilter);
-	});
-	
-}
-
-/// Query with 
+// Tim sân bay đến với mã sân bay đi
+// Load tất cả sân bay đi
 function getToFromAiportAll(req,res,next) {
 
 	var fromID = req.swagger.params.masanbaydi.value;
@@ -222,12 +175,12 @@ function getToFromAiportAll(req,res,next) {
 	var queryString = ", ";
 
 	// Query trả dữ liệu
-	queryString = "SELECT DISTINCT(sb.idsanbay) " + getField("sb", fields, numberField) + "  FROM sanbay sb join chuyenbay cb on (sb.idsanbay = cb.masanbaydi) "
+	queryString = "SELECT DISTINCT(sb.idsanbay) " + helper.getField("sb", fields, numberField) + "  FROM sanbay sb join chuyenbay cb on (sb.idsanbay = cb.masanbaydi) "
 
 	// Check is QueryString parameter if is query with fromID
 	// Trường hợp có fromID truy vấn sân bay đến với sân bay đi
 	if (fromID !== null && fromID != undefined) {
-		queryString = "SELECT DISTINCT(cb.masanbayden) " + getField("sb", fields, numberField) + "  FROM sanbay sb join chuyenbay cb on (sb.idsanbay = cb.masanbayden) WHERE masanbaydi = \'" +  fromID + "\'";
+		queryString = "SELECT DISTINCT(cb.masanbayden) " + helper.getField("sb", fields, numberField) + "  FROM sanbay sb join chuyenbay cb on (sb.idsanbay = cb.masanbayden) WHERE masanbaydi = \'" +  fromID + "\'";
 	} 
 
 	// Fetch all 
@@ -258,63 +211,6 @@ function getToFromAiportAll(req,res,next) {
 		}
 	});
 }
-
-function bookTicket(res,req,next) {
-
-}
-
-function getField(prefix, fields,numberField) {
-
-	// Check if fields is undefined or fields = "id" return empty
-	if (fields == undefined || fields.localeCompare("id") == 0) {
-		return "";
-	} 
-
-	var result = "";
-
-	if (numberField  & 1 << 0) {
-		result += "," +  prefix + "." + "name";
-	} 
-
-	if (numberField  & 1 << 1 ) {
-		result += "," + prefix + "." + "city";
-	}
-
-	if (numberField  & 1 << 2 ) {
-		result += "," + prefix + "." + "region";
-	}
-
-	return result;
-}
-
-function getFlight(req,res,next) {
-	console.log("Call");
-
-	// Required
-	var fromID = req.swagger.params.masanbaydi.value;
-	var toID = req.swagger.params.masanbayden.value;
-	var fromTimeStamp = req.swagger.params.ngaydi.value; 
-
-	// Optional
-	var toTimeStamp = req.swagger.params.ngayve.value;
-	var hangVe = req.swagger.params.hang.value; 
-	var mucgia = req.swagger.params.mucgia.value; 
-	var soluongghe = req.swagger.params.soluongghe.value; 
-
-	console.log(fromID);
-	console.log(toID);
-
-	var fromDate = dateformat(new Date(fromTimeStamp * 1000), "yyyy-dd-mm");
-	var toDate = dateformat(new Date(toTimeStamp * 1000), "yyyy-dd-mm");
-
-	console.log(fromDate);
-	console.log(toDate);
-
-	var queryString = "SELECT * from chuyenbay where machuyenbaydi = \'" + fromID + "\' AND machuyenbayden = \'" + toID + "\' AND ngaydi = \'" + fromDate + "\'";
-	console.log(queryString);
-	//res.send({"chuyenbay": queryString});
-}
-
 
 
 

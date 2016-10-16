@@ -19,7 +19,7 @@ produces:
   - application/json
 paths:
 
-  /sanbaydi:
+  /sanbay:
     x-swagger-router-controller: airports
     get:
       operationId: getToFromAiportAll
@@ -49,7 +49,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /timchuyenbay:
-    x-swagger-router-controller: airports
+    x-swagger-router-controller: flights
     get:
       operationId: getFlight
       description: Lấy danh sách các chuyên bay
@@ -103,15 +103,15 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /chuyenbay/:
-    x-swagger-router-controller: airports
+    x-swagger-router-controller: flights
     get:
-      operationId: getFlightX
-      description: Lấy danh sách các chuyên bay với mã chuyến bay và ngày đi
+      operationId: getFlightInfo
+      description: Lấy thông tin chuyên bay với mã chuyến bay và ngày đi
       parameters:
       - name: machuyenbay
         type: string
         in: query
-        description: Mã chuến bay
+        description: Mã chuyến bay
         required: true
       - name: ngaydi
         type: string
@@ -137,7 +137,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"  
   /datcho:
-    x-swagger-router-controller: airports
+    x-swagger-router-controller: flights
     put: 
       operationId: updateInfoTicket
       description: Cập nhật thông tin mã đặt chỗ
@@ -213,7 +213,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /datcho/{madatcho}/:
-    x-swagger-router-controller: airports
+    x-swagger-router-controller: flights
     get: 
       operationId: getBookInfo
       description: Lây thông tin mã đặt chỗ với mã đặt chỗ truyền vào
@@ -285,37 +285,43 @@ definitions:
   FlightResponse:
     properties:
       chuyenbay:
-        type: object
-        properties:
-          machuyenbay:
-            type: string
-          masanbaydi:
-            type: string
-          masanbayden:
-            type: string
-          ngaykhoihanh:
-            type: string
-            description: YYYY-DD-MM
-          giokhoihanh:
-            type: string
-            description: HH:mm
-          hanhkhach:
-            type: array
-            items:
-              type: object
-              properties:
-                madatcho:
-                  type: string
-                danhxung:
-                  type: string
-                ho:
-                  type: string
-                ten:
-                  type: string
-                hang:
-                  type: string
-                mucgia:
-                  type: string
+        type: array
+        items:
+          type: object
+          properties:
+            machuyenbay:
+              type: string
+            masanbaydi:
+              type: string
+            masanbayden:
+              type: string
+            ngaydi:
+              type: string
+              description: YYYY-DD-MM
+            giodi:
+              type: string
+              description: HH:mm
+            hang:
+              type: string
+            mucgia:
+              type: string
+            hanhkhach:
+              type: array
+              items:
+                type: object
+                properties:
+                  madatcho:
+                    type: string
+                  danhxung:
+                    type: string
+                  ho:
+                    type: string
+                  ten:
+                    type: string
+                  hang:
+                    type: string
+                  mucgia:
+                    type: string
   BookResponse:
     required:
       - datcho
