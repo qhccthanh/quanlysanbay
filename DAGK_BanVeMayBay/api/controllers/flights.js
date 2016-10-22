@@ -25,6 +25,10 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+setInterval(function () {
+    connection.query('SELECT 1');
+}, 5000);
+
 // Tìm kiếm chuyến bay
 function getFlight(req,res,next) {
 
@@ -251,7 +255,7 @@ function bookTicket(res,req,next) {
 function updateInfoTicket(res,req,nxet) {
 
 	var madatcho = req.swagger.params.madatcho.value;
-
+	
 }
 
 

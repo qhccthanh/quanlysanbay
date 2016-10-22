@@ -26,6 +26,10 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+setInterval(function () {
+    connection.query('SELECT 1');
+}, 5000);
+
 // connection.query('SELECT * from sanbay where idsanbay = "SGN" ', function(err, results, fields) {
 //  //  if (!err) {
 //  //  	console.log('The solution is: ', results[0]);
