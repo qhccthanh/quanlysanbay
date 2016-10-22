@@ -10,7 +10,8 @@
   "dependencies": {
     "express": "^4.12.3",
     "swagger-express-mw": "^0.1.0",
-    "mysql": "^2.5.4"
+    "mysql": "^2.5.4",
+    "dateformat": "^1.0.12"
   },
   "devDependencies": {
     "should": "^7.1.0",
