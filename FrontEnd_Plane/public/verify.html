@@ -1,0 +1,52 @@
+ <div class="nav nav-tabs" >
+  <h1 style="text-align: center;color: #ffffff">Xác nhận đặt vé</h1>
+</div>
+
+ <div class="col-md-12 jumbotron">
+  <div class="col-md-12">
+    <form class="form-horizontal" ng-submit="submit()">
+      <fieldset>
+        <legend class="title" "><h2>Thông tin vé<h2></legend>
+
+        <div class="form-group">
+          <label for="inputName" class="col-md-2 control-label">Người đặt</label>
+
+          <div class="col-md-10">
+            <input class="form-control" id="inputName" placeholder="Người đặt" ng-model="name" type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputId" class="col-md-2 control-label">Mã chuyến bay</label>
+
+          <div class="col-md-10">
+            <input class="form-control" id="inputId" placeholder="Mã chuyến bay" ng-model="id" type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputTicket" class="col-md-2 control-label">Số lượng vé</label>
+
+          <div class="col-md-10">
+            <input class="form-control" id="inputTicket" placeholder="Số lượng vé" ng-model="ticket" type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputTotal" class="col-md-2 control-label">Tổng tiền</label>
+
+          <div class="col-md-10">
+            <input class="form-control" id="inputTotal" placeholder="Tổng tiền" ng-model="total" type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-12">
+            <button type="submit" id="submit" value="Submit" class="btn btn-primary">Xác nhận</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
