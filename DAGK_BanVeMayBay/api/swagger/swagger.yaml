@@ -23,7 +23,7 @@ paths:
     x-swagger-router-controller: airports
     get:
       operationId: getToFromAiportAll
-      description: Lấy danh sách các sấn bay có thể bay đến sân bay đi
+      description: Lấy danh sách tất cả các sân bay
       parameters:
         - name: masanbaydi
           type: string
@@ -33,7 +33,7 @@ paths:
         - name: truong
           type: string
           in: query
-          description: Trường dữ liệu cần trả về mặc định là id trường dữ liệu có thể là "id,name,city"
+          description: Trường dữ liệu cần trả về mặc định là id trường dữ liệu có thể là "id,name,city, region"
           required: false
       responses:
         "200":
@@ -48,7 +48,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /timchuyenbay:
+  /chuyenbay:
     x-swagger-router-controller: flights
     get:
       operationId: getFlight
@@ -102,7 +102,30 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /chuyenbay/:
+    post:
+      operationId: insertFlight
+      description: Thêm chặn bay
+      parameters:
+      - name: chuyenbay
+        in: body
+        description: chuyến bay thêm vào
+        required: true
+        schema:
+          $ref: "#/definitions/FlightResponse"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/FlightResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /chuyenbay/{machuyenbay}:
     x-swagger-router-controller: flights
     get:
       operationId: getFlightInfo
@@ -110,7 +133,7 @@ paths:
       parameters:
       - name: machuyenbay
         type: string
-        in: query
+        in: path
         description: Mã chuyến bay
         required: true
       - name: ngaydi
@@ -138,6 +161,22 @@ paths:
             $ref: "#/definitions/ErrorResponse"  
   /datcho:
     x-swagger-router-controller: flights
+    get:
+      operationId: getTicket
+      description: Layy danh sach dat cho
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/BookResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse" 
     put: 
       operationId: updateInfoTicket
       description: Cập nhật thông tin mã đặt chỗ
@@ -248,31 +287,57 @@ definitions:
               type: string
             city:
               type: string
+            region:
+              type: string
   FindFlightResponse:
     required:
       - chuyenbay
     properties:
       chuyenbay:
-        type: array
-        items:
-          type: object
-          properties:
-            machuyenbay:
-              type: string
-            masanbaydi:
-              type: string
-            masanbayden:
-              type: string
-            ngaykhoihanh:
-              type: string
-              description: YYYY-DD-MM
-            giokhoihanh:
-              type: string
-              description: HH:mm
-            hang:
-              type: string
-            mucgia:
-              type: string
+        type: object
+        properties:
+          chuyendi:
+            type: array
+            items:
+              type: object
+              properties:
+                machuyenbay:
+                  type: string
+                masanbaydi:
+                  type: string
+                masanbayden:
+                  type: string
+                ngaykhoihanh:
+                  type: string
+                  description: YYYY-DD-MM
+                giokhoihanh:
+                  type: string
+                  description: HH:mm
+                hang:
+                  type: string
+                mucgia:
+                  type: string
+          chuyenve:
+            type: array
+            items:
+              type: object
+              properties:
+                machuyenbay:
+                  type: string
+                masanbaydi:
+                  type: string
+                masanbayden:
+                  type: string
+                ngaykhoihanh:
+                  type: string
+                  description: YYYY-DD-MM
+                giokhoihanh:
+                  type: string
+                  description: HH:mm
+                hang:
+                  type: string
+                mucgia:
+                  type: string
   FlightResponse:
     properties:
       chuyenbay:
