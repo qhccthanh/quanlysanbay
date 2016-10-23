@@ -290,8 +290,6 @@ definitions:
             region:
               type: string
   FindFlightResponse:
-    required:
-      - chuyenbay
     properties:
       chuyenbay:
         type: object
