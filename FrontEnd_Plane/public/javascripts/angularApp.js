@@ -19,6 +19,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
 
 /*--------------------------------------CONTROLLER--------------------------------------*/
 app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
+	// MainCtrl
 	var ctrl = this;
 
 	this.isNotify = false;
