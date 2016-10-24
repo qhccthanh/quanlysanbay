@@ -160,7 +160,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"  
   /datcho:
-    x-swagger-router-controller: flights
+    x-swagger-router-controller: book
     get:
       operationId: getTicket
       description: Layy danh sach dat cho
@@ -243,7 +243,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /datcho/{madatcho}/:
-    x-swagger-router-controller: flights
+    x-swagger-router-controller: book
     get: 
       operationId: getBookInfo
       description: Lây thông tin mã đặt chỗ với mã đặt chỗ truyền vào
