@@ -14,6 +14,16 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			templateUrl : '/find.html',
 			controller : 'MainCtrl as mainCtrl',
 		})
+		.state('planeslist', {
+			url : '/planeslist',
+			templateUrl : '/planeslist.html',
+			controller : 'PlanesListCtrl as planesListCtrl',
+		})
+		.state('verify', {
+			url : '/verify',
+			templateUrl : '/verify.html',
+			controller : 'VerifyCtrl as verifyCtrl',
+		})
     $urlRouterProvider.otherwise('home');
   }]);
 
@@ -98,4 +108,19 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 	this.find = function() {
 		console.log("Tim chuyen bay");
 	}
+}]);
+
+app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
+	
+	var ctrl = this;
+
+
+}]);
+
+app.controller('PlanesListCtrl',['$http', '$timeout', function($http, $timeout) {
+	
+	var ctrl = this;
+	this.title = {};
+	this.titleArray = ['Ông', 'Bà', 'Cô'];
+
 }]);
