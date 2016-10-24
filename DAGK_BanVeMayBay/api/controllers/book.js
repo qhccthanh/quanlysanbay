@@ -9,7 +9,7 @@ var generateUUID = require(__dirname + "/helper/" + "generateUUID");
 var helper = require(__dirname + "/helper/" + "helper");
 
 module.exports = {
-	getTicket,
+	getBooks,
 	bookTicket,
 	updateInfoTicket,
 	getBookInfo,
@@ -24,17 +24,81 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-console.log("call");
-
 setInterval(function () {
     connection.query('SELECT 1');
 }, 5000);
 
-function getTicket(req,res,next) {
-	console.log("call getTicket");
+// GET /datcho
+function getBooks(req,res,next) {
+	console.log("call getBooks");
+
+	var machuyenbay = req.swagger.params.machuyenbay.value;
+	var ngaydi = req.swagger.params.ngaydi.value;
+	var hang = req.swagger.params.hang.value;
+	var muc = req.swagger.params.mucgia.value;
+
+	var queryBooks = "SELECT dc.madatcho,ctcb.machuyenbay,DATE_FORMAT(ctcb.ngay,\'%Y-%m-%d\') as ngay,ctcb.hang,ctcb.mucgia,dc.tongtien,dc.trangthai FROM datcho dc join chitietchuyenbay ctcb on (ctcb.madatcho = dc.madatcho) WHERE 1"
+
+	if (machuyenbay != undefined) {
+		queryBooks += " AND ctcb.machuyenbay = \'" + machuyenbay + "\'";
+	}
+
+	if (ngaydi != undefined) {
+		
+		var fromDate = dateformat(ngaydi, "yyyy-mm-dd");
+		queryBooks += " AND ctcb.ngay = \'" + fromDate + "\'";
+	}
+
+	if (hang != undefined) {
+		queryBooks += " AND ctcb.hang = \'" + hang + "\'";
+	}
+
+	if (muc != undefined) {
+		queryBooks += " AND ctcb.mucgia = \'" + muc + "\'";
+	}
+
+	console.log("queryBooks: " + queryBooks);
+
+	connection.query(queryBooks, function(error,results) {
+		if(error) {
+			res.status(404).send({'message': "Có lỗi xãy ra trong lúc lấy dữ liệu vui lòng thử lại."});
+			console.log(error);
+		} else {
+			if (results.length == 0) {
+				res.status(404).send({'message': "Không có dữ liệu"});
+			}
+			var arrayObject = [];
+
+			for(var i = 0 ; i < results.length; i++) {
+				var item = results[i];
+				var keys = Object.keys(item);
+				
+				var object = {};
+
+				for(var j = 0 ; j < keys.length; j++) {
+					var key = keys[j];
+					object[key] = item[key];
+				}
+
+				console.log(object["ngay"]);
+				var ngay = (new Date(object["ngay"])).getTime();
+				object.ngay = ngay;
+
+				arrayObject.push(object);
+			}
+
+			console.log(arrayObject);
+			res.send({
+				"datcho": arrayObject
+			});
+		}
+	});
 }
 
+var bookIDKeepValiable = [];
+
 // BOOK vé với POST trả về mã đặt chỗ
+// POST /datcho
 function bookTicket(req,res,next) {
 	console.log("bookTicket");
 	console.log("body: " + req.swagger.params.datcho);
@@ -151,12 +215,108 @@ function bookTicket(req,res,next) {
 	});
 }
 
+//PUT /datcho
 function updateInfoTicket(req,res,nxet) {
 
 	var madatcho = req.swagger.params.madatcho.value;
 	
 }
 
+//GET /datcho/{madatcho}/
 function getBookInfo(req,res,next) {
+	console.log("bookTicket");
+	console.log("body: " + req.swagger.params.datcho);
 
+	var datcho = req.swagger.params.datcho.value.datcho;
+
+	var madatcho = datcho.madatcho;
+	var hanhkhach = datcho.hanhkhach;
+
+	try {
+		if( hanhkhach.length == 0) {
+			res.status(404).send({
+				"message": "Danh sách hành khách rỗng"
+			});
+		} else {
+			var queryString = util.format("SELECT * from datcho WHERE madatcho = \'%s\' ");
+
+			console.log(queryString);
+			connection.query(queryString,function(error,results){
+				if(error){
+					res.status(404).send({
+						"message": "Có lỗi xãy ra vui lòng thử lại"
+					});
+				} else {
+					if(results.length == 0 ){
+						res.status(404).send({
+							"message": "Mã đặt chỗ không tồn tại hoặc đã quá hạn"
+						});
+					} else {
+						var item = results[0];
+						
+						// Update State = 1
+						var updateStateDatChoQuery = util.format("UPDATE datcho SET trangthai = 1 WHERE madatcho = \'%s\'", madatcho);
+						console.log("updateStateDatChoQuery: " + updateStateDatChoQuery);
+						connection.query(updateStateDatChoQuery, function(error,results) {
+							if(error) {
+								console.log(error);
+								res.status(404).send({
+									"message": "Có lỗi xãy ra vui lòng thử lại"
+								});
+							} else {
+								// Insert tung hành khách vào database
+								var currentHKComplete = 0;
+								var hkCount = hanhkhach.count;
+
+								hanhkhach.forEach(function(hk) {
+
+									connection.query("INSERT INTO hanhkhach values(?,?,?,?)", [madatcho, hk.danhxung, hk.ho, hk.ten] , function(error,results) {
+
+										if(error) {
+
+											console.log(error);
+											res.status(404).send({
+												"message": "Có lỗi xãy ra vui lòng thử lại"
+											}).end();
+										} else {
+											currentHKComplete += 1;
+											if(currentHKComplete == hkCount) {
+												// Query lại toàn bộ thông tin vé trả về client
+												
+											}
+										}
+									});
+								});
+							}
+						});
+						// Insert hanh khach
+
+					}
+				}
+			});
+		}
+	} catch (e) {
+		res.status(404).send({
+			"message": "Có lỗi xãy ra vui lòng thử lại"
+		});
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

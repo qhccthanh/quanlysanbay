@@ -54,43 +54,43 @@ setInterval(function () {
 // });
 
 
-function loadData() {
-	fs.readFile(__dirname + "/resources/" + "danhsachchuyenbay.txt", 'utf8', function (err,data) {
+// function loadData() {
+// 	fs.readFile(__dirname + "/resources/" + "danhsachchuyenbay.txt", 'utf8', function (err,data) {
 
-		console.log("Read Success");
-		var array = data.split("\r\n");
+// 		console.log("Read Success");
+// 		var array = data.split("\r\n");
 
-		var count = 0;
-		for (var i = 0 ; i < array.length; i++) {
+// 		var count = 0;
+// 		for (var i = 0 ; i < array.length; i++) {
 
-			if (array[i].length > 5) {
-				connection.query(array[i], function(err,result) {
-					count++;
-					console.log(count + "/" + array.length);
-				});
-			}
-		}
+// 			if (array[i].length > 5) {
+// 				connection.query(array[i], function(err,result) {
+// 					count++;
+// 					console.log(count + "/" + array.length);
+// 				});
+// 			}
+// 		}
 		
 
-		// connection.query('DELETE FROM chuyenbay',function(err,result){
+// 		// connection.query('DELETE FROM chuyenbay',function(err,result){
 
-		// 	for (var i = 1 ; i <= 20; i++) {
-		// 		var count = 0;
+// 		// 	for (var i = 1 ; i <= 20; i++) {
+// 		// 		var count = 0;
 
-		// 		for (var j = (max * i)/20 ; j < (max * (i+1))/20 ; j++) {
-		// 			connection.query('INSERT INTO chuyenbay SET ?', array[j], function(err, result) {
-		//   				console.log(j);
-		//   				if (count == array.length) {
-		//   					console.log("Complete")
-		//   				}
-		// 			});
-		// 		}
-		// 	}
+// 		// 		for (var j = (max * i)/20 ; j < (max * (i+1))/20 ; j++) {
+// 		// 			connection.query('INSERT INTO chuyenbay SET ?', array[j], function(err, result) {
+// 		//   				console.log(j);
+// 		//   				if (count == array.length) {
+// 		//   					console.log("Complete")
+// 		//   				}
+// 		// 			});
+// 		// 		}
+// 		// 	}
 			
-		// });
+// 		// });
 
-	});
-}
+// 	});
+// }
 
 // Lấy tất cả sân bay
 function getAirportAll(req,res,next) {

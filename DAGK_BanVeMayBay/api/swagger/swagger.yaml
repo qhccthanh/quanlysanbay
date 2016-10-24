@@ -162,13 +162,30 @@ paths:
   /datcho:
     x-swagger-router-controller: book
     get:
-      operationId: getTicket
-      description: Layy danh sach dat cho
+      operationId: getBooks
+      description: Lấy danh sách tất cả mã đặt chỗ
+      parameters:
+      - name: machuyenbay
+        in: query
+        type: string
+        required: false
+      - name: ngaydi
+        in: query
+        type: number
+        required: false
+      - name: hang
+        in: query
+        type: string
+        required: false
+      - name: mucgia
+        in: query
+        type: string
+        required: false
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/BookResponse"
+            $ref: "#/definitions/BookArrayResponse"
         "404":
           description: Failure
           schema:
@@ -191,7 +208,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/BookResponse"
+            $ref: "#/definitions/BookValidateResponse"
         "404":
           description: Failure
           schema:
@@ -377,15 +394,39 @@ definitions:
           thoihansudung:
             type: number
             description: thoi han timestamp su dung
+  BookArrayResponse:
+    properties:
+      datcho:
+        type: array
+        items:
+          type: object
+          properties:
+            madatcho:
+              type: string
+            machuyenbay:
+              type: string
+            ngay:
+              type: number
+              description: YYYY-DD-MM
+            hang:
+              type: string
+            mucgia:
+              type: string
+            soghe:
+              type: number
+            gia:
+              type: string
+            trangthai:
+              type: number
   BookInfoResponse:
-    required:
-      - thongtindatcho
     properties:
       thongtindatcho:
         type: array
         items:
           type: object
           properties:
+            madatcho:
+              type: string
             machuyenbay:
               type: string
             ngaydi:
@@ -403,8 +444,6 @@ definitions:
               items:
                 type: object
                 properties:
-                  madatcho:
-                    type: string
                   danhxung:
                     type: string
                   ho:
@@ -430,9 +469,61 @@ definitions:
               type: number
         
   BookUpdateParameter:
+    required:
+      - datcho
     properties:
-      thongtin:
-        type: string
+      datcho:
+        type: object
+        properties:
+          madatcho:
+            type: string
+          hanhkhach:
+            type: array
+            items:
+              type: object
+              properties:
+                danhxung:
+                  type: string
+                ho:
+                  type: string
+                ten:
+                  type: string
+  BookValidateResponse:
+    properties:
+      datcho:
+        type: object
+        properties:
+          madatcho: 
+            type: string
+          machuyenbay:
+            type: string
+          masanbaydi:
+            type: string
+          masanbayden:
+            type: string
+          ngaydi:
+            type: string
+          giodi:
+            type: string
+          hang:
+            type: string
+          mucgia:
+            type: string
+          soghe:
+            type: number
+          tongtien:
+            type: number
+          hanhkhach:
+            type: array
+            items:
+              type: object
+              properties:
+                danhxung:
+                  type: string
+                ho:
+                  type: string
+                ten:
+                  type: string
   ErrorResponse:
     required:
       - message
