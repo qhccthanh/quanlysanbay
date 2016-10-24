@@ -30,13 +30,21 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 	this.arriveDate = null;
 	this.adults = 1
 	this.child = 0
-	this.listDepart = {};
+	this.listDepart = [];
 	this.departId = null;
-	this.listArrive = {};
+	this.listArrive = [];
 	this.arriveId = null;
 
 	this.defaultAdultArray = [1,2,3];
 	this.defaultChildArray = [0,1];
+
+	this.getDepartAirport = function() {
+		$http.get('http://139.162.58.193:10011/sanbay').success(function(data) {
+			ctrl.listDepart = data.sanbay;
+		});
+	}
+
+	this.getDepartAirport();
 
 	this.showNotify = function(msg) {
 		ctrl.notifyMsg = msg;
@@ -73,7 +81,7 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 
 		if (ctrl.departDate.getTime() < curDate) {
 			ctrl.departDate = null;
-			ctrl.showNotify('Ngày đi không hợp lệ 1');
+			ctrl.showNotify('Ngày đi không hợp lệ');
 
 			return;
 		}
@@ -81,7 +89,7 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 		if (ctrl.isRoundTrip) {
 			if (ctrl.arriveDate != null && ctrl.arriveDate < ctrl.departDate) {
 				ctrl.departDate = null;
-				ctrl.showNotify('Ngày đi không hợp lệ 2');		
+				ctrl.showNotify('Ngày đi không hợp lệ');		
 			}
 		}
 	}
@@ -95,7 +103,37 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 		}
 	}
 
-	this.find = function() {
-		console.log("Tim chuyen bay");
+	this.departIdChanged = function() {
+		var reqURL = 'http://139.162.58.193:10011/sanbay?masanbaydi=' + ctrl.departId;
+		
+		$http.get(reqURL).success(function(data) {
+			console.log(data);
+			ctrl.listArrive = data.sanbay;
+		});
+	}
+
+	this.checkValidForm = function() {
+		if (ctrl.departDate == null
+			|| ctrl.departId == null
+			|| ctrl.arriveId == null
+			|| (ctrl.isRoundTrip && ctrl.arriveDate == null)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	this.submit = function() {
+		if (!ctrl.checkValidForm()) {
+			ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
+
+			return;
+		}
+
+		var reqURL = '';
+
+		// $http.get().success(function(data) {
+
+		// });
 	}
 }]);
