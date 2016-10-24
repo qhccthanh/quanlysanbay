@@ -78,8 +78,34 @@ function getFlight(req,res,next) {
 	connection.query(queryString, function(err,results) {
 		
 		if (!err) {
-			console.log(results);
-			res.send({"chuyenbay": results});	
+			//console.log(results);
+
+			if (results.length == 0) {
+				res.sendStatus(404);
+				return;
+			}
+
+			var values = [];
+			results.forEach(function(item) {
+
+				var itemKeys = Object.keys(item);
+				var object = {};
+
+				itemKeys.forEach(function(key) {
+					object[key] = item[key];
+				});
+				console.log(object);
+				values.push(object);
+			});
+
+			console.log("results: " + values);
+
+			res.send({
+				"chuyenbay": {
+					"chuyendi": values,
+					"chuyenve": []
+				} 
+			});	
 		} else {
 			res.sendStatus(404);
 		}
