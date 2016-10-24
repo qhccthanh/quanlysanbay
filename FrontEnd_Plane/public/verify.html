@@ -1,52 +1,59 @@
- <div class="nav nav-tabs" >
-  <h1 style="text-align: center;color: #ffffff">Xác nhận đặt vé</h1>
+<div ng-cloak layout="row" layout-align="center">
+  <md-card flex="50">
+    <md-toolbar class="md-theme-light">
+      <h2 class="md-toolbar-tools">
+        <span>Xác nhận</span>
+      </h2>
+    </md-toolbar>
+
+    <md-card-content>
+      <div layout="row" layout-align="end" style="margin-bottom: 5px; margin-top: 5px; color: #F44336;" ng-show="verifyCtrl.isNotify">
+        {{verifyCtrl.notifyMsg}}
+      </div>
+      <md-list>
+      <md-subheader class="md-no-sticky">Thông tin hành khách</md-subheader>
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Tên </h3>
+            <p> {{ verifyCtrl.name }} </p>
+          </div>
+        </md-list-item>
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Giá vé </h3>
+            <p> {{ verifyCtrl.name }} </p>
+          </div>
+        </md-list-item>
+        <md-subheader class="md-no-sticky">Chiều đi</md-subheader>
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Chuyến bay </h3>
+            <p> {{ verifyCtrl.name }} </p>
+          </div>
+        </md-list-item>
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Thời gian đi </h3>
+            <p> {{ verifyCtrl.name }} </p>
+          </div>
+        </md-list-item>
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Nơi khởi hành </h3>
+            <p> {{ verifyCtrl.name }} </p>
+          </div>
+        </md-list-item>
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Nơi đến </h3>
+            <p> {{ verifyCtrl.name }} </p>
+          </div>
+        </md-list-item>
+      </md-list>
+      <div layout="row" layout-align="end">
+        <md-button class="md-raised md-primary" ng-click="verifyCtrl.verify()">Xác nhận</md-button>
+      </div>
+    </md-card-content>
+  </md-card>
+
 </div>
-
- <div class="col-md-12 jumbotron">
-  <div class="col-md-12">
-    <form class="form-horizontal" ng-submit="submit()">
-      <fieldset>
-        <legend class="title" "><h2>Thông tin vé<h2></legend>
-
-        <div class="form-group">
-          <label for="inputName" class="col-md-2 control-label">Người đặt</label>
-
-          <div class="col-md-10">
-            <input class="form-control" id="inputName" placeholder="Người đặt" ng-model="name" type="text">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputId" class="col-md-2 control-label">Mã chuyến bay</label>
-
-          <div class="col-md-10">
-            <input class="form-control" id="inputId" placeholder="Mã chuyến bay" ng-model="id" type="text">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputTicket" class="col-md-2 control-label">Số lượng vé</label>
-
-          <div class="col-md-10">
-            <input class="form-control" id="inputTicket" placeholder="Số lượng vé" ng-model="ticket" type="text">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputTotal" class="col-md-2 control-label">Tổng tiền</label>
-
-          <div class="col-md-10">
-            <input class="form-control" id="inputTotal" placeholder="Tổng tiền" ng-model="total" type="text">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-md-12">
-            <button type="submit" id="submit" value="Submit" class="btn btn-primary">Xác nhận</button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
-</div>
-

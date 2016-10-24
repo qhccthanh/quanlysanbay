@@ -25,13 +25,19 @@
 
       <div layout="row" layout-align="space-between center">
         <span>Nơi đi</span>
-        <md-select ng-model="mainCtrl.departId" placeholder="Nơi đi" class="md-no-underline">
+        <md-select ng-model="mainCtrl.departId" placeholder="Nơi đi" class="md-no-underline" ng-change="mainCtrl.departIdChanged()">
+          <md-option ng-repeat="depart in mainCtrl.listDepart" value="{{depart.idsanbay}}">
+            {{depart.idsanbay}}
+          </md-option>
         </md-select>
       </div>
 
       <div layout="row" layout-align="space-between center">
         <span>Nơi đến</span>
-        <md-select ng-model="mainCtrl.arriveId" placeholder="Nơi đến" class="md-no-underline" required md-no-asterisk="false">
+        <md-select ng-model="mainCtrl.arriveId" placeholder="Nơi đến" class="md-no-underline">
+          <md-option ng-repeat="arrive in mainCtrl.listArrive" value="{{arrive.masanbayden}}">
+            {{arrive.masanbayden}}
+          </md-option>
         </md-select>
       </div>
 
@@ -50,7 +56,7 @@
       </div>
 
       <div layout="row" layout-align="end">
-        <md-button class="md-raised md-primary" ng-click="mainCtrl.find()">Tìm</md-button>
+        <md-button class="md-raised md-primary" ng-click="mainCtrl.submit()">Tìm</md-button>
       </div>
 
     </md-card-content>
