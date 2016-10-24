@@ -1,85 +1,52 @@
- <div class="nav nav-tabs" >
-  <h1 style="text-align: center;color: #ffffff">Tìm chuyến bay</h1>
+<div ng-cloak layout="row" layout-align="center">
+  <md-card flex="50">
+    <md-toolbar class="md-theme-light">
+      <h2 class="md-toolbar-tools">
+        <span>Tìm chuyến bay</span>
+      </h2>
+    </md-toolbar>
+
+    <md-card-content>
+      <div layout="row" style="margin-bottom: 10px;">
+        <md-switch ng-model="mainCtrl.isRoundTrip">Khứ hồi</md-switch>
+      </div>
+
+      <div layout="row" layout-align="space-between center" style="margin-bottom: 10px;">
+        <span>Ngày đi</span>
+        <md-datepicker ng-model="mainCtrl.departDate" md-placeholder="Ngày đi"></md-datepicker>
+
+        <span ng-show="mainCtrl.isRoundTrip" ng-show="mainCtrl.isRoundTrip">Ngày về</span>
+        <md-datepicker ng-model="mainCtrl.arriveDate" md-placeholder="Ngày về" ng-show="mainCtrl.isRoundTrip"></md-datepicker>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+        <span>Nơi đi</span>
+        <md-select ng-model="mainCtrl.departId" placeholder="Nơi đi" class="md-no-underline">
+        </md-select>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+        <span>Nơi đến</span>
+        <md-select ng-model="mainCtrl.arriveId" placeholder="Nơi đến" class="md-no-underline" required md-no-asterisk="false">
+        </md-select>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+        <span>Người lớn</span>
+        <md-select ng-model="mainCtrl.adults" placeholder="1" class="md-no-underline">
+          <md-option value="1">1</md-option>
+          <md-option value="2">2</md-option>
+          <md-option value="3">3</md-option>
+        </md-select>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+        <span>Trẻ em</span>
+        <md-select ng-model="mainCtrl.child" placeholder="0" class="md-no-underline">
+        </md-select>
+      </div>
+
+    </md-card-content>
+  </md-card>
+
 </div>
-
-<div class="col-md-12 jumbotron">
-  <div class="col-md-12">
-    <form class="form-horizontal" ng-submit="submit()">
-      <fieldset>
-        <div class="form-group">
-          <div class="btn-group btn-group-justified btn-group-raised">
-            <div class="btn-group">
-              <a href="bootstrap-elements.html" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
-                Nơi khởi hành
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)">Dropdown link</a></li>
-                <li><a href="javascript:void(0)">Dropdown link</a></li>
-                <li><a href="javascript:void(0)">Dropdown link</a></li>
-              </ul>
-            </div>
-            <div class="btn-group">
-              <a href="bootstrap-elements.html" data-target="#" class="btn btn-raised btn-info dropdown-toggle" data-toggle="dropdown">
-                Nơi đến 
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)">Dropdown link2</a></li>
-                <li><a href="javascript:void(0)">Dropdown link2</a></li>
-                <li><a href="javascript:void(0)">Dropdown link2</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputTicket" class="col-md-2 control-label">Ngày đi</label>
-
-            <div class="col-md-10">
-              <input class="form-control" id="inputTicket" placeholder="Ngày đi" ng-model="ticket" type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputTicket" class="col-md-2 control-label">Khứ hồi</label>
-
-            <div class="col-md-10">
-
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputTicket" class="col-md-2 control-label">Ngày về</label>
-
-            <div class="col-md-10">
-              <input class="form-control" id="inputTicket" placeholder="Ngày về" ng-model="ticket" type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputTicket" class="col-md-2 control-label">Số lượng vé</label>
-
-            <div class="col-md-10">
-              <input class="form-control" id="inputTicket" placeholder="Số lượng vé" ng-model="ticket" type="text">
-            </div>
-          </div>
-           <div class="btn-group btn-group-justified btn-group-raised">
-            <div class="btn-group">
-              <a href="bootstrap-elements.html" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
-                Hạng vé
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)">Dropdown link</a></li>
-                <li><a href="javascript:void(0)">Dropdown link</a></li>
-                <li><a href="javascript:void(0)">Dropdown link</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-12">
-              <button type="submit" id="submit" value="Submit" class="btn btn-primary">Xác nhận</button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-
