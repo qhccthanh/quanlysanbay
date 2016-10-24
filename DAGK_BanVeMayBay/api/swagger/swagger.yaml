@@ -204,31 +204,12 @@ paths:
       operationId: bookTicket
       description: Tạo mã đặt chỗ với thông tin chuyến bay. Mã đặt chỗ được phát sinh tự động với trạng thái là đang chờ
       parameters:
-        - name: machuyenbay
-          type: string
-          in: query
-          description: Mã chuyến bay đặt chỗ
+        - name: datcho
+          in: body
+          description: thông tin đặt chỗ
           required: true
-        - name: ngaydi
-          type: number
-          in: query
-          description: TimeStamp ngày đi
-          required: true
-        - name: hang
-          type: string
-          in: query
-          description: Hạng vé "C" là phổ thông "Y" là thương gia
-          required: true
-        - name: muc
-          type: string
-          in: query
-          description: Mức giá của vé 
-          required: true
-        - name: soluongghe
-          type: number
-          in: query
-          description: Số lượng ghế đặt
-          required: true
+          schema:
+            $ref: "#/definitions/BookPost"
       responses:
         "200":
           description: Success
@@ -430,6 +411,24 @@ definitions:
                     type: string
                   ten:
                     type: string
+  BookPost:
+    required:
+      - datcho
+    properties:
+      datcho:
+        type: object
+        properties:
+            machuyenbay:
+              type: string
+            ngaydi:
+              type: number
+            hang:
+              type: string
+            mucgia:
+              type: string
+            soghe:
+              type: number
+        
   BookUpdateParameter:
     properties:
       thongtin:
