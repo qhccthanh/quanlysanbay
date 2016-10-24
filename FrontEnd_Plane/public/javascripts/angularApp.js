@@ -18,31 +18,83 @@ app.config(['$stateProvider', '$urlRouterProvider',
   }]);
 
 /*--------------------------------------CONTROLLER--------------------------------------*/
-app.controller('MainCtrl',['$scope', '$http', function($scope, $http) {
-	// Co khu hoi hay khong
-	$scope.isRoundTrip = false;
+app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
+	var ctrl = this;
 
-	// Ngay di
-	$scope.departDate = null;
+	this.isNotify = false;
+	this.notifyMsg = '';
 
-	// Ngay ve
-	$scope.arriveDate = null;
+	this.isRoundTrip = false;
+	this.departDate = null;
+	this.arriveDate = null;
+	this.adults = 1
+	this.child = 0
+	this.listDepart = {};
+	this.departId = null;
+	this.listArrive = {};
+	this.arriveId = null;
 
-	// So luong nguoi lon
-	$scope.adults = 1
+	this.defaultAdultArray = [1,2,3];
+	this.defaultChildArray = [0,1];
 
-	// So luong tre em
-	$scope.child = 0
+	this.showNotify = function(msg) {
+		ctrl.notifyMsg = msg;
+		ctrl.isNotify = true;
 
-	// Danh sach san bay di
-	$scope.listDepart = {};
+		$timeout(function() { ctrl.isNotify = false; ctrl.notifyMsg = ''; }, 2000);
+	}
 
-	// San bay di dang duoc chon
-	$scope.departId = null;
+	this.adultChanged = function() {
+		if (ctrl.child > ctrl.adults) {
+			ctrl.child = 0;
+		}
 
-	// Danh sach san bay den
-	$scope.listArrive = {};
+		ctrl.defaultChildArray = [];
+		for (var i = 0; i <= ctrl.adults; i++) {
+			ctrl.defaultChildArray.push(i);
+		}
+	}
 
-	// San bay den dang duoc chon
-	$scope.arriveId = null;
+	this.getCurrentDate = function() {
+		var curDate = new Date();
+		var res = curDate.getTime();
+
+		res -= (curDate.getHours() * 3600 + curDate.getMinutes() * 60 + curDate.getSeconds()) * 1000 + curDate.getMilliseconds();
+
+		return res;
+	}
+
+	this.departDateChanged = function() {
+		var curDate = ctrl.getCurrentDate();
+		
+		console.log("Ngay di: " + ctrl.departDate.getTime());
+		console.log("Ngay hien tai: " + curDate);
+
+		if (ctrl.departDate.getTime() < curDate) {
+			ctrl.departDate = null;
+			ctrl.showNotify('Ngày đi không hợp lệ 1');
+
+			return;
+		}
+
+		if (ctrl.isRoundTrip) {
+			if (ctrl.arriveDate != null && ctrl.arriveDate < ctrl.departDate) {
+				ctrl.departDate = null;
+				ctrl.showNotify('Ngày đi không hợp lệ 2');		
+			}
+		}
+	}
+
+	this.arriveDateChanged = function() {
+		var curDate = ctrl.getCurrentDate();
+
+		if (ctrl.arriveDate.getTime() < curDate || (ctrl.departDate != null && ctrl.arriveDate < ctrl.departDate)) {
+			ctrl.arriveDate = null;
+			ctrl.showNotify('Ngày về không hợp lệ');
+		}
+	}
+
+	this.find = function() {
+		console.log("Tim chuyen bay");
+	}
 }]);

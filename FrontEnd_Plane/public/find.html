@@ -7,16 +7,20 @@
     </md-toolbar>
 
     <md-card-content>
+      <div layout="row" layout-align="end" style="margin-bottom: 5px; margin-top: 5px; color: #F44336;" ng-show="mainCtrl.isNotify">
+        {{mainCtrl.notifyMsg}}
+      </div>
+
       <div layout="row" style="margin-bottom: 10px;">
         <md-switch ng-model="mainCtrl.isRoundTrip">Khứ hồi</md-switch>
       </div>
 
       <div layout="row" layout-align="space-between center" style="margin-bottom: 10px;">
         <span>Ngày đi</span>
-        <md-datepicker ng-model="mainCtrl.departDate" md-placeholder="Ngày đi"></md-datepicker>
+        <md-datepicker ng-model="mainCtrl.departDate" md-placeholder="Ngày đi" ng-change="mainCtrl.departDateChanged()"></md-datepicker>
 
         <span ng-show="mainCtrl.isRoundTrip" ng-show="mainCtrl.isRoundTrip">Ngày về</span>
-        <md-datepicker ng-model="mainCtrl.arriveDate" md-placeholder="Ngày về" ng-show="mainCtrl.isRoundTrip"></md-datepicker>
+        <md-datepicker ng-model="mainCtrl.arriveDate" md-placeholder="Ngày về" ng-show="mainCtrl.isRoundTrip" ng-change="mainCtrl.arriveDateChanged()"></md-datepicker>
       </div>
 
       <div layout="row" layout-align="space-between center">
@@ -33,17 +37,20 @@
 
       <div layout="row" layout-align="space-between center">
         <span>Người lớn</span>
-        <md-select ng-model="mainCtrl.adults" placeholder="1" class="md-no-underline">
-          <md-option value="1">1</md-option>
-          <md-option value="2">2</md-option>
-          <md-option value="3">3</md-option>
+        <md-select ng-model="mainCtrl.adults" ng-change="mainCtrl.adultChanged()" placeholder="1" class="md-no-underline">
+          <md-option ng-repeat="i in mainCtrl.defaultAdultArray" value="{{i}}">{{i}}</md-option>
         </md-select>
       </div>
 
       <div layout="row" layout-align="space-between center">
         <span>Trẻ em</span>
         <md-select ng-model="mainCtrl.child" placeholder="0" class="md-no-underline">
+          <md-option ng-repeat="i in mainCtrl.defaultChildArray" value="{{i}}">{{i}}</md-option>
         </md-select>
+      </div>
+
+      <div layout="row" layout-align="end">
+        <md-button class="md-raised md-primary" ng-click="mainCtrl.find()">Tìm</md-button>
       </div>
 
     </md-card-content>
