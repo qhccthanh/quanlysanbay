@@ -16,42 +16,49 @@
       </div>
 
       <div layout="row" layout-align="space-between center" style="margin-bottom: 10px;">
-        <span>Ngày đi</span>
+        <span>Ngày đi <span style="color: #F44336;"> *</span></span>
         <md-datepicker ng-model="mainCtrl.departDate" md-placeholder="Ngày đi" ng-change="mainCtrl.departDateChanged()"></md-datepicker>
 
-        <span ng-show="mainCtrl.isRoundTrip" ng-show="mainCtrl.isRoundTrip">Ngày về</span>
+        <span ng-show="mainCtrl.isRoundTrip" ng-show="mainCtrl.isRoundTrip">Ngày về<span style="color: #F44336;"> *</span></span>
         <md-datepicker ng-model="mainCtrl.arriveDate" md-placeholder="Ngày về" ng-show="mainCtrl.isRoundTrip" ng-change="mainCtrl.arriveDateChanged()"></md-datepicker>
       </div>
 
       <div layout="row" layout-align="space-between center">
-        <span>Nơi đi</span>
+        <span>Nơi đi<span style="color: #F44336;"> *</span></span>
         <md-select ng-model="mainCtrl.departId" placeholder="Nơi đi" class="md-no-underline" ng-change="mainCtrl.departIdChanged()">
           <md-option ng-repeat="depart in mainCtrl.listDepart" value="{{depart.idsanbay}}">
-            {{depart.idsanbay}}
+            {{depart.city}}
           </md-option>
         </md-select>
       </div>
 
       <div layout="row" layout-align="space-between center">
-        <span>Nơi đến</span>
+        <span>Nơi đến<span style="color: #F44336;"> *</span></span>
         <md-select ng-model="mainCtrl.arriveId" placeholder="Nơi đến" class="md-no-underline">
           <md-option ng-repeat="arrive in mainCtrl.listArrive" value="{{arrive.masanbayden}}">
-            {{arrive.masanbayden}}
+            {{arrive.city}}
           </md-option>
         </md-select>
       </div>
 
       <div layout="row" layout-align="space-between center">
-        <span>Người lớn</span>
-        <md-select ng-model="mainCtrl.adults" ng-change="mainCtrl.adultChanged()" placeholder="1" class="md-no-underline">
-          <md-option ng-repeat="i in mainCtrl.defaultAdultArray" value="{{i}}">{{i}}</md-option>
+        <span>Số lượng ghế</span>
+        <md-select ng-model="mainCtrl.seats" placeholder="1" class="md-no-underline">
+          <md-option ng-repeat="i in mainCtrl.defaultSeatArray" value="{{i}}">{{i}}</md-option>
         </md-select>
       </div>
 
       <div layout="row" layout-align="space-between center">
-        <span>Trẻ em</span>
-        <md-select ng-model="mainCtrl.child" placeholder="0" class="md-no-underline">
-          <md-option ng-repeat="i in mainCtrl.defaultChildArray" value="{{i}}">{{i}}</md-option>
+        <span>Hạng vé</span>
+        <md-select ng-model="mainCtrl.type" placeholder="Tất cả" class="md-no-underline">
+          <md-option ng-repeat="i in mainCtrl.defaultTypeArray" value="{{i}}">{{i}}</md-option>
+        </md-select>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+        <span>Mức giá</span>
+        <md-select ng-model="mainCtrl.cost" placeholder="Tất cả" class="md-no-underline">
+          <md-option ng-repeat="i in mainCtrl.defaultCostArray" value="{{i}}">{{i}}</md-option>
         </md-select>
       </div>
 
