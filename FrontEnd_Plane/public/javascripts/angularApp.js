@@ -1,10 +1,10 @@
 'use strict';
 var app = angular.module('planeApp', ['ngMaterial', 'ui.router'])
-				.config(function($mdThemingProvider) {
-				  $mdThemingProvider.theme('default')
-				    .primaryPalette('pink')
-				    .accentPalette('orange');
-				});
+.config(function($mdThemingProvider) {
+	$mdThemingProvider.theme('default')
+	.primaryPalette('pink')
+	.accentPalette('orange');
+});
 
 app.config(['$stateProvider', '$urlRouterProvider',
 	function($stateProvider, $urlRouterProvider) {
@@ -18,6 +18,11 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			url : '/planelist',
 			templateUrl : '/planeslist.html',
 			controller : 'PlaneListCtrl as planeListCtrl',
+		})
+		.state('info', {
+			url : '/info',
+			templateUrl : '/info.html',
+			controller : 'InfoCtrl as infoCtrl',
 		})
 		.state('verify', {
 			url : '/verify',
@@ -196,17 +201,17 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 			|| ctrl.arriveId == null
 			|| (ctrl.isRoundTrip && ctrl.arriveDate == null)) {
 			return false;
-		}
-
-		return true;
 	}
 
+	return true;
+}
 	this.submit = function() {
 		if (!ctrl.checkValidForm()) {
 			ctrl.showNotify('Bạn chưa điền đủ thông tin hoặc thông tin chưa hợp lệ');
 
-			return;
-		}
+
+		return;
+	}
 
 		var reqURL = serverService.getServer() + '/chuyenbay?masanbaydi=' + ctrl.departId
 						+ '&masanbayden=' + ctrl.arriveId
@@ -263,10 +268,62 @@ app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
 /*--------------------------------------ERROR CONTROLLER--------------------------------------*/
 app.controller('ErrorCtrl',['$http', '$state', 'errorService', function($http, $state, errorService) {
 	var ctrl = this;
-
 	this.error = errorService.getError();
 
 	this.goHome() = function() {
 		$state.go('home');
 	}
+}]);
+
+app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
+	
+	var ctrl = this;
+	this.title = {};
+	this.titleArray = ['Ông', 'Bà', 'Cô'];
+	this.titleChildArray = ['Cháu', 'Bé'];
+	this.isNotify = false;
+	this.notifyMsg = '';
+
+	this.showNotify = function(msg) {
+		ctrl.notifyMsg = msg;
+		ctrl.isNotify = true;
+
+		$timeout(function() { ctrl.isNotify = false; ctrl.notifyMsg = ''; }, 2000);
+	}
+
+
+	this.persons = [];
+	var count1 = 2;
+	var count2 = 2;
+	for(var i = 0; i < count1; i++) {
+		this.persons.push({});
+	}
+	this.children = [];
+	for(var i = 0; i < count2; i++) {
+		this.children.push({});
+	}
+
+	this.checkValidForm = function() {
+		for(var i = 0; i < count1; i++) {
+			if(this.persons[i].title == null || this.persons[i].lastName == null || this.persons[i].firstName == null)
+				return false;
+		}
+
+		for(var i = 0; i < count2; i++) {
+			if(this.children[i].title == null || this.children[i].lastName == null || this.children[i].firstName == null)
+				return false;
+		}	
+		return true;	
+	}
+
+	this.check = function() {
+
+		if (!ctrl.checkValidForm()) {
+		ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
+			return;
+		} else {
+			console.log(this.persons);
+			console.log(this.children);
+		}
+	};
 }]);

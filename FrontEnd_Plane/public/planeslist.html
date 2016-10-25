@@ -6,12 +6,35 @@
       </h2>
     </md-toolbar>
 
+    <md-card-content>
+    <div layout="row" layout-align="end" style="margin-bottom: 5px; margin-top: 5px; color: #F44336;" ng-show="mainCtrl.isNotify">
+        {{mainCtrl.notifyMsg}}
+      </div>
+      <div layout="row" >
+        <md-select ng-model="planesListCtrl.title" placeholder="Danh xưng" class="md-no-underline">
+          <md-option ng-repeat="i in planesListCtrl.titleArray" value="{{i}}">{{i}}</md-option>
+        </md-select>
+        <md-input-container>
+        <label>Họ</label>
+          <input ng-model="user.lastName">
+        </md-input-container>
+        <md-input-container>
+        <label>Tên</label>
+          <input ng-model="user.firstName">
+        </md-input-container>
     <md-card-content ng-show="planeListCtrl.isEmpty">
       <div layout="row" layout-align="start" style="margin-bottom: 20px; margin-top: 5px; color: #F44336;">
           Không tìm thấy chuyến bay thỏa điều kiện
       </div>
+      <div layout="row">
+        <md-input-container>
+        <label>Data</label>
+          <input ng-model="planesListCtrl.jsondata.datcho.madatcho">
+        </md-input-container>
+      </div>
 
       <div layout="row" layout-align="end">
+        <md-button class="md-raised md-primary" ng-click="planesListCtrl.check()">Đặt vé</md-button>
         <md-button class="md-raised md-primary" ng-click="planeListCtrl.goHome()">Quay lại</md-button>
       </div>
     </md-card-content>
