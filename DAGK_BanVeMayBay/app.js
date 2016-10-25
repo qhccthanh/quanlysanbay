@@ -21,3 +21,7 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
     console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
   }
 });
+
+app.get('/api', function(req, res) {
+    res.sendFile(__dirname + "/api/controllers/resources/APIDoc/" + "index.html");
+});
