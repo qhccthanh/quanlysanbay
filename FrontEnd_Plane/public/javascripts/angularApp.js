@@ -1,10 +1,10 @@
 'use strict';
 var app = angular.module('planeApp', ['ngMaterial', 'ui.router'])
-				.config(function($mdThemingProvider) {
-				  $mdThemingProvider.theme('default')
-				    .primaryPalette('pink')
-				    .accentPalette('orange');
-				});
+.config(function($mdThemingProvider) {
+	$mdThemingProvider.theme('default')
+	.primaryPalette('pink')
+	.accentPalette('orange');
+});
 
 app.config(['$stateProvider', '$urlRouterProvider',
 	function($stateProvider, $urlRouterProvider) {
@@ -19,13 +19,18 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			templateUrl : '/planeslist.html',
 			controller : 'PlanesListCtrl as planesListCtrl',
 		})
+		.state('info', {
+			url : '/info',
+			templateUrl : '/info.html',
+			controller : 'InfoCtrl as infoCtrl',
+		})
 		.state('verify', {
 			url : '/verify',
 			templateUrl : '/verify.html',
 			controller : 'VerifyCtrl as verifyCtrl',
 		})
-    $urlRouterProvider.otherwise('home');
-  }]);
+		$urlRouterProvider.otherwise('home');
+	}]);
 
 /*--------------------------------------CONTROLLER--------------------------------------*/
 app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
@@ -128,19 +133,19 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 			|| ctrl.arriveId == null
 			|| (ctrl.isRoundTrip && ctrl.arriveDate == null)) {
 			return false;
-		}
-
-		return true;
 	}
 
-	this.submit = function() {
-		if (!ctrl.checkValidForm()) {
-			ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
+	return true;
+}
 
-			return;
-		}
+this.submit = function() {
+	if (!ctrl.checkValidForm()) {
+		ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
 
-		var reqURL = '';
+		return;
+	}
+
+	var reqURL = '';
 
 		// $http.get().success(function(data) {
 
@@ -158,7 +163,77 @@ app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
 app.controller('PlanesListCtrl',['$http', '$timeout', function($http, $timeout) {
 	
 	var ctrl = this;
+	this.titleArray = ['Ông', 'Bà', 'Cô'];
+	this.titleChildArray = ['Cháu', 'Bé'];
+
+
+	this.check = function() {
+		var reqURL = 'http://139.162.58.193:10011/datcho';
+		var body = {};
+		body.datcho = {
+			"machuyenbay": "CS607",
+			"ngaydi": 1476958500,
+			"hang": "C",
+			"mucgia": "E",
+			"soghe": 1
+		};
+		$http.post(reqURL, body).success(function(data) {
+			console.log(data);
+			ctrl.jsondata = data;
+		});
+
+	};
+}]);
+
+app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
+	
+	var ctrl = this;
 	this.title = {};
 	this.titleArray = ['Ông', 'Bà', 'Cô'];
+	this.titleChildArray = ['Cháu', 'Bé'];
+	this.isNotify = false;
+	this.notifyMsg = '';
 
+	this.showNotify = function(msg) {
+		ctrl.notifyMsg = msg;
+		ctrl.isNotify = true;
+
+		$timeout(function() { ctrl.isNotify = false; ctrl.notifyMsg = ''; }, 2000);
+	}
+
+
+	this.persons = [];
+	var count1 = 2;
+	var count2 = 2;
+	for(var i = 0; i < count1; i++) {
+		this.persons.push({});
+	}
+	this.children = [];
+	for(var i = 0; i < count2; i++) {
+		this.children.push({});
+	}
+
+	this.checkValidForm = function() {
+		for(var i = 0; i < count1; i++) {
+			if(this.persons[i].title == null || this.persons[i].lastName == null || this.persons[i].firstName == null)
+				return false;
+		}
+
+		for(var i = 0; i < count2; i++) {
+			if(this.children[i].title == null || this.children[i].lastName == null || this.children[i].firstName == null)
+				return false;
+		}	
+		return true;	
+	}
+
+	this.check = function() {
+
+		if (!ctrl.checkValidForm()) {
+		ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
+			return;
+		} else {
+		console.log(this.persons);
+		console.log(this.children);
+	}
+	};
 }]);

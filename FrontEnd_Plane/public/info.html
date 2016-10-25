@@ -1,0 +1,49 @@
+<div ng-cloak layout="row" layout-align="center">
+  <md-card flex="50">
+    <md-toolbar class="md-theme-light">
+      <h2 class="md-toolbar-tools">
+        <span>Thông tin hành khách</span>
+      </h2>
+    </md-toolbar>
+    <md-card-content>
+    <div layout="row" layout-align="end" style="margin-bottom: 5px; margin-top: 5px; color: #F44336;" ng-show="infoCtrl.isNotify">
+        {{infoCtrl.notifyMsg}}
+      </div>
+      <md-subheader class="md-no-sticky">Hành khách</md-subheader>
+      <div layout="row" ng-repeat="person in infoCtrl.persons">
+        <md-select ng-model="person.title" placeholder="Danh xưng" class="md-no-underline">
+          <md-option ng-repeat="i in infoCtrl.titleArray" value="{{i}}">{{i}}</md-option>
+        </md-select>
+        <md-input-container>
+        <label>Họ</label>
+          <input ng-model="person.lastName">
+        </md-input-container>
+        <md-input-container>
+        <label>Tên</label>
+          <input ng-model="person.firstName">
+        </md-input-container>
+      </div>
+      <md-subheader class="md-no-sticky">Trẻ em</md-subheader>
+      <div layout="row" ng-repeat="child in infoCtrl.children">
+        <md-select ng-model="child.title" placeholder="Danh xưng" class="md-no-underline">
+          <md-option ng-repeat="i in infoCtrl.titleChildArray" value="{{i}}">{{i}}</md-option>
+        </md-select>
+        <md-input-container>
+        <label>Họ</label>
+          <input ng-model="child.lastName">
+        </md-input-container>
+        <md-input-container>
+        <label>Tên</label>
+          <input ng-model="child.firstName">
+        </md-input-container>
+      </div>
+
+      <div layout="row" layout-align="end">
+        <md-button class="md-raised md-primary" ng-click="infoCtrl.check()">Đặt vé</md-button>
+      </div>
+
+
+    </md-card-content>
+  </md-card>
+</div>
+
