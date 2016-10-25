@@ -34,6 +34,11 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			templateUrl: '/error.html',
 			controller: 'ErrorCtrl as errorCtrl'
 		})
+		.state('success', {
+			url: '/success',
+			templateUrl: '/success.html',
+			controller: 'SuccessCtrl as successCtrl'
+		})
     $urlRouterProvider.otherwise('home');
   }]);
 
@@ -64,6 +69,21 @@ app.service('planeListService', function() {
 
 	this.getPlaneList = function() {
 		return service.planeList;
+	}
+});
+
+/*--------------------------------------INFO SERVICE--------------------------------------*/
+app.service('infoService', function() {
+	var service = this;
+
+	this.info = {};
+
+	this.updateInfo = function(data) {
+		this.info = data;
+	}
+
+	this.getInfo = function() {
+		return service.info;
 	}
 });
 
@@ -259,9 +279,32 @@ app.controller('PlaneListCtrl',['$http', '$state', function($http, $state) {
 }]);
 
 /*--------------------------------------MAIN CONTROLLER--------------------------------------*/
-app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
+app.controller('VerifyCtrl',['$http', '$timeout', 'infoService','serverService', 'errorService', function($http, $timeout, infoService, serverService, errorService) {
 	var ctrl = this;
+	this.info = infoService.getInfo();
 
+	this.verify = function() {
+		var  body = {};
+		body.datcho = {};
+		body.datcho.madacho = info.madacho;
+		body.datcho.hanhkhach = [];
+		for(var i = 0; i < info.persons.length; i++) {
+			var hanhkhach = {
+				"danhxung": info.persons[i].title,
+				"ho": info.persons[i].lastName,
+				"ten": info.persons[i].firstName
+			}
+			body.datcho.hanhkhach.push(hanhkhach);
+		}
+
+		var reqURL = serverService.getServer() + '/datcho';
+		$http.put(reqURL).success(function(data) {
+			$state.go('success');
+		}).error(function(err) {
+			errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
+			$state.go('error');
+		});
+	}
 
 }]);
 
@@ -270,12 +313,12 @@ app.controller('ErrorCtrl',['$http', '$state', 'errorService', function($http, $
 	var ctrl = this;
 	this.error = errorService.getError();
 
-	this.goHome() = function() {
+	this.goHome = function() {
 		$state.go('home');
 	}
 }]);
 
-app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
+app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function($http, $timeout, $state, infoService) {
 	
 	var ctrl = this;
 	this.title = {};
@@ -286,10 +329,8 @@ app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
 	this.showNotify = function(msg) {
 		ctrl.notifyMsg = msg;
 		ctrl.isNotify = true;
-
 		$timeout(function() { ctrl.isNotify = false; ctrl.notifyMsg = ''; }, 2000);
 	}
-
 
 	this.persons = [];
 	var count1 = 2;
@@ -305,12 +346,19 @@ app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
 	}
 
 	this.check = function() {
-
 		if (!ctrl.checkValidForm()) {
 		ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
 			return;
 		} else {
-			console.log(this.persons);
+			var info = {};
+			info.persons = this.persons;
+			infoService.updateInfo(info);
+			$state.go('verify');
 		}
 	};
+}]);
+
+app.controller('SuccessCtrl',['$http', '$state', function($http, $state) {	
+	var ctrl = this;
+
 }]);
