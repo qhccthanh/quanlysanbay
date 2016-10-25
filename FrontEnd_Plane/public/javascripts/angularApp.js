@@ -57,18 +57,31 @@ app.service('serverService', function() {
 app.service('planeListService', function() {
 	var service = this;
 
-	this.planeList = [];
+	this.planeList = {};
+	this.isRoundTrip = null;
 
-	this.updatePlaneList = function(data) {
-		service.planeList = [];
+	this.updatePlaneList = function(data, isRoundTrip) {
+		service.planeList = {};
+		service.isRoundTrip = isRoundTrip;
 
-		if (data != null && data.length > 0) {
-			service.planeList = data;
+		if (data != null) {
+			service.planeList = data.chuyenbay;
 		}
+
+		console.log('planeListService:');
+		console.log(service.planeList);
 	}
 
-	this.getPlaneList = function() {
-		return service.planeList;
+	this.getDepartList = function() {
+		return service.planeList.chuyendi;
+	}
+
+	this.getArriveList = function() {
+		return service.planeList.chuyenve;
+	}
+
+	this.getIsRoundTrip = function() {
+		return service.isRoundTrip;
 	}
 });
 
@@ -107,8 +120,8 @@ app.service('errorService', function() {
 })
 
 /*--------------------------------------MAIN CONTROLLER--------------------------------------*/
-app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'errorService', 
-							function($http, $timeout, $state, serverService, errorService) {
+app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'planeListService', 'errorService', 
+							function($http, $timeout, $state, serverService, planeListService, errorService) {
 	// MainCtrl
 	var ctrl = this;
 
@@ -176,9 +189,6 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 
 	this.departDateChanged = function() {
 		var curDate = ctrl.getCurrentDate();
-		
-		console.log("Ngay di: " + ctrl.departDate.getTime());
-		console.log("Ngay hien tai: " + curDate);
 
 		if (ctrl.departDate.getTime() < curDate) {
 			ctrl.departDate = null;
@@ -210,7 +220,6 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 		ctrl.arriveId = null;
 
 		$http.get(reqURL).success(function(data) {
-			console.log(data);
 			ctrl.listArrive = data.sanbay;
 		});
 	}
@@ -221,17 +230,17 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 			|| ctrl.arriveId == null
 			|| (ctrl.isRoundTrip && ctrl.arriveDate == null)) {
 			return false;
+		}
+
+		return true;
 	}
 
-	return true;
-}
 	this.submit = function() {
 		if (!ctrl.checkValidForm()) {
 			ctrl.showNotify('Bạn chưa điền đủ thông tin hoặc thông tin chưa hợp lệ');
 
-
-		return;
-	}
+			return;
+		}
 
 		var reqURL = serverService.getServer() + '/chuyenbay?masanbaydi=' + ctrl.departId
 						+ '&masanbayden=' + ctrl.arriveId
@@ -255,10 +264,10 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 
 		var x = 'Tất cả';
 
-		console.log(x == 'Tất cả');
 		console.log(reqURL);
 
 		$http.get(reqURL).success(function(data) {
+			planeListService.updatePlaneList(data, ctrl.isRoundTrip);
 			$state.go('planelist');
 		}).error(function(err) {
 			errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
@@ -268,17 +277,38 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 }]);
 
 /*--------------------------------------PLANE LIST CONTROLLER--------------------------------------*/
-app.controller('PlaneListCtrl',['$http', '$state', function($http, $state) {	
+app.controller('PlaneListCtrl',['$http', '$state', 'planeListService', function($http, $state, planeListService) {	
 	var ctrl = this;
 
-	this.isEmpty = false;
+	this.isRoundTrip = false;
+	this.isDepartEmpty = true;
+	this.isArriveEmpty = true;
+	this.departList = [];
+	this.arriveList = [];
+
+	this.init = function() {
+		ctrl.departList = planeListService.getDepartList();
+		ctrl.arriveList = planeListService.getArriveList();
+		ctrl.isRoundTrip = planeListService.getIsRoundTrip();
+		
+		if (ctrl.departList != null && ctrl.departList.length > 0) {
+			ctrl.isDepartEmpty = false;
+		}
+
+		if (ctrl.arriveList != null && ctrl.arriveList.length > 0) {
+			ctrl.isArriveEmpty = false;
+		}
+	}
+
+	this.init();
 
 	this.goHome = function() {
 		$state.go('home');
 	}
 }]);
 
-/*--------------------------------------MAIN CONTROLLER--------------------------------------*/
+
+/*--------------------------------------Verify CONTROLLER--------------------------------------*/
 app.controller('VerifyCtrl',['$http', '$timeout', 'infoService','serverService', 'errorService', function($http, $timeout, infoService, serverService, errorService) {
 	var ctrl = this;
 	this.info = infoService.getInfo();
