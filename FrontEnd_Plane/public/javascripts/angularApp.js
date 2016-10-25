@@ -280,7 +280,6 @@ app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
 	var ctrl = this;
 	this.title = {};
 	this.titleArray = ['Ông', 'Bà', 'Cô'];
-	this.titleChildArray = ['Cháu', 'Bé'];
 	this.isNotify = false;
 	this.notifyMsg = '';
 
@@ -294,25 +293,14 @@ app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
 
 	this.persons = [];
 	var count1 = 2;
-	var count2 = 2;
 	for(var i = 0; i < count1; i++) {
 		this.persons.push({});
 	}
-	this.children = [];
-	for(var i = 0; i < count2; i++) {
-		this.children.push({});
-	}
-
 	this.checkValidForm = function() {
 		for(var i = 0; i < count1; i++) {
 			if(this.persons[i].title == null || this.persons[i].lastName == null || this.persons[i].firstName == null)
 				return false;
 		}
-
-		for(var i = 0; i < count2; i++) {
-			if(this.children[i].title == null || this.children[i].lastName == null || this.children[i].firstName == null)
-				return false;
-		}	
 		return true;	
 	}
 
@@ -323,7 +311,6 @@ app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
 			return;
 		} else {
 			console.log(this.persons);
-			console.log(this.children);
 		}
 	};
 }]);
