@@ -83,7 +83,9 @@ function getFlight(req,res,next) {
 				return;
 			}
 
-			var values = [];
+			var valuesDi = [];
+			var valuesVe = [];
+
 			results.forEach(function(item) {
 
 				var itemKeys = Object.keys(item);
@@ -93,15 +95,21 @@ function getFlight(req,res,next) {
 					object[key] = item[key];
 				});
 				console.log(object);
-				values.push(object);
+
+				if (object.masanbaydi == fromID && object.masanbayden == toID) {
+					valuesDi.push(object);	
+				} else {
+					valuesVe.push(object);	
+				}
+				
 			});
 
-			console.log("results: " + values);
+			// console.log("results: " + values);
 
 			res.send({
 				"chuyenbay": {
-					"chuyendi": values,
-					"chuyenve": []
+					"chuyendi": valuesDi,
+					"chuyenve": valuesVe
 				} 
 			});	
 		} else {
