@@ -12,23 +12,33 @@
       </div>
       <md-list>
       <md-subheader class="md-no-sticky">Thông tin hành khách</md-subheader>
+        <div ng-repeat="person in verifyCtrl.info.persons">
         <md-list-item class="md-2-line">
+        <div class="md-list-item-text">
+            <h3> {{ person.title }} </h3>
+          </div>
           <div class="md-list-item-text">
-            <h3> Tên </h3>
-            <p> {{ verifyCtrl.name }} </p>
+            <p> Họ </p>
+            <h3> {{ person.lastName }} </h3>
+          </div>
+          <div class="md-list-item-text">
+            <p> Tên </p>
+            <h3> {{ person.firstName }} </h3>
           </div>
         </md-list-item>
+        </div>
+        <md-subheader class="md-no-sticky">Thông tin vé</md-subheader>
         <md-list-item class="md-2-line">
           <div class="md-list-item-text">
             <h3> Giá vé </h3>
-            <p> {{ verifyCtrl.name }} </p>
+            <p> {{ verifyCtrl.info.price }} </p>
           </div>
         </md-list-item>
         <md-subheader class="md-no-sticky">Chiều đi</md-subheader>
         <md-list-item class="md-2-line">
           <div class="md-list-item-text">
             <h3> Chuyến bay </h3>
-            <p> {{ verifyCtrl.name }} </p>
+            <p> {{ verifyCtrl.info.plane }} </p>
           </div>
         </md-list-item>
         <md-list-item class="md-2-line">
