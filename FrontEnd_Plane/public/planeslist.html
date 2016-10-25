@@ -22,6 +22,9 @@
         <label>Tên</label>
           <input ng-model="user.firstName">
         </md-input-container>
+    <md-card-content ng-show="planeListCtrl.isEmpty">
+      <div layout="row" layout-align="start" style="margin-bottom: 20px; margin-top: 5px; color: #F44336;">
+          Không tìm thấy chuyến bay thỏa điều kiện
       </div>
       <div layout="row">
         <md-input-container>
@@ -32,10 +35,40 @@
 
       <div layout="row" layout-align="end">
         <md-button class="md-raised md-primary" ng-click="planesListCtrl.check()">Đặt vé</md-button>
+        <md-button class="md-raised md-primary" ng-click="planeListCtrl.goHome()">Quay lại</md-button>
       </div>
-
-
     </md-card-content>
+
+    <md-content ng-hide="planeListCtrl.isEmpty">
+      <md-list flex>
+        <md-list-item class="md-3-line" ng-click="null">
+          <img src="/ic_airplanemode_active_black_48dp_2x.png" class="md-avatar"/>
+          <div class="md-list-item-text" layout="column">
+            <h3>Mã chuyến bay</h3>
+            <h4>Giờ khởi hành</h4>
+            <p style="color: #F44336;">Hạng - Giá vé</p>
+          </div>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ng-click="null">
+          <img src="/ic_airplanemode_active_black_48dp_2x.png" class="md-avatar"/>
+          <div class="md-list-item-text" layout="column">
+            <h3>Mã chuyến bay</h3>
+            <h4>Giờ khởi hành</h4>
+            <p style="color: #F44336;">Hạng - Giá vé</p>
+          </div>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ng-click="null">
+          <img src="/ic_airplanemode_active_black_48dp_2x.png" class="md-avatar"/>
+          <div class="md-list-item-text" layout="column">
+            <h3>Mã chuyến bay</h3>
+            <h4>Giờ khởi hành</h4>
+            <p style="color: #F44336;">Hạng - Giá vé</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
   </md-card>
 </div>
 

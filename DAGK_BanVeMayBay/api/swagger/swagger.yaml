@@ -281,12 +281,23 @@ definitions:
           properties:
             id:
               type: string
+              description: example SGN
             name:
               type: string
+              description: example Sân bay Tan Son Nhat
             city:
               type: string
+              description: example Ho Chi Minh
             region:
               type: string
+              description: example Noi Dia
+    example:
+      sanbay: [
+          id: HNH,
+          name: Noi Bai,
+          city: Ha Noi,
+          region: Noi Dia,
+        ]
   FindFlightResponse:
     properties:
       chuyenbay:
@@ -326,7 +337,7 @@ definitions:
                   type: string
                 ngaykhoihanh:
                   type: string
-                  description: YYYY-DD-MM
+                  description: YYYY-DD-MM-Otz
                 giokhoihanh:
                   type: string
                   description: HH:mm
@@ -334,6 +345,25 @@ definitions:
                   type: string
                 mucgia:
                   type: string
+    example:
+      chuyendi: [
+          machuyenbay: DB589,
+          masanbaydi: BMV,
+          masanbayden: DIN,
+          ngaykhoihanh: 2016-10-25T17:00:00.000Z,
+          giokhoihanh: 12h,
+          hang: Y,
+          mucgia: E,
+        ]
+      chuyenve: [
+          machuyenbay: DB589,
+          masanbaydi: BMV,
+          masanbayden: DIN,
+          ngaykhoihanh: 2016-10-25T17:00:00.000Z,
+          giokhoihanh: 12h,
+          hang: C,
+          mucgia: G,
+        ]
   FlightResponse:
     properties:
       chuyenbay:

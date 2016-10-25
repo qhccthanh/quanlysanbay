@@ -79,7 +79,7 @@ function getFlight(req,res,next) {
 			//console.log(results);
 
 			if (results.length == 0) {
-				res.sendStatus(404);
+				res.status(404).send({message: "Không tồn tại chuyến bay thoả yêu cầu"});
 				return;
 			}
 
@@ -105,7 +105,7 @@ function getFlight(req,res,next) {
 				} 
 			});	
 		} else {
-			res.sendStatus(404);
+			res.status(404).send({message: "Có lỗi xãy ra vùi lòng thử lại"});
 		}
 	});
 }
@@ -152,7 +152,7 @@ function getFlightInfo(req,res,next) {
 
 		} catch (e) {
 			queryParam = "*";
-			res.sendStatus(404);
+			res.status(404).send({message: "Có lỗi xãy ra vùi lùng thử lại"});
 			console.log(e);
 			return;
 		}
