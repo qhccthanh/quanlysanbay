@@ -3,7 +3,7 @@ info:
   version: "0.0.1"
   title: QuanLySanBay
 # during dev, should point to your local machine
-host: 139.162.58.193:10011
+host: localhost:10011
 # basePath prefixes all resource paths 
 basePath: /
 # 

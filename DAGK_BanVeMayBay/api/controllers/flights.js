@@ -189,19 +189,61 @@ function getFlightInfo(req,res,next) {
 				itemKeys.forEach(function(key) {
 					object[key] = item[key];
 				});
-				
-				if (isQueryPassenger) {
 
-				} else {
-				//	object["hanhkhach"] = [];	
+				if (isQueryPassenger) {
+					object["hanhkhach"] = [];
 				}
+				
 				arrayResults.push(object);
 			}
+
+			if (isQueryPassenger) {
+
+				var queryString = util.format("SELECT ctcb.madatcho, kh.danhxung,kh.ho,kh.ten,ctcb.hang,ctcb.mucgia FROM chitietchuyenbay ctcb join hanhkhach kh on (kh.madatcho = ctcb.madatcho) where ctcb.machuyenbay = \'%s\' and ctcb.ngay = \'%s\' ",flightID, fromDate);
+
+				console.log(queryString);
+				connection.query(queryString, function(error,results) {
+					if(error) {
+						res.status(404).send({message: "Có lỗi xãy ra vùi lùng thử lại"});
+						console.log(error);
+					} else {
+
+						for (var i = 0 ;i < results.length; i ++) {
+							var item = results[i];
+
+							var mucgia = item.mucgia;
+							var hang = item.hang;
+
+							var filterArrayResult = arrayResults.filter(function(element){
+								if (element.muc == mucgia && element.hang == hang) {
+									return true;
+								}
+								return false;
+							});
+
+							filterArrayResult.forEach(function(element){
+								var indexOf  = arrayResults.indexOf(element);
+								if (indexOf != -1) {
+									arrayResults[indexOf].hanhkhach.push(item);	
+								}
+							});
+						}
+
+						console.log(arrayResults);
+						res.send({
+							"chuyenbay": arrayResults
+						});	
+					}
+				});
+			} else {
+				console.log(arrayResults);
+				res.send({
+					"chuyenbay": arrayResults
+				});	
+			}
 			
-			console.log(arrayResults);
-			res.send({
-				"chuyenbay": arrayResults
-			});	
+			
+
 		} else {
 			console.log(err);
 			res.sendStatus(404);
