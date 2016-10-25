@@ -19,7 +19,7 @@
 
       <md-content ng-hide="planeListCtrl.isDepartEmpty">
         <md-list flex>
-          <md-list-item class="md-3-line" ng-click="null" ng-repeat="depart in planeListCtrl.departList">
+          <md-list-item class="md-3-line" ng-repeat="depart in planeListCtrl.departList" ng-click="planeListCtrl.departClick($index)">
             <img src="/ic_airplanemode_active_black_48dp_2x.png" class="md-avatar"/>
             <div class="md-list-item-text" layout="column">
               <h3>Mã chuyến bay: <span style="font-weight: bold;">{{depart.machuyenbay}}</span></h3>
@@ -50,16 +50,41 @@
 
       <md-content ng-hide="planeListCtrl.isArriveEmpty">
         <md-list flex>
-          <md-list-item class="md-3-line" ng-click="null" ng-repeat="arrive in planeListCtrl.arriveList">
+          <md-list-item class="md-3-line" ng-repeat="arrive in planeListCtrl.arriveList" ng-click="planeListCtrl.arriveClick($index)">
             <img src="/ic_airplanemode_active_black_48dp_2x.png" class="md-avatar"/>
             <div class="md-list-item-text" layout="column">
-              <h3>Mã chuyến bay: <span style="font-weight: bold;">{{depart.machuyenbay}}</span></h3>
-              <h4>Ngày khởi hành: <span style="font-weight: bold;">{{depart.ngaydi}}</span> - Giờ khởi hành: <span style="font-weight: bold;">{{depart.giodi}}</span></h4>
-              <p style="color: #F44336;">Hạng vé: <span style="font-weight: bold;">{{depart.hang}}</span> - Giá vé: <span style="font-weight: bold;">{{depart.giaban}}</span></p>
+              <h3>Mã chuyến bay: <span style="font-weight: bold;">{{arrive.machuyenbay}}</span></h3>
+              <h4>Ngày khởi hành: <span style="font-weight: bold;">{{arrive.ngaydi}}</span> - Giờ khởi hành: <span style="font-weight: bold;">{{arrive.giodi}}</span></h4>
+              <p style="color: #F44336;">Hạng vé: <span style="font-weight: bold;">{{arrive.hang}}</span> - Giá vé: <span style="font-weight: bold;">{{arrive.giaban}}</span></p>
             </div>
           </md-list-item>
         </md-list>
       </md-content>
+    </md-card>
+  </div>
+
+  <div layout="column">
+    <md-card flex="25">
+      <md-toolbar class="md-theme-light">
+        <h2 class="md-toolbar-tools">
+          <span>Chuyến bay đã chọn</span>
+        </h2>
+      </md-toolbar>
+
+      <md-card-content>
+        <div layout="row" layout-align="space-between" style="margin-bottom: 20px;">
+          Mã chuyến bay đi: <span style="font-weight: bold;">{{planeListCtrl.departCode}}</span>
+        </div>
+
+        <div layout="row" layout-align="space-between" style="margin-bottom: 20px;" ng-show="planeListCtrl.isRoundTrip">
+          Mã chuyến bay về: <span style="font-weight: bold;">{{planeListCtrl.arriveCode}}</span>
+        </div>
+
+        <div layout="row" layout-align="space-around">
+          <md-button class="md-raised md-primary" ng-click="planeListCtrl.goHome()">Quay lại</md-button>
+          <md-button class="md-raised md-primary" ng-click="planeListCtrl.submit()">Tiếp tục</md-button>
+        </div>
+      </md-card-content>
     </md-card>
   </div>
 </div>

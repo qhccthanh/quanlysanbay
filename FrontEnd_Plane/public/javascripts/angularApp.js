@@ -58,7 +58,7 @@ app.service('planeListService', function() {
 	var service = this;
 
 	this.planeList = {};
-	this.isRoundTrip = null;
+	this.isRoundTrip = false;
 
 	this.updatePlaneList = function(data, isRoundTrip) {
 		service.planeList = {};
@@ -98,6 +98,30 @@ app.service('infoService', function() {
 	this.getInfo = function() {
 		return service.info;
 	}
+
+	this.setTicketCount = function(n) {
+		this.info.sove = n;
+	}
+
+	this.setDepartInfo = function(data) {
+		this.info.chuyendi = data;
+	}
+
+	this.setArriveInfo = function(data) {
+		this.info.chuyenve = data;
+	}
+
+	this.getTicketCount = function() {
+		return this.info.sove;
+	}
+
+	this.setDepartBook = function(code) {
+		this.info.chuyendi.madatcho = code;
+	}
+
+	this.setArriveBook = function(code) {
+		this.info.chuyenve.madatcho = code;
+	}
 });
 
 /*--------------------------------------ERROR SERVICE--------------------------------------*/
@@ -120,8 +144,8 @@ app.service('errorService', function() {
 })
 
 /*--------------------------------------MAIN CONTROLLER--------------------------------------*/
-app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'planeListService', 'errorService', 
-							function($http, $timeout, $state, serverService, planeListService, errorService) {
+app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'planeListService', 'infoService', 'errorService', 
+							function($http, $timeout, $state, serverService, planeListService, infoService, errorService) {
 	// MainCtrl
 	var ctrl = this;
 
@@ -268,6 +292,7 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'plan
 
 		$http.get(reqURL).success(function(data) {
 			planeListService.updatePlaneList(data, ctrl.isRoundTrip);
+			infoService.setTicketCount(ctrl.seats);
 			$state.go('planelist');
 		}).error(function(err) {
 			errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
@@ -277,7 +302,8 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'plan
 }]);
 
 /*--------------------------------------PLANE LIST CONTROLLER--------------------------------------*/
-app.controller('PlaneListCtrl',['$http', '$state', 'planeListService', function($http, $state, planeListService) {	
+app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListService', 'infoService', 'errorService',
+								function($http, $state, serverService, planeListService, infoService, errorService) {	
 	var ctrl = this;
 
 	this.isRoundTrip = false;
@@ -286,11 +312,17 @@ app.controller('PlaneListCtrl',['$http', '$state', 'planeListService', function(
 	this.departList = [];
 	this.arriveList = [];
 
+	this.departId = -1;
+	this.arriveId = -1;
+
+	this.departCode = 'Chưa chọn';
+	this.arriveCode = 'Chưa chọn';
+
 	this.init = function() {
 		ctrl.departList = planeListService.getDepartList();
 		ctrl.arriveList = planeListService.getArriveList();
 		ctrl.isRoundTrip = planeListService.getIsRoundTrip();
-		
+
 		if (ctrl.departList != null && ctrl.departList.length > 0) {
 			ctrl.isDepartEmpty = false;
 		}
@@ -302,8 +334,70 @@ app.controller('PlaneListCtrl',['$http', '$state', 'planeListService', function(
 
 	this.init();
 
+	this.departClick = function(id) {
+		ctrl.departId = id;
+		ctrl.departCode = ctrl.departList[id].machuyenbay;
+	}
+
+	this.arriveClick = function(id) {
+		ctrl.arriveId = id;
+		ctrl.arriveCode = ctrl.arriveList[id].machuyenbay;
+	}
+
 	this.goHome = function() {
 		$state.go('home');
+	}
+
+	this.submit = function() {
+		var reqURL = serverService.getServer() + "/datcho";
+		var tickets = infoService.getTicketCount();
+
+		if (ctrl.departId == -1) {
+			return;
+		}
+
+		var body = {
+			'datcho': {
+				'machuyenbay': ctrl.departList[ctrl.departId].machuyenbay,
+				'ngaydi': ctrl.departList[ctrl.departId].ngaydi,	// parse doan nay ra lay ngay
+				'hang': ctrl.departList[ctrl.departId].hang,
+				'mucgia': ctrl.departList[ctrl.departId].muc,
+				'soghe': tickets,
+			}
+		};
+
+		console.log("dat cho chuyen di");
+		console.log(body);
+		$http.post(reqURL, body).success(function(data) {
+			infoService.setDepartBook(data.datcho.madatcho);
+			console.log("chuyen di: " + data.datcho.madatcho);
+		}).error(function(err) {
+			errorService.setError('Lỗi xảy ra trong quá trình đặt chỗ. Vui lòng thử lại sau!');
+			$state.go('error');
+		});
+
+		if (ctrl.arriveId != -1) {
+			body = {
+				'datcho': {
+					'machuyenbay': ctrl.arriveList[ctrl.arriveId].machuyenbay,
+					'ngaydi': ctrl.arriveList[ctrl.arriveId].ngaydi,	// parse doan nay ra lay ngay
+					'hang': ctrl.arriveList[ctrl.arriveId].hang,
+					'mucgia': ctrl.arriveList[ctrl.arriveId].muc,
+					'soghe': tickets,
+				}
+			};
+
+			console.log("dat cho chuyen ve");
+			$http.post(reqURL, body).success(function(data) {
+				infoService.setArriveBook(data.datcho.madatcho);
+				console.log("chuyen ve: " + data.datcho.madatcho);
+			}).error(function(err) {
+				errorService.setError('Lỗi xảy ra trong quá trình đặt chỗ. Vui lòng thử lại sau!');
+				$state.go('error');
+			});
+		}
+
+		$state.go('info');
 	}
 }]);
 
