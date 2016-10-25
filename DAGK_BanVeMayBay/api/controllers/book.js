@@ -215,15 +215,78 @@ function bookTicket(req,res,next) {
 	});
 }
 
-//PUT /datcho
-function updateInfoTicket(req,res,nxet) {
 
-	var madatcho = req.swagger.params.madatcho.value;
-	
-}
 
 //GET /datcho/{madatcho}/
 function getBookInfo(req,res,next) {
+	var madatcho = req.swagger.params.madatcho.value;
+	var queryString = util.format("SELECT dc.madatcho, ctcb.machuyenbay, ctcb.ngay, ctcb.hang, ctcb.mucgia, dc.soghe, dc.tongtien, dc.trangthai from datcho dc join chitietchuyenbay ctcb on (dc.madatcho = ctcb.madatcho) WHERE dc.madatcho = \'%s\' ", madatcho);
+
+	console.log("Select DatCho: " + queryString);
+	connection.query(queryString, function(error,results) {
+		if(error) {
+			res.status(404).send({
+				"message": "Có lỗi xãy ra vui lòng thử lại"
+			});
+			console.log(error);
+		} else {
+			if(results.length == 0) {
+				res.status(404).send({
+					"message": "Mã đặt chỗ không tồn tại hoặc đã quá hạn"
+				});
+			} else {
+				var item = results[0];
+				var keys = Object.keys(item);
+				
+				var resResult = {};
+
+				for(var j = 0 ; j < keys.length; j++) {
+					var key = keys[j];
+					resResult[key] = item[key];
+				}
+
+				console.log(resResult["ngay"]);
+				var ngay = (new Date(resResult["ngay"])).getTime();
+				resResult.ngay = ngay;
+
+				var hanhKachQuery =  util.format("SELECT * FROM hanhkhach WHERE madatcho = \'%s\'", madatcho);
+
+				console.log("hanhKachQuery: " + hanhKachQuery);
+				connection.query(hanhKachQuery, function(error,results) {
+					if(error) {
+						res.status(404).send({
+							"message": "Có lỗi xãy ra vui lòng thử lại"
+						});
+						console.log(error);
+					} else {
+						var hkArray = [];
+						for(var i = 0 ; i < results.length; i++) {
+							var item = results[i];
+							var keys = Object.keys(item);
+							var object = {}
+
+							for(var j = 0; j < keys.length; j++) {
+								var key = keys[j];
+								object[key] = item[key];
+							}
+
+							hkArray.push(object);
+						}
+
+						resResult["hanhkhach"] = hkArray;
+						res.send({
+							"datcho" : results
+						});
+					}
+				});
+			}
+		}
+	});
+
+}
+
+//PUT /datcho
+function updateInfoTicket(req,res,nxet) {
 	console.log("bookTicket");
 	console.log("body: " + req.swagger.params.datcho);
 
@@ -238,7 +301,7 @@ function getBookInfo(req,res,next) {
 				"message": "Danh sách hành khách rỗng"
 			});
 		} else {
-			var queryString = util.format("SELECT * from datcho WHERE madatcho = \'%s\' ");
+			var queryString = util.format("SELECT * from datcho WHERE madatcho = \'%s\' ", madatcho);
 
 			console.log(queryString);
 			connection.query(queryString,function(error,results){
@@ -266,26 +329,70 @@ function getBookInfo(req,res,next) {
 							} else {
 								// Insert tung hành khách vào database
 								var currentHKComplete = 0;
-								var hkCount = hanhkhach.count;
+								var hkCount = hanhkhach.length;
 
 								hanhkhach.forEach(function(hk) {
+									console.log("INSERT INTO hanhkhach values hk");
 
-									connection.query("INSERT INTO hanhkhach values(?,?,?,?)", [madatcho, hk.danhxung, hk.ho, hk.ten] , function(error,results) {
-
-										if(error) {
-
-											console.log(error);
-											res.status(404).send({
-												"message": "Có lỗi xãy ra vui lòng thử lại"
-											}).end();
-										} else {
+									connection.query("DELETE FROM hanhkhach where madatcho = ? and danhxung = ? and ho = ? and ten = ?", [madatcho, hk.danhxung, hk.ho, hk.ten] , function(error,results) {
+										connection.query("INSERT INTO hanhkhach values(?,?,?,?)", [madatcho, hk.danhxung, hk.ho, hk.ten] , function(error,results) {
 											currentHKComplete += 1;
-											if(currentHKComplete == hkCount) {
-												// Query lại toàn bộ thông tin vé trả về client
-												
+											if(error) {
+												console.log(error);
+												res.status(404).send({
+													"message": "Có lỗi xãy ra vui lòng thử lại"
+												}).end();
+											} else {
+												console.log("currentHKComplete: " + currentHKComplete);
+												console.log("hkCount: " + hkCount);
+												if(currentHKComplete == hkCount) {
+													// Query lại toàn bộ thông tin vé trả về client
+													var queryString = util.format("SELECT dc.madatcho, cb.machuyenbay, cb.masanbaydi, cb.masanbayden, cb.ngaydi, cb.giodi, cb.hang, cb.muc,dc.soghe,dc.tongtien, dc.trangthai FROM datcho dc join chitietchuyenbay ctcb on (dc.madatcho = ctcb.madatcho) join chuyenbay cb on (ctcb.machuyenbay = cb.machuyenbay and ctcb.ngay = cb.ngaydi) WHERE dc.madatcho = \'%s\'", madatcho);
+
+													console.log("Get ValidationDataBook: " + queryString);
+													connection.query(queryString, function(err,results){
+														if(err) {
+															res.status(404).send({
+																"message": "Có lỗi xãy ra vui lòng thử lại"
+															}).end();
+															console.log(err);
+														} else {
+															if (results.length == 0) {
+																res.status(404).send({
+																	"message": "Có lỗi xãy ra vui lòng thử lại"
+																}).end();
+															} else {
+																
+																var item = results[0];
+																var keys = Object.keys(item);
+																
+																var object = {};
+
+																for(var j = 0 ; j < keys.length; j++) {
+																	var key = keys[j];
+																	object[key] = item[key];
+																}
+
+																console.log(object["ngaydi"]);
+																var ngay = (new Date(object["ngaydi"])).getTime();
+																object.ngay = ngay;
+
+																object["hanhkhach"] = hanhkhach;
+
+																console.log(object);
+																res.send({
+																	'datcho': object
+																});
+																
+															}
+														}
+													});
+												}
 											}
-										}
+										});
 									});
+
+									
 								});
 							}
 						});

@@ -198,7 +198,7 @@ paths:
       operationId: updateInfoTicket
       description: Cập nhật thông tin mã đặt chỗ
       parameters:
-        - name: madatcho
+        - name: datcho
           in: body 
           description: Mã đặt chỗ đã được cấp ở POST c
           required: true
@@ -512,6 +512,8 @@ definitions:
           soghe:
             type: number
           tongtien:
+            type: number
+          trangthai:
             type: number
           hanhkhach:
             type: array
