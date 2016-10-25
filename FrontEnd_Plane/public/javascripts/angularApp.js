@@ -46,7 +46,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
 app.service('serverService', function() {
 	var service = this;
 
-	this.server = 'http://139.162.58.193:10012';
+	this.server = 'http://139.162.58.193:10011';
 
 	this.getServer = function() {
 		return service.server;
@@ -335,11 +335,16 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 	this.persons = [];
 	var count1 = 2;
 	for(var i = 0; i < count1; i++) {
-		this.persons.push({});
+		var p = {
+			"title": "",
+			"lastName": "",
+			"firstName": ""
+		};
+		this.persons.push(p);
 	}
 	this.checkValidForm = function() {
 		for(var i = 0; i < count1; i++) {
-			if(this.persons[i].title == null || this.persons[i].lastName == null || this.persons[i].firstName == null)
+			if(this.persons[i].title.length == 0 || this.persons[i].lastName.length == 0 || this.persons[i].firstName.length == 0)
 				return false;
 		}
 		return true;	
@@ -360,5 +365,7 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 
 app.controller('SuccessCtrl',['$http', '$state', function($http, $state) {	
 	var ctrl = this;
-
+	this.goHome = function() {
+		$state.go('home');
+	}
 }]);
