@@ -14,21 +14,64 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			templateUrl : '/find.html',
 			controller : 'MainCtrl as mainCtrl',
 		})
-		.state('planeslist', {
-			url : '/planeslist',
+		.state('planelist', {
+			url : '/planelist',
 			templateUrl : '/planeslist.html',
-			controller : 'PlanesListCtrl as planesListCtrl',
+			controller : 'PlaneListCtrl as planeListCtrl',
 		})
 		.state('verify', {
 			url : '/verify',
 			templateUrl : '/verify.html',
 			controller : 'VerifyCtrl as verifyCtrl',
 		})
+		.state('error', {
+			url: '/error',
+			templateUrl: '/error.html',
+			controller: 'ErrorCtrl as errorCtrl'
+		})
     $urlRouterProvider.otherwise('home');
   }]);
 
-/*--------------------------------------CONTROLLER--------------------------------------*/
-app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
+/*--------------------------------------PLANE LIST SERVICE--------------------------------------*/
+app.service('planeListService', function() {
+	var service = this;
+
+	this.planeList = [];
+
+	this.updatePlaneList = function(data) {
+		service.planeList = [];
+
+		if (data != null && data.length > 0) {
+			service.planeList = data;
+		}
+	}
+
+	this.getPlaneList = function() {
+		return service.planeList;
+	}
+});
+
+/*--------------------------------------ERROR SERVICE--------------------------------------*/
+app.service('errorService', function() {
+	var service = this;
+
+	this.error = null;
+
+	this.setError = function(err) {
+		console.log('Error service: setError - ' + err);
+
+		service.error = err;
+	}
+
+	this.getError = function() {
+		console.log('Error service: getError - ' + service.error);
+
+		return service.error;
+	}
+})
+
+/*--------------------------------------MAIN CONTROLLER--------------------------------------*/
+app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', function($http, $timeout, $state, errorService) {
 	// MainCtrl
 	var ctrl = this;
 
@@ -38,18 +81,40 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 	this.isRoundTrip = false;
 	this.departDate = null;
 	this.arriveDate = null;
-	this.adults = 1
-	this.child = 0
+	this.seats = 1
 	this.listDepart = [];
 	this.departId = null;
 	this.listArrive = [];
 	this.arriveId = null;
+	this.type = null;
+	this.cost = null;
 
-	this.defaultAdultArray = [1,2,3];
-	this.defaultChildArray = [0,1];
+	this.defaultSeatArray = [1,2,3];
+	this.defaultTypeArray = ['Tất cả', 'C', 'Y'];
+	this.defaultCostArray = ['Tất cả', 'E', 'F', 'G'];
+
+	this.reset = function() {
+		ctrl.isNotify = false;
+		ctrl.notifyMsg = '';
+
+		ctrl.isRoundTrip = false;
+		ctrl.departDate = null;
+		ctrl.arriveDate = null;
+		ctrl.seats = 1
+		ctrl.listDepart = [];
+		ctrl.departId = null;
+		ctrl.listArrive = [];
+		ctrl.arriveId = null;
+		ctrl.type = null;
+		ctrl.cost = null;
+
+		ctrl.defaultSeatArray = [1,2,3];
+		ctrl.defaultTypeArray = ['Tất cả', 'C', 'Y'];
+		ctrl.defaultCostArray = ['Tất cả', 'E', 'F', 'G'];		
+	}
 
 	this.getDepartAirport = function() {
-		$http.get('http://139.162.58.193:10011/sanbay').success(function(data) {
+		$http.get('http://139.162.58.193:10011/sanbay?truong=city').success(function(data) {
 			ctrl.listDepart = data.sanbay;
 		});
 	}
@@ -61,17 +126,6 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 		ctrl.isNotify = true;
 
 		$timeout(function() { ctrl.isNotify = false; ctrl.notifyMsg = ''; }, 2000);
-	}
-
-	this.adultChanged = function() {
-		if (ctrl.child > ctrl.adults) {
-			ctrl.child = 0;
-		}
-
-		ctrl.defaultChildArray = [];
-		for (var i = 0; i <= ctrl.adults; i++) {
-			ctrl.defaultChildArray.push(i);
-		}
 	}
 
 	this.getCurrentDate = function() {
@@ -114,7 +168,7 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 	}
 
 	this.departIdChanged = function() {
-		var reqURL = 'http://139.162.58.193:10011/sanbay?masanbaydi=' + ctrl.departId;
+		var reqURL = 'http://139.162.58.193:10011/sanbay?truong=city&masanbaydi=' + ctrl.departId;
 		
 		$http.get(reqURL).success(function(data) {
 			console.log(data);
@@ -135,19 +189,54 @@ app.controller('MainCtrl',['$http', '$timeout', function($http, $timeout) {
 
 	this.submit = function() {
 		if (!ctrl.checkValidForm()) {
-			ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
+			ctrl.showNotify('Bạn chưa điền đủ thông tin hoặc thông tin chưa hợp lệ');
 
 			return;
 		}
 
-		var reqURL = '';
+		var reqURL = 'http://139.162.58.193:10011/chuyenbay?masanbaydi=' + ctrl.departId
+						+ '&masanbayden=' + ctrl.arriveId
+						+ '&ngaydi=' + ctrl.departDate.getTime();
 
-		// $http.get().success(function(data) {
+		if (ctrl.isRoundTrip) {
+			reqURL += ('&ngayve=' + ctrl.arriveDate.getTime());
+		}
 
-		// });
+		if (ctrl.type != null && ctrl.type != 'Tất cả') {
+			reqURL += ('&hang=' + ctrl.type);
+		}
+
+		if (ctrl.cost != null && ctrl.cost != 'Tất cả') {
+			reqURL += ('&mucgia=' + ctrl.cost);
+		}
+
+		if (ctrl.seats > 1) {
+			reqURL += ('&soluongghe=' + ctrl.seats);
+		}
+
+		var x = 'Tất cả';
+
+		console.log(x == 'Tất cả');
+		console.log(reqURL);
+
+		$http.get(reqURL).success(function(data) {
+			$state.go('planelist');
+		}).error(function(err) {
+			errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
+			$state.go('error');
+		});
 	}
 }]);
 
+/*--------------------------------------PLANE LIST CONTROLLER--------------------------------------*/
+app.controller('PlaneListCtrl',['$http', '$timeout', function($http, $timeout) {	
+	var ctrl = this;
+	this.title = {};
+	this.titleArray = ['Ông', 'Bà', 'Cô'];
+
+}]);
+
+/*--------------------------------------MAIN CONTROLLER--------------------------------------*/
 app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
 	
 	var ctrl = this;
@@ -155,10 +244,13 @@ app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
 
 }]);
 
-app.controller('PlanesListCtrl',['$http', '$timeout', function($http, $timeout) {
-	
+/*--------------------------------------ERROR CONTROLLER--------------------------------------*/
+app.controller('ErrorCtrl',['$http', '$state', 'errorService', function($http, $state, errorService) {
 	var ctrl = this;
-	this.title = {};
-	this.titleArray = ['Ông', 'Bà', 'Cô'];
 
+	this.error = errorService.getError();
+
+	this.submit = function() {
+		$state.go('home');
+	}
 }]);
