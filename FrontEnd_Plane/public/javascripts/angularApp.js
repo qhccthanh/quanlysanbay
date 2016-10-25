@@ -1,10 +1,10 @@
 'use strict';
 var app = angular.module('planeApp', ['ngMaterial', 'ui.router'])
-				.config(function($mdThemingProvider) {
-				  $mdThemingProvider.theme('default')
-				    .primaryPalette('pink')
-				    .accentPalette('orange');
-				});
+.config(function($mdThemingProvider) {
+	$mdThemingProvider.theme('default')
+	.primaryPalette('pink')
+	.accentPalette('orange');
+});
 
 app.config(['$stateProvider', '$urlRouterProvider',
 	function($stateProvider, $urlRouterProvider) {
@@ -19,6 +19,11 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			templateUrl : '/planeslist.html',
 			controller : 'PlaneListCtrl as planeListCtrl',
 		})
+		.state('info', {
+			url : '/info',
+			templateUrl : '/info.html',
+			controller : 'InfoCtrl as infoCtrl',
+		})
 		.state('verify', {
 			url : '/verify',
 			templateUrl : '/verify.html',
@@ -31,6 +36,17 @@ app.config(['$stateProvider', '$urlRouterProvider',
 		})
     $urlRouterProvider.otherwise('home');
   }]);
+
+/*--------------------------------------GET SERVER SERVICE--------------------------------------*/
+app.service('serverService', function() {
+	var service = this;
+
+	this.server = 'http://139.162.58.193:10012';
+
+	this.getServer = function() {
+		return service.server;
+	}
+});
 
 /*--------------------------------------PLANE LIST SERVICE--------------------------------------*/
 app.service('planeListService', function() {
@@ -71,7 +87,8 @@ app.service('errorService', function() {
 })
 
 /*--------------------------------------MAIN CONTROLLER--------------------------------------*/
-app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', function($http, $timeout, $state, errorService) {
+app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'errorService', 
+							function($http, $timeout, $state, serverService, errorService) {
 	// MainCtrl
 	var ctrl = this;
 
@@ -114,7 +131,7 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', functi
 	}
 
 	this.getDepartAirport = function() {
-		$http.get('http://139.162.58.193:10011/sanbay?truong=city').success(function(data) {
+		$http.get(serverService.getServer() + '/sanbay?truong=city').success(function(data) {
 			ctrl.listDepart = data.sanbay;
 		});
 	}
@@ -168,8 +185,10 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', functi
 	}
 
 	this.departIdChanged = function() {
-		var reqURL = 'http://139.162.58.193:10011/sanbay?truong=city&masanbaydi=' + ctrl.departId;
+		var reqURL = serverService.getServer() + '/sanbay?truong=city&masanbaydi=' + ctrl.departId;
 		
+		ctrl.arriveId = null;
+
 		$http.get(reqURL).success(function(data) {
 			console.log(data);
 			ctrl.listArrive = data.sanbay;
@@ -182,24 +201,24 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', functi
 			|| ctrl.arriveId == null
 			|| (ctrl.isRoundTrip && ctrl.arriveDate == null)) {
 			return false;
-		}
-
-		return true;
 	}
 
+	return true;
+}
 	this.submit = function() {
 		if (!ctrl.checkValidForm()) {
 			ctrl.showNotify('Bạn chưa điền đủ thông tin hoặc thông tin chưa hợp lệ');
 
-			return;
-		}
 
-		var reqURL = 'http://139.162.58.193:10011/chuyenbay?masanbaydi=' + ctrl.departId
+		return;
+	}
+
+		var reqURL = serverService.getServer() + '/chuyenbay?masanbaydi=' + ctrl.departId
 						+ '&masanbayden=' + ctrl.arriveId
-						+ '&ngaydi=' + ctrl.departDate.getTime();
+						+ '&ngaydi=' + ctrl.departDate.getTime() / 1000;
 
 		if (ctrl.isRoundTrip) {
-			reqURL += ('&ngayve=' + ctrl.arriveDate.getTime());
+			reqURL += ('&ngayve=' + ctrl.arriveDate.getTime() / 1000);
 		}
 
 		if (ctrl.type != null && ctrl.type != 'Tất cả') {
@@ -229,16 +248,18 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', functi
 }]);
 
 /*--------------------------------------PLANE LIST CONTROLLER--------------------------------------*/
-app.controller('PlaneListCtrl',['$http', '$timeout', function($http, $timeout) {	
+app.controller('PlaneListCtrl',['$http', '$state', function($http, $state) {	
 	var ctrl = this;
-	this.title = {};
-	this.titleArray = ['Ông', 'Bà', 'Cô'];
 
+	this.isEmpty = false;
+
+	this.goHome = function() {
+		$state.go('home');
+	}
 }]);
 
 /*--------------------------------------MAIN CONTROLLER--------------------------------------*/
 app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
-	
 	var ctrl = this;
 
 
@@ -247,10 +268,49 @@ app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
 /*--------------------------------------ERROR CONTROLLER--------------------------------------*/
 app.controller('ErrorCtrl',['$http', '$state', 'errorService', function($http, $state, errorService) {
 	var ctrl = this;
-
 	this.error = errorService.getError();
 
-	this.submit = function() {
+	this.goHome() = function() {
 		$state.go('home');
 	}
+}]);
+
+app.controller('InfoCtrl',['$http', '$timeout', function($http, $timeout) {
+	
+	var ctrl = this;
+	this.title = {};
+	this.titleArray = ['Ông', 'Bà', 'Cô'];
+	this.isNotify = false;
+	this.notifyMsg = '';
+
+	this.showNotify = function(msg) {
+		ctrl.notifyMsg = msg;
+		ctrl.isNotify = true;
+
+		$timeout(function() { ctrl.isNotify = false; ctrl.notifyMsg = ''; }, 2000);
+	}
+
+
+	this.persons = [];
+	var count1 = 2;
+	for(var i = 0; i < count1; i++) {
+		this.persons.push({});
+	}
+	this.checkValidForm = function() {
+		for(var i = 0; i < count1; i++) {
+			if(this.persons[i].title == null || this.persons[i].lastName == null || this.persons[i].firstName == null)
+				return false;
+		}
+		return true;	
+	}
+
+	this.check = function() {
+
+		if (!ctrl.checkValidForm()) {
+		ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
+			return;
+		} else {
+			console.log(this.persons);
+		}
+	};
 }]);
