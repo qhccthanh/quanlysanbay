@@ -3,7 +3,7 @@ info:
   version: "0.0.1"
   title: QuanLySanBay
 # during dev, should point to your local machine
-host: localhost:10011
+host: 139.162.58.193:10011
 # basePath prefixes all resource paths 
 basePath: /
 # 
@@ -23,7 +23,7 @@ paths:
     x-swagger-router-controller: airports
     get:
       operationId: getToFromAiportAll
-      description: Lấy danh sách tất cả các sân bay
+      description: Lấy danh sách tất cả các sân bay example - GET http://139.162.58.193:10011/sanbay | GET http://139.162.58.193:10011/sanbay?masanbaydi=HAN&truong=id%2Cname%2Ccity
       parameters:
         - name: masanbaydi
           type: string
@@ -52,7 +52,7 @@ paths:
     x-swagger-router-controller: flights
     get:
       operationId: getFlight
-      description: Lấy danh sách các chuyên bay
+      description: Lấy danh sách các chuyên bay VD - GET http://139.162.58.193:10011/chuyenbay?masanbaydi=HAN&masanbayden=SGN&ngaydi=1477388586&ngayve=1477388586&hang=Y&mucgia=E&soluongghe=1
       parameters:
         - name: masanbaydi
           type: string
@@ -129,7 +129,7 @@ paths:
     x-swagger-router-controller: flights
     get:
       operationId: getFlightInfo
-      description: Lấy thông tin chuyên bay với mã chuyến bay và ngày đi
+      description: Lấy thông tin chuyên bay với mã chuyến bay và ngày đi example - GET http://139.162.58.193:10011/chuyenbay/DB589?ngaydi=1477440000
       parameters:
       - name: machuyenbay
         type: string
@@ -163,7 +163,7 @@ paths:
     x-swagger-router-controller: book
     get:
       operationId: getBooks
-      description: Lấy danh sách tất cả mã đặt chỗ
+      description: Lấy danh sách tất cả mã đặt chỗ example - GET http://139.162.58.193:10011/datcho?machuyenbay=DB589&ngaydi=1477440000&hang=C&mucgia=E
       parameters:
       - name: machuyenbay
         in: query
@@ -244,7 +244,7 @@ paths:
     x-swagger-router-controller: book
     get: 
       operationId: getBookInfo
-      description: Lây thông tin mã đặt chỗ với mã đặt chỗ truyền vào
+      description: Lây thông tin mã đặt chỗ với mã đặt chỗ truyền vào example - http://139.162.58.193:10011/datcho/FX124X/
       parameters:
         - name: madatcho
           type: string
@@ -292,12 +292,12 @@ definitions:
               type: string
               description: example Noi Dia
     example:
-      sanbay: [
+      sanbay: [{
           id: HNH,
           name: Noi Bai,
           city: Ha Noi,
           region: Noi Dia,
-        ]
+        }]
   FindFlightResponse:
     properties:
       chuyenbay:
@@ -346,7 +346,7 @@ definitions:
                 mucgia:
                   type: string
     example:
-      chuyendi: [
+      chuyendi: [{
           machuyenbay: DB589,
           masanbaydi: BMV,
           masanbayden: DIN,
@@ -354,8 +354,8 @@ definitions:
           giokhoihanh: 12h,
           hang: Y,
           mucgia: E,
-        ]
-      chuyenve: [
+        }]
+      chuyenve: [{
           machuyenbay: DB589,
           masanbaydi: BMV,
           masanbayden: DIN,
@@ -363,7 +363,7 @@ definitions:
           giokhoihanh: 12h,
           hang: C,
           mucgia: G,
-        ]
+        }]
   FlightResponse:
     properties:
       chuyenbay:
@@ -400,10 +400,22 @@ definitions:
                     type: string
                   ten:
                     type: string
-                  hang:
-                    type: string
-                  mucgia:
-                    type: string
+    example:
+      chuyendi: [
+          machuyenbay: DB589,
+          masanbaydi: BMV,
+          masanbayden: DIN,
+          ngaydi: 2016-10-25T17:00:00.000Z,
+          giodi: 12h,
+          hang: Y,
+          mucgia: E,
+          hanhkhach: [{
+              madatcho: YY123X,
+              danhxung: Ong,
+              ho: ho,
+              ten: ten,
+            }]
+        ]  
   BookResponse:
     required:
       - datcho
@@ -424,6 +436,14 @@ definitions:
           thoihansudung:
             type: number
             description: thoi han timestamp su dung
+    example:
+      datcho: {
+        madatcho: AS23A9,
+        machuyenbay: FX100,
+        ngaydi: 2016-21-10,
+        thoigiancapphat: 1477388586,
+        thoihansudung: 1477391586,
+      }
   BookArrayResponse:
     properties:
       datcho:
@@ -448,6 +468,17 @@ definitions:
               type: string
             trangthai:
               type: number
+    example:
+      datcho: [{
+        madatcho: AS23A9,
+        machuyenbay: FX100,
+        ngay: 2016-21-10,
+        hang: Y,
+        mucgia: E,
+        soghe: 1,
+        gia: 100000,
+        trangthai: 0,
+      }]
   BookInfoResponse:
     properties:
       thongtindatcho:
@@ -480,6 +511,22 @@ definitions:
                     type: string
                   ten:
                     type: string
+    example:
+      thongtindatcho: [{
+            madatcho: AS23A9,
+            machuyenbay: FX100,
+            ngay: 2016-21-10,
+            hang: Y,
+            mucgia: E,
+            soghe: 1,
+            gia: 100000,
+            trangthai: 0,
+            hanhkhach: [{
+                danhxung: Ong,
+                ho: ho,
+                ten: ten,
+              }]
+        }]
   BookPost:
     required:
       - datcho
@@ -518,6 +565,15 @@ definitions:
                   type: string
                 ten:
                   type: string
+    example:
+      datcho: {
+        madatcho: AS23A9,
+        hanhkhach: [{
+                danhxung: Ong,
+                ho: ho,
+                ten: ten,
+              }]
+      }
   BookValidateResponse:
     properties:
       datcho:
@@ -556,6 +612,32 @@ definitions:
                   type: string
                 ten:
                   type: string
+    example:
+      datcho: {
+        madatcho: FX129X,
+        machuyenbay: FX100,
+        masanbaydi: SGN,
+        masanbayden: HAN,
+        ngaydi: 2016-10-26,
+        giodi: 10:45,
+        hang: Y,
+        mucgia: C,
+        soghe: 2,
+        tongtien: 100000,
+        trangthai: 1,
+        hanhkhach: [
+            {
+               danhxung: Ong,
+                ho: ho,
+                ten: ten,
+            },
+            {
+               danhxung: OngX,
+                ho: hoX,
+                ten: tenX,
+            },
+          ]
+      }
   ErrorResponse:
     required:
       - message
