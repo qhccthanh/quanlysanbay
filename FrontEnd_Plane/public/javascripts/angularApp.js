@@ -89,7 +89,11 @@ app.service('planeListService', function() {
 app.service('infoService', function() {
 	var service = this;
 
-	this.info = {};
+	this.info = {
+		'sove': 0,
+		'chuyendi': {},
+		'chuyenve': {}
+	};
 
 	this.updateInfo = function(data) {
 		this.info = data;
@@ -334,6 +338,15 @@ app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListSe
 
 	this.init();
 
+	this.getTime = function(timeString) {
+		var str = (timeString || "").replace(/-/g,"/").replace(/[TZ]/g," ");
+		var findDot = str.search(".000");
+		console.log(str.substring(findDot, 0));
+		var dateD = new Date(str.substring(findDot, 0));
+
+		return dateD.getTime() / 1000;
+	}
+
 	this.departClick = function(id) {
 		ctrl.departId = id;
 		ctrl.departCode = ctrl.departList[id].machuyenbay;
@@ -359,7 +372,7 @@ app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListSe
 		var body = {
 			'datcho': {
 				'machuyenbay': ctrl.departList[ctrl.departId].machuyenbay,
-				'ngaydi': ctrl.departList[ctrl.departId].ngaydi,	// parse doan nay ra lay ngay
+				'ngaydi': ctrl.getTime(ctrl.departList[ctrl.departId].ngaydi),	// parse doan nay ra lay ngay
 				'hang': ctrl.departList[ctrl.departId].hang,
 				'mucgia': ctrl.departList[ctrl.departId].muc,
 				'soghe': tickets,
@@ -380,7 +393,7 @@ app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListSe
 			body = {
 				'datcho': {
 					'machuyenbay': ctrl.arriveList[ctrl.arriveId].machuyenbay,
-					'ngaydi': ctrl.arriveList[ctrl.arriveId].ngaydi,	// parse doan nay ra lay ngay
+					'ngaydi': ctrl.getTime(ctrl.arriveList[ctrl.arriveId].ngaydi),	// parse doan nay ra lay ngay
 					'hang': ctrl.arriveList[ctrl.arriveId].hang,
 					'mucgia': ctrl.arriveList[ctrl.arriveId].muc,
 					'soghe': tickets,

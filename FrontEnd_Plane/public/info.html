@@ -10,7 +10,7 @@
         {{infoCtrl.notifyMsg}}
       </div>
       <md-subheader class="md-no-sticky">Hành khách</md-subheader>
-      <div layout="row" ng-repeat="person in infoCtrl.persons">
+      <div layout="row" ng-repeat="person in infoCtrl.persons" layout-align="space-between">
         <md-select ng-model="person.title" placeholder="Danh xưng" class="md-no-underline">
           <md-option ng-repeat="i in infoCtrl.titleArray" value="{{i}}">{{i}}</md-option>
         </md-select>
