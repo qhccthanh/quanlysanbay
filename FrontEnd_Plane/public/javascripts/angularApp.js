@@ -32,6 +32,17 @@ app.config(['$stateProvider', '$urlRouterProvider',
     $urlRouterProvider.otherwise('home');
   }]);
 
+/*--------------------------------------GET SERVER SERVICE--------------------------------------*/
+app.service('serverService', function() {
+	var service = this;
+
+	this.server = 'http://139.162.58.193:10012';
+
+	this.getServer = function() {
+		return service.server;
+	}
+});
+
 /*--------------------------------------PLANE LIST SERVICE--------------------------------------*/
 app.service('planeListService', function() {
 	var service = this;
@@ -71,7 +82,8 @@ app.service('errorService', function() {
 })
 
 /*--------------------------------------MAIN CONTROLLER--------------------------------------*/
-app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', function($http, $timeout, $state, errorService) {
+app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'errorService', 
+							function($http, $timeout, $state, serverService, errorService) {
 	// MainCtrl
 	var ctrl = this;
 
@@ -114,7 +126,7 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', functi
 	}
 
 	this.getDepartAirport = function() {
-		$http.get('http://139.162.58.193:10011/sanbay?truong=city').success(function(data) {
+		$http.get(serverService.getServer() + '/sanbay?truong=city').success(function(data) {
 			ctrl.listDepart = data.sanbay;
 		});
 	}
@@ -168,8 +180,10 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', functi
 	}
 
 	this.departIdChanged = function() {
-		var reqURL = 'http://139.162.58.193:10011/sanbay?truong=city&masanbaydi=' + ctrl.departId;
+		var reqURL = serverService.getServer() + '/sanbay?truong=city&masanbaydi=' + ctrl.departId;
 		
+		ctrl.arriveId = null;
+
 		$http.get(reqURL).success(function(data) {
 			console.log(data);
 			ctrl.listArrive = data.sanbay;
@@ -194,12 +208,12 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', functi
 			return;
 		}
 
-		var reqURL = 'http://139.162.58.193:10011/chuyenbay?masanbaydi=' + ctrl.departId
+		var reqURL = serverService.getServer() + '/chuyenbay?masanbaydi=' + ctrl.departId
 						+ '&masanbayden=' + ctrl.arriveId
-						+ '&ngaydi=' + ctrl.departDate.getTime();
+						+ '&ngaydi=' + ctrl.departDate.getTime() / 1000;
 
 		if (ctrl.isRoundTrip) {
-			reqURL += ('&ngayve=' + ctrl.arriveDate.getTime());
+			reqURL += ('&ngayve=' + ctrl.arriveDate.getTime() / 1000);
 		}
 
 		if (ctrl.type != null && ctrl.type != 'Tất cả') {
@@ -229,16 +243,18 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'errorService', functi
 }]);
 
 /*--------------------------------------PLANE LIST CONTROLLER--------------------------------------*/
-app.controller('PlaneListCtrl',['$http', '$timeout', function($http, $timeout) {	
+app.controller('PlaneListCtrl',['$http', '$state', function($http, $state) {	
 	var ctrl = this;
-	this.title = {};
-	this.titleArray = ['Ông', 'Bà', 'Cô'];
 
+	this.isEmpty = false;
+
+	this.goHome = function() {
+		$state.go('home');
+	}
 }]);
 
 /*--------------------------------------MAIN CONTROLLER--------------------------------------*/
 app.controller('VerifyCtrl',['$http', '$timeout', function($http, $timeout) {
-	
 	var ctrl = this;
 
 
@@ -250,7 +266,7 @@ app.controller('ErrorCtrl',['$http', '$state', 'errorService', function($http, $
 
 	this.error = errorService.getError();
 
-	this.submit = function() {
+	this.goHome() = function() {
 		$state.go('home');
 	}
 }]);
