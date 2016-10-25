@@ -220,7 +220,69 @@ function bookTicket(req,res,next) {
 //GET /datcho/{madatcho}/
 function getBookInfo(req,res,next) {
 	var madatcho = req.swagger.params.madatcho.value;
-	
+	var queryString = util.format("SELECT dc.madatcho, ctcb.machuyenbay, ctcb.ngay, ctcb.hang, ctcb.mucgia, dc.soghe, dc.tongtien, dc.trangthai from datcho dc join chitietchuyenbay ctcb on (dc.madatcho = ctcb.madatcho) WHERE dc.madatcho = \'%s\' ", madatcho);
+
+	console.log("Select DatCho: " + queryString);
+	connection.query(queryString, function(error,results) {
+		if(error) {
+			res.status(404).send({
+				"message": "Có lỗi xãy ra vui lòng thử lại"
+			});
+			console.log(error);
+		} else {
+			if(results.length == 0) {
+				res.status(404).send({
+					"message": "Mã đặt chỗ không tồn tại hoặc đã quá hạn"
+				});
+			} else {
+				var item = results[0];
+				var keys = Object.keys(item);
+				
+				var resResult = {};
+
+				for(var j = 0 ; j < keys.length; j++) {
+					var key = keys[j];
+					resResult[key] = item[key];
+				}
+
+				console.log(resResult["ngay"]);
+				var ngay = (new Date(resResult["ngay"])).getTime();
+				resResult.ngay = ngay;
+
+				var hanhKachQuery =  util.format("SELECT * FROM hanhkhach WHERE madatcho = \'%s\'", madatcho);
+
+				console.log("hanhKachQuery: " + hanhKachQuery);
+				connection.query(hanhKachQuery, function(error,results) {
+					if(error) {
+						res.status(404).send({
+							"message": "Có lỗi xãy ra vui lòng thử lại"
+						});
+						console.log(error);
+					} else {
+						var hkArray = [];
+						for(var i = 0 ; i < results.length; i++) {
+							var item = results[i];
+							var keys = Object.keys(item);
+							var object = {}
+
+							for(var j = 0; j < keys.length; j++) {
+								var key = keys[j];
+								object[key] = item[key];
+							}
+
+							hkArray.push(object);
+						}
+
+						resResult["hanhkhach"] = hkArray;
+						res.send({
+							"datcho" : results
+						});
+					}
+				});
+			}
+		}
+	});
+
 }
 
 //PUT /datcho
