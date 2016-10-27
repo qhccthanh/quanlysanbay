@@ -113,18 +113,6 @@ app.service('infoService', function() {
 		return this.info.sove;
 	}
 
-	this.setDepartPrice = function(code) {
-		if(this.info.chuyendi != null) {
-			this.info.chuyendi.mucgia = code;
-		}
-	}
-
-	this.setArrivePrice = function(code) {
-		if (this.info.chuyenve != null) {
-			this.info.chuyenve.mucgia = code;
-		}
-	}
-
 	this.setSumPrice = function(price) {
 		this.info.price = price;
 	}
@@ -384,8 +372,6 @@ app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListSe
 		console.log(body);
 		$http.post(reqURL, body).success(function(data) {
 			infoService.setDepartInfo(data.datcho);
-			infoService.setDepartPrice(body.datcho.mucgia);
-			console.log("chuyen di: " + data.datcho.madatcho);
 		}).error(function(err) {
 			errorService.setError('Lỗi xảy ra trong quá trình đặt chỗ. Vui lòng thử lại sau!');
 			$state.go('error');
@@ -413,7 +399,6 @@ app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListSe
 			console.log("dat cho chuyen ve");
 			$http.post(reqURL, body).success(function(data) {
 				infoService.setArriveInfo(data.datcho);
-				infoService.setArrivePrice(body.datcho.mucgia);
 			}).error(function(err) {
 				errorService.setError('Lỗi xảy ra trong quá trình đặt chỗ. Vui lòng thử lại sau!');
 				$state.go('error');
@@ -436,6 +421,10 @@ app.controller('VerifyCtrl',['$http', '$state', '$timeout', 'infoService','serve
 		this.isRoundTrip = true;
 	} else {
 		this.isRoundTrip = false;
+	}
+
+	this.goHome - function() {
+		$state.go('home');
 	}
 
 	this.check = function() {
@@ -577,6 +566,7 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 		};
 		this.persons.push(p);
 	}
+
 	this.checkValidForm = function() {
 		for(var i = 0; i < infoService.getTicketCount(); i++) {
 			if(this.persons[i].title.length == 0 || this.persons[i].lastName.length == 0 || this.persons[i].firstName.length == 0)
@@ -596,10 +586,17 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 			$state.go('verify');
 		}
 	};
+
+	this.goHome = function() {
+		$state.go('home');
+	}
 }]);
 
-app.controller('SuccessCtrl',['$http', '$state', function($http, $state) {	
+app.controller('SuccessCtrl',['$http', '$state', 'infoService', function($http, $state) {	
 	var ctrl = this;
+
+	this.info = infoService.getInfo();
+
 	this.goHome = function() {
 		$state.go('home');
 	}

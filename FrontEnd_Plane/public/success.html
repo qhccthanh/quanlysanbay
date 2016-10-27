@@ -5,13 +5,80 @@
         <span>Thành công</span>
       </h2>
     </md-toolbar>
+
     <md-card-content>
-      <div layout="row" layout-align="start" style="margin-bottom: 20px; margin-top: 5px; color: #F44336;">
-        Đã đặt vé thành công
-      </div>
+      <md-list>
+        <md-subheader class="md-no-sticky">Thông tin hành khách</md-subheader>
+        
+        <div ng-repeat="person in successCtrl.info.persons">
+          <md-list-item class="md-2-line">
+            <div class="md-list-item-text">
+                <h3> {{ person.title }} </h3>
+              </div>
+              <div class="md-list-item-text">
+                <p> Họ </p>
+                <h3> {{ person.lastName }} </h3>
+              </div>
+              <div class="md-list-item-text">
+                <p> Tên </p>
+                <h3> {{ person.firstName }} </h3>
+              </div>
+          </md-list-item>
+        </div>
+
+        <md-subheader class="md-no-sticky">Thông tin vé</md-subheader>
+        
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Giá vé </h3>
+            <p> {{ successCtrl.info.price }} </p>
+          </div>
+        </md-list-item>
+        
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Số vé </h3>
+            <p> {{ successCtrl.info.sove }} </p>
+          </div>
+        </md-list-item>
+        
+        <md-subheader class="md-no-sticky">Chiều đi</md-subheader>
+        
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Chuyến bay </h3>
+            <p> {{ successCtrl.info.chuyendi.machuyenbay }} </p>
+          </div>
+        </md-list-item>
+        
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <h3> Thời gian đi </h3>
+            <p> {{ successCtrl.info.chuyendi.ngaydi }} </p>
+          </div>
+        </md-list-item>
+        
+        <div ng-show="successCtrl.isRoundTrip">
+          <md-subheader class="md-no-sticky">Chiều về</md-subheader>
+          
+          <md-list-item class="md-2-line">
+            <div class="md-list-item-text">
+              <h3> Chuyến bay </h3>
+              <p> {{ successCtrl.info.chuyenve.machuyenbay }} </p>
+            </div>
+          </md-list-item>
+          
+          <md-list-item class="md-2-line">
+            <div class="md-list-item-text">
+              <h3> Thời gian đi </h3>
+              <p> {{ successCtrl.info.chuyenve.ngaydi }} </p>
+            </div>
+          </md-list-item>
+        </div>
+      </md-list>
 
       <div layout="row" layout-align="end">
-        <md-button class="md-raised md-primary" ng-click="successCtrl.goHome()">Quay lại</md-button>
+        <md-button class="md-raised md-primary" ng-click="successCtrl.goHome()">Trang chủ</md-button>
       </div>
     </md-card-content>
   </md-card>
