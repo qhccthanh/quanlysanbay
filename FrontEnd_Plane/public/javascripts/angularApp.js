@@ -87,8 +87,6 @@ app.service('planeListService', function() {
 
 /*--------------------------------------INFO SERVICE--------------------------------------*/
 app.service('infoService', function() {
-	var service = this;
-
 	this.info = {};
 
 	this.updateInfo = function(data) {
@@ -96,7 +94,7 @@ app.service('infoService', function() {
 	}
 
 	this.getInfo = function() {
-		return service.info;
+		return this.info;
 	}
 
 	this.setTicketCount = function(n) {
@@ -125,6 +123,10 @@ app.service('infoService', function() {
 		if (this.info.chuyenve != null) {
 			this.info.chuyenve.mucgia = code;
 		}
+	}
+
+	this.setSumPrice = function(price) {
+		this.info.price = price;
 	}
 });
 
@@ -360,6 +362,7 @@ app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListSe
 			return;
 		}
 
+		var sumPrice = tickets * ctrl.departList[ctrl.departId].giaban;
 		
 		var timeString = ctrl.departList[ctrl.departId].ngaydi;
 		var str = (timeString || "").replace(/-/g,"/").replace(/[TZ]/g," ");
@@ -405,6 +408,8 @@ app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListSe
 				}
 			};
 
+			sumPrice += tickets * ctrl.arriveList[ctrl.arriveId].giaban;
+
 			console.log("dat cho chuyen ve");
 			$http.post(reqURL, body).success(function(data) {
 				infoService.setArriveInfo(data.datcho);
@@ -415,6 +420,7 @@ app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListSe
 			});
 		}
 
+		infoService.setSumPrice(sumPrice);
 		$state.go('info');
 	}
 }]);
