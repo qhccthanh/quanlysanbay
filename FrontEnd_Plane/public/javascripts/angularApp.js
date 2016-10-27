@@ -443,91 +443,39 @@ app.controller('VerifyCtrl',['$http', '$state', '$timeout', 'infoService','serve
 		console.log(body);
 		var reqURL = serverService.getServer() + '/datcho';
 		$http.put(reqURL, body).success(function(data) {
-			// var bodyChangBay = {};
-			// bodyChangBay.chuyenbay  = [];
 
-			// var findDot = data.datcho.ngaydi.search("T");
-			
-
-			// var chuyenbay = {
-			// 	"machuyenbay": data.datcho.machuyenbay,
-			// 	"masanbaydi": data.datcho.masanbaydi,
-			// 	"masanbayden": data.datcho.masanbayden,
-			// 	"ngaydi": data.datcho.ngaydi.substring(findDot, 0),
-			// 	"giodi": data.datcho.giodi.substring(5,0),
-			// 	"hang": data.datcho.hang,
-			// 	"mucgia": ctrl.info.chuyendi.mucgia,
-			// 	"hanhkhach": body.datcho.hanhkhach
-			// };
-			// for(var i = 0; i < chuyenbay.hanhkhach.length; i++){
-			// 	chuyenbay.hanhkhach[i].madatcho = body.datcho.madatcho;
-			// }
-			// bodyChangBay.chuyenbay.push(chuyenbay);
-
-			// $http.post(serverService.getServer() + "/chuyenbay", bodyChangBay).success(function (data) {
-			// 	$state.go('success');
-			// }).error(function(err) {
-			// 	console.log(bodyChangBay);
-			// 	console.log("loi chuyen bay 1");
-			// 	errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
-			// 	$state.go('error');
-			// });
-			$state.go('success');
+			if (ctrl.isRoundTrip) {
+				var  body = {};
+				body.datcho = {};
+				body.datcho.madatcho = ctrl.info.chuyenve.madatcho;
+				body.datcho.hanhkhach = [];
+				for(var i = 0; i < ctrl.info.persons.length; i++) {
+					var hanhkhach = {
+						"danhxung": ctrl.info.persons[i].title,
+						"ho": ctrl.info.persons[i].lastName,
+						"ten": ctrl.info.persons[i].firstName
+					}
+					body.datcho.hanhkhach.push(hanhkhach);
+				}
+				console.log(body);
+				var reqURL = serverService.getServer() + '/datcho';
+				$http.put(reqURL, body).success(function(data) {
+					$state.go('success');
+				}).error(function(err) {
+					console.log("loi dat cho 2");
+					errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
+					$state.go('error');
+				});
+			} else {
+				$state.go('success');
+			}
 		}).error(function(err) {
 			console.log("loi dat cho 1");
 			errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
 			$state.go('error');
 		});
 
-		if (this.isRoundTrip) {
-				var  body = {};
-			body.datcho = {};
-			body.datcho.madatcho = this.info.chuyenve.madatcho;
-			body.datcho.hanhkhach = [];
-			for(var i = 0; i < this.info.persons.length; i++) {
-				var hanhkhach = {
-					"danhxung": this.info.persons[i].title,
-					"ho": this.info.persons[i].lastName,
-					"ten": this.info.persons[i].firstName
-				}
-				body.datcho.hanhkhach.push(hanhkhach);
-			}
-			console.log(body);
-			var reqURL = serverService.getServer() + '/datcho';
-			$http.put(reqURL, body).success(function(data) {
-				// var bodyChangBay = {};
-				// bodyChangBay.chuyenbay  = [];
-				// var findDot = data.datcho.ngaydi.search("T");
-			
-				// var chuyenbay = {
-				// 	"machuyenbay": data.datcho.machuyenbay,
-				// 	"masanbaydi": data.datcho.masanbaydi,
-				// 	"masanbayden": data.datcho.masanbayden,
-				// 	"ngaydi": data.datcho.ngaydi.substring(findDot, 0),
-				// 	"giodi": data.datcho.giodi.substring(5,0),
-				// 	"hang": data.datcho.hang,
-				// 	"mucgia": ctrl.info.chuyenve.mucgia,
-				// 	"hanhkhach": body.datcho.hanhkhach
-				// };
-				// for(var i = 0; i < chuyenbay.hanhkhach.length; i++){
-				// 	chuyenbay.hanhkhach[i].madatcho = body.datcho.madatcho;
-				// }
-				// bodyChangBay.chuyenbay.push(chuyenbay);
-
-				// $http.post(serverService.getServer() + "/chuyenbay", bodyChangBay).success(function (data) {
-				// 	$state.go('success');
-				// }).error(function(err) {
-				// 	console.log("loi chuyen bay 2");
-				// 	errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
-				// 	$state.go('error');
-				// });
-				$state.go('success');
-			}).error(function(err) {
-				console.log("loi dat cho 2");
-				errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
-				$state.go('error');
-			});
-		}
+		
 	}
 
 }]);
@@ -592,11 +540,15 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 	}
 }]);
 
-app.controller('SuccessCtrl',['$http', '$state', 'infoService', function($http, $state) {	
+app.controller('SuccessCtrl',['$http', '$state', 'infoService', function($http, $state, infoService) {	
 	var ctrl = this;
 
 	this.info = infoService.getInfo();
-
+	if (this.info.chuyenve != null){
+		this.isRoundTrip = true;
+	} else {
+		this.isRoundTrip = false;
+	}
 	this.goHome = function() {
 		$state.go('home');
 	}
