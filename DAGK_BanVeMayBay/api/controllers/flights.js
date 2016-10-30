@@ -34,7 +34,7 @@ setInterval(function () {
 // GET chuyenbay/?
 function getFlight(req,res,next) {
 
-	// Required
+	
 	var fromID = req.swagger.params.masanbaydi.value;
 	var toID = req.swagger.params.masanbayden.value;
 	var fromTimeStamp = req.swagger.params.ngaydi.value; 
@@ -44,15 +44,40 @@ function getFlight(req,res,next) {
 	var hangVe = req.swagger.params.hang.value; 
 	var mucgia = req.swagger.params.mucgia.value; 
 	var soluongghe = req.swagger.params.soluongghe.value; 
+	var batdau = req.swagger.params.batdau.value; 
+	var ketthuc = req.swagger.params.ketthuc.value; 
 
-	console.log(fromID);
-	console.log(toID);
+	var fromDate = "2016-05-16";
 
-	var fromDate = dateformat(new Date(fromTimeStamp * 1000), "yyyy-mm-dd");
+	var queryString = "SELECT * from chuyenbay where ( 1 ";
+	var nBatDau = 0;
+	var nKetThuc = 50 ;
 
-	var queryString = "SELECT * from chuyenbay where (masanbaydi = \'" + fromID + "\' AND masanbayden = \'" + toID + "\' AND ngaydi = \'" + fromDate + "\'";
+	if (batdau != undefined && batdau > 0) {
+		nBatDau = batdau;
+	}
 
+	if (ketthuc != undefined && ketthuc > 0 ) {
+		nKetThuc = ketthuc - nBatDau;
+	}
+
+	var limitString = util.format("LIMIT %d,%d", nBatDau, nKetThuc);
+	console.log(limitString);
 	var tempQuery = " ";
+
+	if (fromID != undefined) {
+		tempQuery += " AND masanbaydi = \'" + fromID + "\'";
+	}
+
+	if (toID != undefined) {
+		tempQuery += " AND masanbayden = \'" + toID + "\'";
+	}
+
+	if (fromTimeStamp != undefined) {
+		fromDate = dateformat(new Date(fromTimeStamp * 1000), "yyyy-mm-dd");
+		tempQuery += " AND ngaydi = " + fromDate ;
+	}
+
 	if (hangVe != undefined) {
 		tempQuery += " AND hang = \'" + hangVe + "\'";
 	}
@@ -65,14 +90,15 @@ function getFlight(req,res,next) {
 		tempQuery += " AND soghe >= " + soluongghe ;
 	}
 
-	queryString += tempQuery + " )";
+	queryString += (tempQuery + " ) " + limitString);
 
 	if (toTimeStamp != undefined) {
 
 		var toDate = dateformat(new Date(toTimeStamp * 1000), "yyyy-mm-dd");
 
 		queryString += " OR ( masanbaydi = \'" + toID + "\' AND masanbayden = \'" + fromID + "\' AND ngaydi = \'" + toDate + "\'";
-		queryString += tempQuery + ")";
+
+		queryString += (tempQuery + ") " + limitString);
 	}
 
 	console.log(queryString);
@@ -83,7 +109,7 @@ function getFlight(req,res,next) {
 			//console.log(results);
 
 			if (results.length == 0) {
-				res.sendStatus(404);
+				res.status(404).send({"message": "Không có chuyến bay nào"});
 				return;
 			}
 
@@ -96,7 +122,7 @@ function getFlight(req,res,next) {
 				itemKeys.forEach(function(key) {
 					object[key] = item[key];
 				});
-				console.log(object);
+			//	console.log(object);
 				values.push(object);
 			});
 
@@ -109,7 +135,7 @@ function getFlight(req,res,next) {
 				} 
 			});	
 		} else {
-			res.sendStatus(404);
+			res.status(404).send({"message": "Có lỗi xãy ra vùi lòng thử lại"});
 		}
 	});
 }

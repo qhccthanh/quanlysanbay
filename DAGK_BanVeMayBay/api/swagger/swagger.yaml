@@ -57,17 +57,17 @@ paths:
           type: string
           in: query
           description: Mã sân bay đi
-          required: true
+          required: false
         - name: masanbayden
           type: string
           in: query
           description: Mã sân bay đến
-          required: true
+          required: false
         - name: ngaydi
           type: number
           in: query
           description: TimeStamp ngày đi
-          required: true
+          required: false
         - name: ngayve
           type: number
           in: query
@@ -87,6 +87,16 @@ paths:
           type: number
           in: query
           description: Số lượng ghế tìm kiếm mặc định là 1
+          required: false
+        - name: batdau
+          type: number
+          in: query
+          description: Chi so chuyen bay bat dau
+          required: false
+        - name: ketthuc
+          type: number
+          in: query
+          description: Chi so chuyen bay ket thuc
           required: false
       responses:
         "200":
