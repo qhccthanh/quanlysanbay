@@ -57,25 +57,36 @@ app.service('serverService', function() {
 app.service('planeListService', function() {
 	var service = this;
 
-	this.planeList = [];
+	this.planeList = {};
+	this.isRoundTrip = false;
 
-	this.updatePlaneList = function(data) {
-		service.planeList = [];
+	this.updatePlaneList = function(data, isRoundTrip) {
+		service.planeList = {};
+		service.isRoundTrip = isRoundTrip;
 
-		if (data != null && data.length > 0) {
-			service.planeList = data;
+		if (data != null) {
+			service.planeList = data.chuyenbay;
 		}
+
+		console.log('planeListService:');
+		console.log(service.planeList);
 	}
 
-	this.getPlaneList = function() {
-		return service.planeList;
+	this.getDepartList = function() {
+		return service.planeList.chuyendi;
+	}
+
+	this.getArriveList = function() {
+		return service.planeList.chuyenve;
+	}
+
+	this.getIsRoundTrip = function() {
+		return service.isRoundTrip;
 	}
 });
 
 /*--------------------------------------INFO SERVICE--------------------------------------*/
 app.service('infoService', function() {
-	var service = this;
-
 	this.info = {};
 
 	this.updateInfo = function(data) {
@@ -83,7 +94,27 @@ app.service('infoService', function() {
 	}
 
 	this.getInfo = function() {
-		return service.info;
+		return this.info;
+	}
+
+	this.setTicketCount = function(n) {
+		this.info.sove = parseInt(n);
+	}
+
+	this.setDepartInfo = function(data) {
+		this.info.chuyendi = data;
+	}
+
+	this.setArriveInfo = function(data) {
+		this.info.chuyenve = data;
+	}
+
+	this.getTicketCount = function() {
+		return this.info.sove;
+	}
+
+	this.setSumPrice = function(price) {
+		this.info.price = price;
 	}
 });
 
@@ -107,8 +138,8 @@ app.service('errorService', function() {
 })
 
 /*--------------------------------------MAIN CONTROLLER--------------------------------------*/
-app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'errorService', 
-							function($http, $timeout, $state, serverService, errorService) {
+app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'planeListService', 'infoService', 'errorService', 
+							function($http, $timeout, $state, serverService, planeListService, infoService, errorService) {
 	// MainCtrl
 	var ctrl = this;
 
@@ -176,9 +207,6 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 
 	this.departDateChanged = function() {
 		var curDate = ctrl.getCurrentDate();
-		
-		console.log("Ngay di: " + ctrl.departDate.getTime());
-		console.log("Ngay hien tai: " + curDate);
 
 		if (ctrl.departDate.getTime() < curDate) {
 			ctrl.departDate = null;
@@ -210,7 +238,6 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 		ctrl.arriveId = null;
 
 		$http.get(reqURL).success(function(data) {
-			console.log(data);
 			ctrl.listArrive = data.sanbay;
 		});
 	}
@@ -221,17 +248,17 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 			|| ctrl.arriveId == null
 			|| (ctrl.isRoundTrip && ctrl.arriveDate == null)) {
 			return false;
+		}
+
+		return true;
 	}
 
-	return true;
-}
 	this.submit = function() {
 		if (!ctrl.checkValidForm()) {
 			ctrl.showNotify('Bạn chưa điền đủ thông tin hoặc thông tin chưa hợp lệ');
 
-
-		return;
-	}
+			return;
+		}
 
 		var reqURL = serverService.getServer() + '/chuyenbay?masanbaydi=' + ctrl.departId
 						+ '&masanbayden=' + ctrl.arriveId
@@ -255,10 +282,11 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 
 		var x = 'Tất cả';
 
-		console.log(x == 'Tất cả');
 		console.log(reqURL);
 
 		$http.get(reqURL).success(function(data) {
+			planeListService.updatePlaneList(data, ctrl.isRoundTrip);
+			infoService.setTicketCount(ctrl.seats);
 			$state.go('planelist');
 		}).error(function(err) {
 			errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
@@ -268,42 +296,186 @@ app.controller('MainCtrl',['$http', '$timeout', '$state', 'serverService', 'erro
 }]);
 
 /*--------------------------------------PLANE LIST CONTROLLER--------------------------------------*/
-app.controller('PlaneListCtrl',['$http', '$state', function($http, $state) {	
+app.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListService', 'infoService', 'errorService',
+								function($http, $state, serverService, planeListService, infoService, errorService) {	
 	var ctrl = this;
 
-	this.isEmpty = false;
+	this.isRoundTrip = false;
+	this.isDepartEmpty = true;
+	this.isArriveEmpty = true;
+	this.departList = [];
+	this.arriveList = [];
+
+	this.departId = -1;
+	this.arriveId = -1;
+
+	this.departCode = 'Chưa chọn';
+	this.arriveCode = 'Chưa chọn';
+
+	this.init = function() {
+		ctrl.departList = planeListService.getDepartList();
+		ctrl.arriveList = planeListService.getArriveList();
+		ctrl.isRoundTrip = planeListService.getIsRoundTrip();
+
+		if (ctrl.departList != null && ctrl.departList.length > 0) {
+			ctrl.isDepartEmpty = false;
+		}
+
+		if (ctrl.arriveList != null && ctrl.arriveList.length > 0) {
+			ctrl.isArriveEmpty = false;
+		}
+	}
+
+	this.init();
+
+	this.departClick = function(id) {
+		ctrl.departId = id;
+		ctrl.departCode = ctrl.departList[id].machuyenbay;
+	}
+
+	this.arriveClick = function(id) {
+		ctrl.arriveId = id;
+		ctrl.arriveCode = ctrl.arriveList[id].machuyenbay;
+	}
 
 	this.goHome = function() {
 		$state.go('home');
 	}
+
+	this.submit = function() {
+		var reqURL = serverService.getServer() + "/datcho";
+		var tickets = infoService.getTicketCount();
+
+		if (ctrl.departId == -1) {
+			return;
+		}
+
+		var sumPrice = tickets * ctrl.departList[ctrl.departId].giaban;
+		
+		var timeString = ctrl.departList[ctrl.departId].ngaydi;
+		var str = (timeString || "").replace(/-/g,"/").replace(/[TZ]/g," ");
+		var findDot = str.search(".000");
+		console.log(str.substring(findDot, 0));
+		var dateD = new Date(str.substring(findDot, 0));
+
+		var body = {
+			"datcho": {
+				"machuyenbay": ctrl.departList[ctrl.departId].machuyenbay,
+				"ngaydi": dateD.getTime()/1000,	// parse doan nay ra lay ngay
+				"hang": ctrl.departList[ctrl.departId].hang,
+				"mucgia": ctrl.departList[ctrl.departId].muc,
+				"soghe": tickets
+			}
+		};
+
+		console.log("dat cho chuyen di");
+		console.log(body);
+		$http.post(reqURL, body).success(function(data) {
+			infoService.setDepartInfo(data.datcho);
+		}).error(function(err) {
+			errorService.setError('Lỗi xảy ra trong quá trình đặt chỗ. Vui lòng thử lại sau!');
+			$state.go('error');
+		});
+
+		var timeString = ctrl.departList[ctrl.departId].ngaydi;
+		var str = (timeString || "").replace(/-/g,"/").replace(/[TZ]/g," ");
+		var findDot = str.search(".000");
+		console.log(str.substring(findDot, 0));
+		var dateD = new Date(str.substring(findDot, 0));
+
+		if (ctrl.arriveId != -1) {
+			body = {
+				"datcho": {
+					"machuyenbay": ctrl.arriveList[ctrl.arriveId].machuyenbay,
+					"ngaydi": dateD.getTime()/1000,	// parse doan nay ra lay ngay
+					"hang": ctrl.arriveList[ctrl.arriveId].hang,
+					"mucgia": ctrl.arriveList[ctrl.arriveId].muc,
+					"soghe": tickets
+				}
+			};
+
+			sumPrice += tickets * ctrl.arriveList[ctrl.arriveId].giaban;
+
+			console.log("dat cho chuyen ve");
+			$http.post(reqURL, body).success(function(data) {
+				infoService.setArriveInfo(data.datcho);
+			}).error(function(err) {
+				errorService.setError('Lỗi xảy ra trong quá trình đặt chỗ. Vui lòng thử lại sau!');
+				$state.go('error');
+			});
+		}
+
+		infoService.setSumPrice(sumPrice);
+		$state.go('info');
+	}
 }]);
 
-/*--------------------------------------MAIN CONTROLLER--------------------------------------*/
-app.controller('VerifyCtrl',['$http', '$timeout', 'infoService','serverService', 'errorService', function($http, $timeout, infoService, serverService, errorService) {
+
+/*--------------------------------------Verify CONTROLLER--------------------------------------*/
+app.controller('VerifyCtrl',['$http', '$state', '$timeout', 'infoService','serverService', 'errorService', function($http, $state, $timeout, infoService, serverService, errorService) {
 	var ctrl = this;
 	this.info = infoService.getInfo();
 
-	this.verify = function() {
+	console.log(this.info);
+	if (this.info.chuyenve != null){
+		this.isRoundTrip = true;
+	} else {
+		this.isRoundTrip = false;
+	}
+
+	this.goHome - function() {
+		$state.go('home');
+	}
+
+	this.check = function() {
 		var  body = {};
 		body.datcho = {};
-		body.datcho.madacho = info.madacho;
+		body.datcho.madatcho = this.info.chuyendi.madatcho;
 		body.datcho.hanhkhach = [];
-		for(var i = 0; i < info.persons.length; i++) {
+		for(var i = 0; i < this.info.persons.length; i++) {
 			var hanhkhach = {
-				"danhxung": info.persons[i].title,
-				"ho": info.persons[i].lastName,
-				"ten": info.persons[i].firstName
+				"danhxung": this.info.persons[i].title,
+				"ho": this.info.persons[i].lastName,
+				"ten": this.info.persons[i].firstName
 			}
 			body.datcho.hanhkhach.push(hanhkhach);
 		}
-
+		console.log(body);
 		var reqURL = serverService.getServer() + '/datcho';
-		$http.put(reqURL).success(function(data) {
-			$state.go('success');
+		$http.put(reqURL, body).success(function(data) {
+
+			if (ctrl.isRoundTrip) {
+				var  body = {};
+				body.datcho = {};
+				body.datcho.madatcho = ctrl.info.chuyenve.madatcho;
+				body.datcho.hanhkhach = [];
+				for(var i = 0; i < ctrl.info.persons.length; i++) {
+					var hanhkhach = {
+						"danhxung": ctrl.info.persons[i].title,
+						"ho": ctrl.info.persons[i].lastName,
+						"ten": ctrl.info.persons[i].firstName
+					}
+					body.datcho.hanhkhach.push(hanhkhach);
+				}
+				console.log(body);
+				var reqURL = serverService.getServer() + '/datcho';
+				$http.put(reqURL, body).success(function(data) {
+					$state.go('success');
+				}).error(function(err) {
+					console.log("loi dat cho 2");
+					errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
+					$state.go('error');
+				});
+			} else {
+				$state.go('success');
+			}
 		}).error(function(err) {
+			console.log("loi dat cho 1");
 			errorService.setError('Đã có lỗi xảy ra, vui lòng thử lại sau!');
 			$state.go('error');
 		});
+
+		
 	}
 
 }]);
@@ -325,6 +497,7 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 	this.titleArray = ['Ông', 'Bà', 'Cô'];
 	this.isNotify = false;
 	this.notifyMsg = '';
+	
 
 	this.showNotify = function(msg) {
 		ctrl.notifyMsg = msg;
@@ -333,8 +506,7 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 	}
 
 	this.persons = [];
-	var count1 = 2;
-	for(var i = 0; i < count1; i++) {
+	for(var i = 0; i < infoService.getTicketCount(); i++) {
 		var p = {
 			"title": "",
 			"lastName": "",
@@ -342,8 +514,9 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 		};
 		this.persons.push(p);
 	}
+
 	this.checkValidForm = function() {
-		for(var i = 0; i < count1; i++) {
+		for(var i = 0; i < infoService.getTicketCount(); i++) {
 			if(this.persons[i].title.length == 0 || this.persons[i].lastName.length == 0 || this.persons[i].firstName.length == 0)
 				return false;
 		}
@@ -355,16 +528,27 @@ app.controller('InfoCtrl',['$http', '$timeout', '$state','infoService', function
 		ctrl.showNotify('Vui lòng điền đầy đủ thông tin');
 			return;
 		} else {
-			var info = {};
+			var info = infoService.getInfo();
 			info.persons = this.persons;
 			infoService.updateInfo(info);
 			$state.go('verify');
 		}
 	};
+
+	this.goHome = function() {
+		$state.go('home');
+	}
 }]);
 
-app.controller('SuccessCtrl',['$http', '$state', function($http, $state) {	
+app.controller('SuccessCtrl',['$http', '$state', 'infoService', function($http, $state, infoService) {	
 	var ctrl = this;
+
+	this.info = infoService.getInfo();
+	if (this.info.chuyenve != null){
+		this.isRoundTrip = true;
+	} else {
+		this.isRoundTrip = false;
+	}
 	this.goHome = function() {
 		$state.go('home');
 	}
