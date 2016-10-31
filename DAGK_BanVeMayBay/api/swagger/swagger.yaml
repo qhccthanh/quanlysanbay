@@ -115,6 +115,11 @@ paths:
       operationId: insertFlight
       description: Thêm chuyến bay 
       parameters:
+      - name: token
+        type: string
+        in: query
+        description: Token key
+        required: true
       - name: chuyenbay
         in: body
         description: chuyến bay thêm vào
@@ -174,6 +179,11 @@ paths:
           required: true
           schema:
             $ref: "#/definitions/FlightInfo"
+        - name: token
+          type: string
+          in: query
+          description: Token key
+          required: true
         responses:
           "200":
             description: Success
@@ -221,6 +231,11 @@ paths:
         in: query
         description: Mức giá của vé mặc định là tất cả "E,F,G"
         required: true
+      - name: token
+        type: string
+        in: query
+        description: Token key
+        required: true
       responses:
         "200":
           description: Success
@@ -267,7 +282,32 @@ paths:
         default:
           description: Error
           schema:
-            $ref: "#/definitions/ErrorResponse"  
+            $ref: "#/definitions/ErrorResponse"
+  /chungthuc:
+    x-swagger-router-controller: authenticate
+    post:
+      operationId: authenticate
+      description: Đăng nhập
+      parameters:
+      - name: authenticate
+        in: body
+        description: username password
+        required: true
+        schema:
+          $ref: "#/definitions/UserInfo"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        "404":
+          description: Failure
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /datcho:
     x-swagger-router-controller: book
     get:
@@ -802,6 +842,17 @@ definitions:
             },
           ]
       }
+  UserInfo:
+    required:
+      - user
+    properties:
+      user: 
+        type: object
+        properties:
+          username:
+            type: string
+          password:
+            type: string
   ErrorResponse:
     properties:
       message:

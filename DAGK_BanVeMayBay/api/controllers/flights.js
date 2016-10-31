@@ -5,6 +5,8 @@ var util = require("util");
 var fs = require("fs");
 var mysql = require("mysql");
 var dateformat = require("dateformat");
+var jwt = require('./authenticate.js').jwt;
+var serectKey = require('./authenticate.js').serectKey;
 
 var generateUUID = require(__dirname + "/helper/" + "generateUUID");
 var helper = require(__dirname + "/helper/" + "helper");
@@ -245,6 +247,13 @@ function insertFlight(req,res,next) {
 	var muc = chuyenbay.muc;
 	var soghe = chuyenbay.soghe;
 	var giaban = chuyenbay.giaban;
+	var token = req.swagger.params.token.value;
+
+	var valueFromToken = verifyToken(token);
+	if (valueFromToken == null) {
+		res.status(404).send({"message" : "token key không đúng"});
+		return;
+	} 
 
 	var ngaydi = dateformat(new Date(ngaygiodi * 1000), "yyyy-mm-dd");
 	var giodi = dateformat(new Date(ngaygiodi * 1000), "hh:MM");
@@ -346,9 +355,14 @@ function updateFlight(req,res,next) {
 
  	var hangVe = req.swagger.params.hang.value; 
  	var mucgia = req.swagger.params.mucgia.value; 
+ 	var token = req.swagger.params.token.value;
 	var fromTimeString = dateformat(new Date(fromTimeStamp * 1000), "yyyy-mm-dd");
 
-
+	var valueFromToken = verifyToken(token);
+	if (valueFromToken == null) {
+		res.status(404).send({"message" : "token key không đúng"});
+		return;
+	} 
 
 	var whereString = util.format("machuyenbay = \'%s\' AND masanbaydi = \'%s\' AND masanbayden = \'%s\' AND ngaydi  = \'%s\' AND hang = \'%s\' AND muc = \'%s\'", flightID, fromID,toID,fromTimeString,hangVe,mucgia);
 	console.log(whereString);
@@ -380,8 +394,16 @@ function deleteFlight(req,res,next) {
 	var toID = req.swagger.params.masanbayden.value;
 	var fromTimeStamp = req.swagger.params.ngaydi.value; 
  	var hangVe = req.swagger.params.hang.value; 
- 	var mucgia = req.swagger.params.mucgia.value; 
+ 	var mucgia = req.swagger.params.mucgia.value;
+ 	var token = req.swagger.params.token.value;
+
 	var fromTimeString = dateformat(new Date(fromTimeStamp * 1000), "yyyy-mm-dd");
+
+	var valueFromToken = verifyToken(token);
+	if (valueFromToken == null) {
+		res.status(404).send({"message" : "token key không đúng"});
+		return;
+	} 
 
 	var whereString = util.format("machuyenbay = \'%s\' AND masanbaydi = \'%s\' AND masanbayden = \'%s\' AND ngaydi = \'%s\' AND hang = \'%s\' AND muc = \'%s\'", flightID, fromID,toID,fromTimeString,hangVe,mucgia);
 	console.log(whereString);
@@ -400,7 +422,21 @@ function deleteFlight(req,res,next) {
 	})
 }
 
+// verifyToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjoibWFnaWMiLCJhZ2VudCI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzEyXzApIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS81My4wLjI3ODUuMTQzIFNhZmFyaS81MzcuMzYiLCJleHAiOjE0Nzg1MTA5OTUsImlhdCI6MTQ3NzkwNjE5NX0.424fNJfq9bw3z8TNlQBGGQl9igOgJqxCNlqybqJ7GYU");
 
+
+function verifyToken(token) {
+	// verify a token symmetric - synchronous
+	try {
+		var decoded = jwt.verify(token, serectKey);
+
+		return decoded;
+	} catch(e) {
+		console.log(e);
+		return null;
+	}
+	
+}
 
 
 
