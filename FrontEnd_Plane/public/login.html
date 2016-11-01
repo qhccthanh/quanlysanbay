@@ -1,0 +1,31 @@
+<div ng-cloak layout="row" layout-align="center">
+  <md-card flex="50">
+  	<md-toolbar class="md-theme-light">
+      <h2 class="md-toolbar-tools">
+        <span>Đăng nhập</span>
+      </h2>
+    </md-toolbar>
+
+    <md-card-content>
+    	<div layout="row" layout-align="end" style="margin-bottom: 5px; margin-top: 5px; color: #F44336;" ng-show="loginCtrl.isNotify">
+        {{loginCtrl.notifyMsg}}
+      </div>
+
+    	<div layout="row" layout-align="space-between">
+	      <md-input-container class="md-block" flex-gt-sm>
+	        <label>Tên đăng nhập<span style="color: #F44336;"> *</span></label>
+	        <input ng-model="loginCtrl.username">
+	      </md-input-container>
+
+	      <md-input-container class="md-block" flex-gt-sm>
+	        <label>Mật khẩu<span style="color: #F44336;"> *</span></label>
+	        <input ng-model="loginCtrl.password" type="password">
+	      </md-input-container>
+	    </div>
+
+	    <div layout="row" layout-align="end">
+        <md-button class="md-raised md-primary" ng-click="loginCtrl.login()">Đăng nhập</md-button>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>

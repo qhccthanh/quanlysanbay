@@ -4,6 +4,10 @@ var app = angular.module('planeApp', ['ngMaterial', 'ui.router'])
 	$mdThemingProvider.theme('default')
 	.primaryPalette('pink')
 	.accentPalette('orange');
+
+	$mdThemingProvider.theme('admin')
+	.primaryPalette('yellow')
+	.dark();
 });
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -16,7 +20,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
 		})
 		.state('planelist', {
 			url : '/planelist',
-			templateUrl : '/planeslist.html',
+			templateUrl : '/planeList.html',
 			controller : 'PlaneListCtrl as planeListCtrl',
 		})
 		.state('info', {
@@ -38,6 +42,21 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			url: '/success',
 			templateUrl: '/success.html',
 			controller: 'SuccessCtrl as successCtrl'
+		})
+		.state('login', {
+			url: '/login',
+			templateUrl: '/login.html',
+			controller: 'LoginCtrl as loginCtrl'
+		})
+		.state('planeListAdmin', {
+			url: '/planeListAdmin',
+			templateUrl: '/planeListAdmin.html',
+			controller: 'PlaneListAdminCtrl as planeListAdminCtrl'
+		})
+		.state('updatePlane', {
+			url: '/updatePlane',
+			templateUrl: '/updatePlane.html',
+			controller: 'UpdatePlaneCtrl as updatePlaneCtrl'
 		})
     $urlRouterProvider.otherwise('home');
   }]);
