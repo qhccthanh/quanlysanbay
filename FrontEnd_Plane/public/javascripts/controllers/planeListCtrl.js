@@ -1,7 +1,7 @@
 'use strict';
 angular.module('planeApp')
-.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListService', 'infoService', 'errorService',
-								function($http, $state, serverService, planeListService, infoService, errorService) {	
+.controller('PlaneListCtrl',['$http', '$state', 'serverService', 'planeListService', 'infoService', 'timeService', 'errorService',
+								function($http, $state, serverService, planeListService, infoService, timeService, errorService) {	
 	var ctrl = this;
 
 	this.isRoundTrip = false;
@@ -81,17 +81,11 @@ angular.module('planeApp')
 			$state.go('error');
 		});
 
-		var timeString = ctrl.departList[ctrl.departId].ngaydi;
-		var str = (timeString || "").replace(/-/g,"/").replace(/[TZ]/g," ");
-		var findDot = str.search(".000");
-		console.log(str.substring(findDot, 0));
-		var dateD = new Date(str.substring(findDot, 0));
-
 		if (ctrl.arriveId != -1) {
 			body = {
 				"datcho": {
 					"machuyenbay": ctrl.arriveList[ctrl.arriveId].machuyenbay,
-					"ngaydi": dateD.getTime()/1000,	// parse doan nay ra lay ngay
+					"ngaydi": timeService.getDateFromString(ctrl.departList[ctrl.departId].ngaydi).getTime()/1000,
 					"hang": ctrl.arriveList[ctrl.arriveId].hang,
 					"mucgia": ctrl.arriveList[ctrl.arriveId].muc,
 					"soghe": tickets
