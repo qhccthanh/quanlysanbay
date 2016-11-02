@@ -1,0 +1,105 @@
+<div md-theme="admin" ng-cloak layout="row" layout-align="center">
+	<md-card flex="50">
+    <md-toolbar class="md-theme-light">
+      <h2 class="md-toolbar-tools">
+        <span>Cập nhật thông tin chuyến bay</span>
+      </h2>
+    </md-toolbar>
+
+    <md-content layout-padding>
+      <div layout="row" layout-align="end" style="margin-bottom: 5px; margin-top: 5px; color: #F44336;" ng-show="updatePlaneCtrl.isNotify">
+        {{updatePlaneCtrl.notifyMsg}}
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+      	<span>Mã chuyến bay</span>
+      	<md-input-container>
+      		<label>{{updatePlaneCtrl.plane.machuyenbay}}</label>
+      		<input ng-model="updatePlaneCtrl.plane.machuyenbay">
+      	</md-input-container>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+				<span>Mã sân bay đi</span>
+      	<md-select ng-model="updatePlaneCtrl.plane.masanbaydi" placeholder="Nơi đi" class="md-no-underline">
+      		<md-option ng-repeat="depart in updatePlaneCtrl.airportList" value="{{depart.idsanbay}}">
+            {{depart.city}}
+          </md-option>
+      	</md-select>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+				<span>Mã sân bay đến</span>
+      	<md-select ng-model="updatePlaneCtrl.plane.masanbayden" placeholder="Nơi đến" class="md-no-underline">
+      		<md-option ng-repeat="depart in updatePlaneCtrl.airportList" value="{{depart.idsanbay}}">
+            {{depart.city}}
+          </md-option>
+      	</md-select>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+      	<span>Ngày đi</span>
+      	<md-input-container>
+      		<md-datepicker ng-model="updatePlaneCtrl.departDate" md-placeholder="Ngày đi" ng-change="updatePlaneCtrl.dateChanged()"></md-datepicker>
+      	</md-input-container>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+				<span>Giờ đi</span>
+      	<md-input-container>
+      		<label>{{updatePlaneCtrl.departTime | date: "HH:mm:ss"}}</label>
+      		<input ng-model="updatePlaneCtrl.departTime" type="time" min="00:00:00" max="23:55:00" ng-change="updatePlaneCtrl.timeChanged()">
+      	</md-input-container>      	
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+				<span>Hạng</span>
+      	<md-input-container>
+      		<md-select ng-model="updatePlaneCtrl.plane.hang" placeholder="{{updatePlaneCtrl.plane.hang}}" class="md-no-underline">
+	      		<md-option ng-repeat="i in updatePlaneCtrl.defaultTypeArray" value="{{i}}">
+	            {{i}}
+	          </md-option>
+	      	</md-select>
+      	</md-input-container>      	
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+				<span>Mức</span>
+      	<md-input-container>
+      		<md-select ng-model="updatePlaneCtrl.plane.muc" placeholder="{{updatePlaneCtrl.plane.muc}}" class="md-no-underline">
+	      		<md-option ng-repeat="i in updatePlaneCtrl.defaultCostArray" value="{{i}}">
+	            {{i}}
+	          </md-option>
+	      	</md-select>
+      	</md-input-container>      	
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+				<span>Số ghế</span>
+      	<md-input-container>
+      		<label>{{updatePlaneCtrl.plane.soghe}}</label>
+      		<input ng-model="updatePlaneCtrl.plane.soghe" type="number" ng-change="updatePlaneCtrl.seatChanged()">
+      	</md-input-container>      	
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+				<span>Giá bán</span>
+      	<md-input-container>
+      		<label>{{updatePlaneCtrl.plane.giaban}}</label>
+      		<input ng-model="updatePlaneCtrl.plane.giaban" type="number" ng-change="updatePlaneCtrl.costChanged()">
+      	</md-input-container>      	
+      </div>
+
+      <div layout="row" layout-align="end" ng-show="updatePlaneCtrl.isCreateMode">
+        <md-button class="md-raised md-primary" ng-click="updatePlaneCtrl.create()">Thêm</md-button>
+        <md-button class="md-raised md-primary" ng-click="updatePlaneCtrl.goBack()">Quay lại</md-button>
+      </div>
+
+      <div layout="row" layout-align="end" ng-hide="updatePlaneCtrl.isCreateMode">
+        <md-button class="md-raised md-primary" ng-click="updatePlaneCtrl.update()">Cập nhật</md-button>
+        <md-button class="md-raised md-primary" ng-click="updatePlaneCtrl.delete()">Xóa</md-button>
+        <md-button class="md-raised md-primary" ng-click="updatePlaneCtrl.goBack()">Quay lại</md-button>
+      </div>
+    </md-content>
+  </md-card>
+</div>
