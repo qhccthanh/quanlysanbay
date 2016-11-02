@@ -1,7 +1,12 @@
 'use strict';
 angular.module('planeApp')
-.controller('LoginCtrl', ['$http', '$timeout', function($http, $timeout) {
+.controller('LoginCtrl', ['$http', '$timeout', 'serverService', 'errorService', 'auth', '$state', function($http, $timeout, serverService, errorService, auth, $state) {
 	var ctrl = this;
+
+	if (auth.isLoggedIn() == true){
+		$state.go('planeListAdmin');
+	}
+
 
 	this.notifyMsg = '';
 	this.isNotify = false;
@@ -19,11 +24,11 @@ angular.module('planeApp')
 		console.log(ctrl.username);
 		console.log(ctrl.password);
 
-		if (ctrl.username.length < 8 || ctrl.password.length < 8) {
+		if (ctrl.username.length < 3 || ctrl.password.length < 3) {
 			return false;
 		}
 
-		if ((ctrl.username.indexOf(' ') != -1) || (ctr.password.indexOf(' ') != -1)) {
+		if ((ctrl.username.indexOf(' ') != -1) || (ctrl.password.indexOf(' ') != -1)) {
 			return false;
 		}
 
@@ -35,6 +40,21 @@ angular.module('planeApp')
 
 		if (!ctrl.checkValidInfo()) {
 			ctrl.showNotify('Thông tin chưa hợp lệ');
+		} else {
+			var reqURL = serverService.getServer() + '/chungthuc';
+
+			var body = {
+				"user": {
+					"username": ctrl.username,
+					"password": ctrl.password
+				}
+			};
+
+			auth.logIn(body).error(function(error) {
+				console.log(error);
+			}).then(function() {
+				$state.go('planeListAdmin');
+			});
 		}
 	}
 }]);

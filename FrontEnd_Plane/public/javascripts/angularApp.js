@@ -60,3 +60,43 @@ app.config(['$stateProvider', '$urlRouterProvider',
 		})
     $urlRouterProvider.otherwise('home');
   }]);
+
+
+app.factory('auth', ['$http', '$window', 'serverService',
+function($http, $window, serverService) {
+  var auth = {};
+
+  auth.saveToken = function(token) {
+    $window.localStorage['plane-app-token'] = token;
+  };
+
+  auth.getToken = function() {
+    
+    return $window.localStorage['plane-app-token'];
+  }
+
+  auth.isLoggedIn = function() {
+    var token = auth.getToken();
+
+    if (token) {
+      var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+      return payload.exp > Date.now() / 1000;
+    } else {
+      return false;
+    }
+  };
+
+  auth.logIn = function(user) {
+  	var reqURL = serverService.getServer() + '/chungthuc';
+    return $http.post(reqURL, user).success(function(data) {
+      auth.saveToken(data.token);
+    });
+  };
+
+  auth.logOut = function() {
+    $window.localStorage.removeItem('plane-app-token');
+  };
+ 
+  return auth;
+}]);

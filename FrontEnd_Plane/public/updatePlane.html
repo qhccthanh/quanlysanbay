@@ -4,6 +4,9 @@
       <h2 class="md-toolbar-tools">
         <span>Cập nhật thông tin chuyến bay</span>
       </h2>
+      <div layout="row" layout-align="end" style="margin-bottom: 5px; margin-top: 5px;">
+          <md-button class="md-raised md-primary" ng-click="updatePlaneCtrl.logout()">Đăng xuất</md-button>
+      </div>
     </md-toolbar>
 
     <md-content layout-padding>
@@ -78,7 +81,7 @@
 				<span>Số ghế</span>
       	<md-input-container>
       		<label>{{updatePlaneCtrl.plane.soghe}}</label>
-      		<input ng-model="updatePlaneCtrl.plane.soghe" type="number" ng-change="updatePlaneCtrl.seatChanged()">
+      		<input ng-model="updatePlaneCtrl.plane.soghe" type="number">
       	</md-input-container>      	
       </div>
 
@@ -86,8 +89,12 @@
 				<span>Giá bán</span>
       	<md-input-container>
       		<label>{{updatePlaneCtrl.plane.giaban}}</label>
-      		<input ng-model="updatePlaneCtrl.plane.giaban" type="number" ng-change="updatePlaneCtrl.costChanged()">
+      		<input ng-model="updatePlaneCtrl.plane.giaban" type="number" >
       	</md-input-container>      	
+      </div>
+
+       <div layout="row" layout-align="end" style="margin-bottom: 5px; margin-top: 5px; color: #F44336;" ng-show="updatePlaneCtrl.isShowResult">
+        {{updatePlaneCtrl.resultMsg}}
       </div>
 
       <div layout="row" layout-align="end" ng-show="updatePlaneCtrl.isCreateMode">
@@ -100,6 +107,8 @@
         <md-button class="md-raised md-primary" ng-click="updatePlaneCtrl.delete()">Xóa</md-button>
         <md-button class="md-raised md-primary" ng-click="updatePlaneCtrl.goBack()">Quay lại</md-button>
       </div>
+
+     
     </md-content>
   </md-card>
 </div>

@@ -1,8 +1,12 @@
 'use strict';
 angular.module('planeApp')
-.controller('PlaneListAdminCtrl', ['$http', '$state', '$timeout', 'serverService', 'planeDetailService'
-									, function($http, $state, $timeout, serverService, planeDetailService) {
+.controller('PlaneListAdminCtrl', ['$http', '$state', '$timeout', 'serverService', 'planeDetailService', 'auth'
+									, function($http, $state, $timeout, serverService, planeDetailService, auth) {
 	var ctrl = this;
+
+	if (auth.isLoggedIn() == false){
+		$state.go('login');
+	}
 
 	this.planeList = [];
 
@@ -42,5 +46,10 @@ angular.module('planeApp')
 		planeDetailService.updateData({});
 		planeDetailService.setIsCreate(true);
 		$state.go('updatePlane');	
+	}
+
+	this.logout = function() {
+		auth.logOut();
+		$state.go('login');	
 	}
 }]);
